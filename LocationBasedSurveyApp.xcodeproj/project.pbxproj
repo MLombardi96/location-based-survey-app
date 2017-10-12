@@ -1,0 +1,557 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		30DDC19B1F90162C000469BA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DDC19A1F90162C000469BA /* AppDelegate.swift */; };
+		30DDC19D1F90162C000469BA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DDC19C1F90162C000469BA /* ViewController.swift */; };
+		30DDC1A01F90162C000469BA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30DDC19E1F90162C000469BA /* Main.storyboard */; };
+		30DDC1A21F90162C000469BA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30DDC1A11F90162C000469BA /* Assets.xcassets */; };
+		30DDC1A51F90162C000469BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30DDC1A31F90162C000469BA /* LaunchScreen.storyboard */; };
+		30DDC1B01F90162C000469BA /* LocationBasedSurveyAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DDC1AF1F90162C000469BA /* LocationBasedSurveyAppTests.swift */; };
+		30DDC1BB1F90162C000469BA /* LocationBasedSurveyAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DDC1BA1F90162C000469BA /* LocationBasedSurveyAppUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		30DDC1AC1F90162C000469BA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 30DDC18F1F90162C000469BA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 30DDC1961F90162C000469BA;
+			remoteInfo = LocationBasedSurveyApp;
+		};
+		30DDC1B71F90162C000469BA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 30DDC18F1F90162C000469BA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 30DDC1961F90162C000469BA;
+			remoteInfo = LocationBasedSurveyApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		30DDC1971F90162C000469BA /* LocationBasedSurveyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocationBasedSurveyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		30DDC19A1F90162C000469BA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		30DDC19C1F90162C000469BA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		30DDC19F1F90162C000469BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		30DDC1A11F90162C000469BA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		30DDC1A41F90162C000469BA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		30DDC1A61F90162C000469BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		30DDC1AB1F90162C000469BA /* LocationBasedSurveyAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocationBasedSurveyAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		30DDC1AF1F90162C000469BA /* LocationBasedSurveyAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationBasedSurveyAppTests.swift; sourceTree = "<group>"; };
+		30DDC1B11F90162C000469BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		30DDC1B61F90162C000469BA /* LocationBasedSurveyAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocationBasedSurveyAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		30DDC1BA1F90162C000469BA /* LocationBasedSurveyAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationBasedSurveyAppUITests.swift; sourceTree = "<group>"; };
+		30DDC1BC1F90162C000469BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		30DDC1941F90162C000469BA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		30DDC1A81F90162C000469BA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		30DDC1B31F90162C000469BA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		30DDC18E1F90162C000469BA = {
+			isa = PBXGroup;
+			children = (
+				30DDC1991F90162C000469BA /* LocationBasedSurveyApp */,
+				30DDC1AE1F90162C000469BA /* LocationBasedSurveyAppTests */,
+				30DDC1B91F90162C000469BA /* LocationBasedSurveyAppUITests */,
+				30DDC1981F90162C000469BA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		30DDC1981F90162C000469BA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				30DDC1971F90162C000469BA /* LocationBasedSurveyApp.app */,
+				30DDC1AB1F90162C000469BA /* LocationBasedSurveyAppTests.xctest */,
+				30DDC1B61F90162C000469BA /* LocationBasedSurveyAppUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		30DDC1991F90162C000469BA /* LocationBasedSurveyApp */ = {
+			isa = PBXGroup;
+			children = (
+				30DDC19A1F90162C000469BA /* AppDelegate.swift */,
+				30DDC19C1F90162C000469BA /* ViewController.swift */,
+				30DDC19E1F90162C000469BA /* Main.storyboard */,
+				30DDC1A11F90162C000469BA /* Assets.xcassets */,
+				30DDC1A31F90162C000469BA /* LaunchScreen.storyboard */,
+				30DDC1A61F90162C000469BA /* Info.plist */,
+			);
+			path = LocationBasedSurveyApp;
+			sourceTree = "<group>";
+		};
+		30DDC1AE1F90162C000469BA /* LocationBasedSurveyAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				30DDC1AF1F90162C000469BA /* LocationBasedSurveyAppTests.swift */,
+				30DDC1B11F90162C000469BA /* Info.plist */,
+			);
+			path = LocationBasedSurveyAppTests;
+			sourceTree = "<group>";
+		};
+		30DDC1B91F90162C000469BA /* LocationBasedSurveyAppUITests */ = {
+			isa = PBXGroup;
+			children = (
+				30DDC1BA1F90162C000469BA /* LocationBasedSurveyAppUITests.swift */,
+				30DDC1BC1F90162C000469BA /* Info.plist */,
+			);
+			path = LocationBasedSurveyAppUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		30DDC1961F90162C000469BA /* LocationBasedSurveyApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 30DDC1BF1F90162C000469BA /* Build configuration list for PBXNativeTarget "LocationBasedSurveyApp" */;
+			buildPhases = (
+				30DDC1931F90162C000469BA /* Sources */,
+				30DDC1941F90162C000469BA /* Frameworks */,
+				30DDC1951F90162C000469BA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LocationBasedSurveyApp;
+			productName = LocationBasedSurveyApp;
+			productReference = 30DDC1971F90162C000469BA /* LocationBasedSurveyApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		30DDC1AA1F90162C000469BA /* LocationBasedSurveyAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 30DDC1C21F90162C000469BA /* Build configuration list for PBXNativeTarget "LocationBasedSurveyAppTests" */;
+			buildPhases = (
+				30DDC1A71F90162C000469BA /* Sources */,
+				30DDC1A81F90162C000469BA /* Frameworks */,
+				30DDC1A91F90162C000469BA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				30DDC1AD1F90162C000469BA /* PBXTargetDependency */,
+			);
+			name = LocationBasedSurveyAppTests;
+			productName = LocationBasedSurveyAppTests;
+			productReference = 30DDC1AB1F90162C000469BA /* LocationBasedSurveyAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		30DDC1B51F90162C000469BA /* LocationBasedSurveyAppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 30DDC1C51F90162C000469BA /* Build configuration list for PBXNativeTarget "LocationBasedSurveyAppUITests" */;
+			buildPhases = (
+				30DDC1B21F90162C000469BA /* Sources */,
+				30DDC1B31F90162C000469BA /* Frameworks */,
+				30DDC1B41F90162C000469BA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				30DDC1B81F90162C000469BA /* PBXTargetDependency */,
+			);
+			name = LocationBasedSurveyAppUITests;
+			productName = LocationBasedSurveyAppUITests;
+			productReference = 30DDC1B61F90162C000469BA /* LocationBasedSurveyAppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		30DDC18F1F90162C000469BA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0900;
+				LastUpgradeCheck = 0900;
+				ORGANIZATIONNAME = "Mitchell Lombardi";
+				TargetAttributes = {
+					30DDC1961F90162C000469BA = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+					};
+					30DDC1AA1F90162C000469BA = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 30DDC1961F90162C000469BA;
+					};
+					30DDC1B51F90162C000469BA = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 30DDC1961F90162C000469BA;
+					};
+				};
+			};
+			buildConfigurationList = 30DDC1921F90162C000469BA /* Build configuration list for PBXProject "LocationBasedSurveyApp" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 30DDC18E1F90162C000469BA;
+			productRefGroup = 30DDC1981F90162C000469BA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				30DDC1961F90162C000469BA /* LocationBasedSurveyApp */,
+				30DDC1AA1F90162C000469BA /* LocationBasedSurveyAppTests */,
+				30DDC1B51F90162C000469BA /* LocationBasedSurveyAppUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		30DDC1951F90162C000469BA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30DDC1A51F90162C000469BA /* LaunchScreen.storyboard in Resources */,
+				30DDC1A21F90162C000469BA /* Assets.xcassets in Resources */,
+				30DDC1A01F90162C000469BA /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		30DDC1A91F90162C000469BA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		30DDC1B41F90162C000469BA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		30DDC1931F90162C000469BA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30DDC19D1F90162C000469BA /* ViewController.swift in Sources */,
+				30DDC19B1F90162C000469BA /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		30DDC1A71F90162C000469BA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30DDC1B01F90162C000469BA /* LocationBasedSurveyAppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		30DDC1B21F90162C000469BA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				30DDC1BB1F90162C000469BA /* LocationBasedSurveyAppUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		30DDC1AD1F90162C000469BA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 30DDC1961F90162C000469BA /* LocationBasedSurveyApp */;
+			targetProxy = 30DDC1AC1F90162C000469BA /* PBXContainerItemProxy */;
+		};
+		30DDC1B81F90162C000469BA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 30DDC1961F90162C000469BA /* LocationBasedSurveyApp */;
+			targetProxy = 30DDC1B71F90162C000469BA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		30DDC19E1F90162C000469BA /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				30DDC19F1F90162C000469BA /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		30DDC1A31F90162C000469BA /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				30DDC1A41F90162C000469BA /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		30DDC1BD1F90162C000469BA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		30DDC1BE1F90162C000469BA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		30DDC1C01F90162C000469BA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = LocationBasedSurveyApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = cse.seniordesign.LocationBasedSurveyApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		30DDC1C11F90162C000469BA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = LocationBasedSurveyApp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = cse.seniordesign.LocationBasedSurveyApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		30DDC1C31F90162C000469BA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = LocationBasedSurveyAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = cse.seniordesign.LocationBasedSurveyAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LocationBasedSurveyApp.app/LocationBasedSurveyApp";
+			};
+			name = Debug;
+		};
+		30DDC1C41F90162C000469BA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = LocationBasedSurveyAppTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = cse.seniordesign.LocationBasedSurveyAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LocationBasedSurveyApp.app/LocationBasedSurveyApp";
+			};
+			name = Release;
+		};
+		30DDC1C61F90162C000469BA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = LocationBasedSurveyAppUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = cse.seniordesign.LocationBasedSurveyAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = LocationBasedSurveyApp;
+			};
+			name = Debug;
+		};
+		30DDC1C71F90162C000469BA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = LocationBasedSurveyAppUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = cse.seniordesign.LocationBasedSurveyAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = LocationBasedSurveyApp;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		30DDC1921F90162C000469BA /* Build configuration list for PBXProject "LocationBasedSurveyApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				30DDC1BD1F90162C000469BA /* Debug */,
+				30DDC1BE1F90162C000469BA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		30DDC1BF1F90162C000469BA /* Build configuration list for PBXNativeTarget "LocationBasedSurveyApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				30DDC1C01F90162C000469BA /* Debug */,
+				30DDC1C11F90162C000469BA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		30DDC1C21F90162C000469BA /* Build configuration list for PBXNativeTarget "LocationBasedSurveyAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				30DDC1C31F90162C000469BA /* Debug */,
+				30DDC1C41F90162C000469BA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		30DDC1C51F90162C000469BA /* Build configuration list for PBXNativeTarget "LocationBasedSurveyAppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				30DDC1C61F90162C000469BA /* Debug */,
+				30DDC1C71F90162C000469BA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 30DDC18F1F90162C000469BA /* Project object */;
+}
