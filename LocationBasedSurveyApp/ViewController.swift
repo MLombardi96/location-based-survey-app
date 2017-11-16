@@ -8,6 +8,7 @@
 
 import UIKit
 import UserNotifications 
+import Foundation
 
 class ViewController: UIViewController, UNUserNotificationCenterDelegate {
     
@@ -43,7 +44,7 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
             let content = UNMutableNotificationContent()
             content.title = "Button Notification Test"
             content.subtitle = "Location Based Survey App"
-            content.body = "Notification Test Succeeded!!!"
+            content.body = "Notification Test Succeeded!"
             
             // Gives time to exit the app, notification will not appear if app is open
             let trigger = UNTimeIntervalNotificationTrigger(
@@ -60,12 +61,10 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
             //Add the notification to the currnet notification center
             UNUserNotificationCenter.current().add(
                 request, withCompletionHandler: nil)
-            
         }
-        
-        // print("Button test")
-        
     }
     
+    @IBAction func jsonButton(_ sender: Any) {
+            
+    }
 }
-
