@@ -47,7 +47,7 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
             
             // Gives time to exit the app, notification will not appear if app is open
             let trigger = UNTimeIntervalNotificationTrigger(
-                timeInterval: 10.0,
+                timeInterval: 5.0,
                 repeats: false)
             
             //Set the request for the notification from the above
@@ -58,6 +58,7 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
             )
             
             //Add the notification to the currnet notification center
+            UNUserNotificationCenter.current().delegate = self
             UNUserNotificationCenter.current().add(
                 request, withCompletionHandler: nil)
             
