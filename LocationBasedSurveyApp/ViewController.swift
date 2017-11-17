@@ -18,7 +18,6 @@ struct Response: Codable {
 class ViewController: UIViewController, UNUserNotificationCenterDelegate {
     
     var isGrantedNotificationAccess:Bool = false
-    var responses:[Response]?
     //MARK: Properties
 
     override func viewDidLoad() {
@@ -56,8 +55,15 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
             do {
                 let jsonData = try JSONDecoder().decode(Response.self, from: data)
                 
-                let alertController = UIAlertController(title: "JSON Request", message: jsonData.response, preferredStyle: .alert)
-                alertController.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+                let alertController = UIAlertController(
+                    title: "JSON Request",
+                    message: jsonData.response,
+                    preferredStyle: .alert)
+                
+                alertController.addAction(UIAlertAction(
+                    title: "Dismiss",
+                    style: .default,
+                    handler: nil))
                 
                 self.present(alertController, animated: true, completion: nil)
             } catch let jsonError {
@@ -88,7 +94,7 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
             )
             
             //Add the notification to the currnet notification center
-            UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+            UNUserNotificationCenter.current().add(request,withCompletionHandler: nil)
         }
     }
 }
