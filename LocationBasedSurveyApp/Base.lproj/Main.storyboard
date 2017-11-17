@@ -24,26 +24,25 @@
                                     <action selector="notificationButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="81W-bU-Dm2"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ynt-MB-4JH">
-                                <rect key="frame" x="137" y="356" width="100" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gNc-kG-GpS">
+                                <rect key="frame" x="137" y="280" width="100" height="30"/>
                                 <state key="normal" title="JSON Request"/>
                                 <connections>
-                                    <action selector="jsonButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qpn-ig-xA9"/>
+                                    <action selector="jsonButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vYn-31-xBv"/>
                                 </connections>
                             </button>
                         </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="dDe-yg-aW8" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="8ac-Pl-tdY"/>
-                            <constraint firstItem="dDe-yg-aW8" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="P0x-hQ-Ebx"/>
+                            <constraint firstItem="gNc-kG-GpS" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9dX-dX-JmO"/>
+                            <constraint firstItem="dDe-yg-aW8" firstAttribute="top" secondItem="gNc-kG-GpS" secondAttribute="bottom" constant="8" symbolic="YES" id="VGS-gp-6q4"/>
+                            <constraint firstItem="dDe-yg-aW8" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="cda-5U-62X"/>
+                            <constraint firstItem="gNc-kG-GpS" firstAttribute="centerX" secondItem="dDe-yg-aW8" secondAttribute="centerX" id="iil-fl-SfW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="jsonButton" destination="Ynt-MB-4JH" id="ezF-1C-V54"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

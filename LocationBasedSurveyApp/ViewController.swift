@@ -10,10 +10,15 @@ import UIKit
 import UserNotifications 
 import Foundation
 
+struct Response: Codable {
+    let response: String
+    let time: String
+}
+
 class ViewController: UIViewController, UNUserNotificationCenterDelegate {
     
     var isGrantedNotificationAccess:Bool = false
-    
+    var responses:[Response]?
     //MARK: Properties
 
     override func viewDidLoad() {
@@ -38,17 +43,41 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func jsonButton(_ sender: Any) {
+        guard let url = URL(string: "http://sdp-2017-survey.cse.uconn.edu/test") else { return }
+        
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if error != nil {
+                print(error!.localizedDescription)
+            }
+            
+            guard let data = data else { return }
+            
+            do {
+                let jsonData = try JSONDecoder().decode(Response.self, from: data)
+                
+                let alertController = UIAlertController(title: "JSON Request", message: jsonData.response, preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: nil))
+                
+                self.present(alertController, animated: true, completion: nil)
+            } catch let jsonError {
+                print(jsonError)
+            }
+        }
+        
+        task.resume()
+    }
+    
     //MARK: Actions
     @IBAction func notificationButton(_ sender: UIButton) {
         if isGrantedNotificationAccess{
             let content = UNMutableNotificationContent()
-            content.title = "Button Notification Test"
-            content.subtitle = "Location Based Survey App"
+            content.title = "Location Based Survey App"
             content.body = "Notification Test Succeeded!"
             
             // Gives time to exit the app, notification will not appear if app is open
             let trigger = UNTimeIntervalNotificationTrigger(
-                timeInterval: 10.0,
+                timeInterval: 5.0,
                 repeats: false)
             
             //Set the request for the notification from the above
@@ -59,12 +88,7 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
             )
             
             //Add the notification to the currnet notification center
-            UNUserNotificationCenter.current().add(
-                request, withCompletionHandler: nil)
+            UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
         }
-    }
-    
-    @IBAction func jsonButton(_ sender: Any) {
-            
     }
 }
