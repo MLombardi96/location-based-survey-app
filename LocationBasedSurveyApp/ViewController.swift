@@ -7,7 +7,8 @@
 //
 
 import UIKit
-import UserNotifications 
+import UserNotifications
+import CoreLocation
 import Foundation
 
 struct Response: Codable {
@@ -18,10 +19,19 @@ struct Response: Codable {
 class ViewController: UIViewController, UNUserNotificationCenterDelegate {
     
     var isGrantedNotificationAccess:Bool = false
+    let locationNotification = LocationNotification()
+    
     //MARK: Properties
-
+    @IBOutlet weak var jsonButton: UIButton!
+    @IBOutlet weak var notificationButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        UNUserNotificationCenter.current().delegate = self
+ 
+        locationNotification.addLocation(latitude: 41.805179, longitude: -72.253386, radius: 50, identifier: "Bookstore")
+        locationNotification.addLocation(latitude: 41.908072, longitude: -72.371841, radius: 50, identifier: "Home")
+        locationNotification.addLocation(latitude: 41.806844, longitude: -72.251954, radius: 20, identifier: "Work")
         
         // Prompts user to allow notifications when it first loads
         UNUserNotificationCenter.current().requestAuthorization(
@@ -31,17 +41,13 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
             }
         )
         
-        // for remote access when we get that far
-        //application.registerForRemoteNotifications()
+        // rounds the edges of buttons
+        jsonButton.layer.cornerRadius = 4
+        notificationButton.layer.cornerRadius = 4
         
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
+    //MARK: Actions
     @IBAction func jsonButton(_ sender: Any) {
         guard let url = URL(string: "http://sdp-2017-survey.cse.uconn.edu/test") else { return }
         
@@ -76,28 +82,28 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
     
     //MARK: Actions
     @IBAction func notificationButton(_ sender: UIButton) {
-        if isGrantedNotificationAccess{
-            let content = UNMutableNotificationContent()
-            content.title = "Location Based Survey App"
-            content.body = "Notification Test Succeeded!"
-            
-            // Gives time to exit the app, notification will not appear if app is open
-            let trigger = UNTimeIntervalNotificationTrigger(
-                timeInterval: 5.0,
-                repeats: false)
-            
-            //Set the request for the notification from the above
-            let request = UNNotificationRequest(
-                identifier: "button.test",
-                content: content,
-                trigger: trigger
-            )
-            
-            //Add the notification to the currnet notification center
-            UNUserNotificationCenter.current().delegate = self
-            UNUserNotificationCenter.current().add(
-                request, withCompletionHandler: nil)
-            
-        }
+        locationNotification.sendNotification(notificationTitle: "You pushed the button!", notificationBody: "Good work!")
     }
+
+    @IBAction func Home(_ sender: UIBarButtonItem) {
+    }
+    @IBAction func Surveys(_ sender: UIBarButtonItem) {
+    }
+    @IBAction func History(_ sender: UIBarButtonItem) {
+    }
+}
+
+// Allows notifications with app in the foreground
+extension ViewController {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .sound])
+    }
+}
+
+extension ViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        //let location = locations.last!
+        //print("Location: \(location)") // Updates location to the console
+    }
+    
 }

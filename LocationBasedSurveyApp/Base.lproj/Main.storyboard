@@ -17,35 +17,61 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dDe-yg-aW8">
-                                <rect key="frame" x="148" y="318" width="79" height="30"/>
-                                <state key="normal" title="Notification"/>
-                                <connections>
-                                    <action selector="notificationButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="81W-bU-Dm2"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gNc-kG-GpS">
-                                <rect key="frame" x="137" y="280" width="100" height="30"/>
-                                <state key="normal" title="JSON Request"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gNc-kG-GpS">
+                                <rect key="frame" x="127" y="281" width="120" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="JSON Request">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="titleShadowColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                </state>
                                 <connections>
                                     <action selector="jsonButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vYn-31-xBv"/>
+                                </connections>
+                            </button>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aAA-Kl-17o">
+                                <rect key="frame" x="0.0" y="579" width="375" height="44"/>
+                                <items>
+                                    <barButtonItem title="Home" width="82" id="W4a-Kx-gTm"/>
+                                    <barButtonItem title="Surveys" width="220" id="Bms-Rx-TOr"/>
+                                    <barButtonItem title="History" id="7oo-Ut-oyW"/>
+                                </items>
+                            </toolbar>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dDe-yg-aW8">
+                                <rect key="frame" x="137" y="319" width="100" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Notification">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="notificationButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="81W-bU-Dm2"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="gNc-kG-GpS" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9dX-dX-JmO"/>
-                            <constraint firstItem="dDe-yg-aW8" firstAttribute="top" secondItem="gNc-kG-GpS" secondAttribute="bottom" constant="8" symbolic="YES" id="VGS-gp-6q4"/>
-                            <constraint firstItem="dDe-yg-aW8" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="cda-5U-62X"/>
-                            <constraint firstItem="gNc-kG-GpS" firstAttribute="centerX" secondItem="dDe-yg-aW8" secondAttribute="centerX" id="iil-fl-SfW"/>
+                            <constraint firstItem="gNc-kG-GpS" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="261" id="3x1-tU-6ou"/>
+                            <constraint firstItem="dDe-yg-aW8" firstAttribute="top" secondItem="gNc-kG-GpS" secondAttribute="bottom" constant="8" symbolic="YES" id="4io-y1-g0Z"/>
+                            <constraint firstItem="dDe-yg-aW8" firstAttribute="centerX" secondItem="gNc-kG-GpS" secondAttribute="centerX" id="64D-t1-x7s"/>
+                            <constraint firstItem="aAA-Kl-17o" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="8ZB-0l-D45"/>
+                            <constraint firstItem="dDe-yg-aW8" firstAttribute="centerX" secondItem="aAA-Kl-17o" secondAttribute="centerX" id="Z7U-xS-hJj"/>
+                            <constraint firstItem="dDe-yg-aW8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="137" id="dqK-hc-RRl"/>
+                            <constraint firstAttribute="trailing" secondItem="aAA-Kl-17o" secondAttribute="trailing" id="gpr-Cj-q8A"/>
+                            <constraint firstItem="gNc-kG-GpS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="129" id="kBp-Ba-yug"/>
+                            <constraint firstItem="aAA-Kl-17o" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="mdM-km-5jy"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="gNc-kG-GpS" secondAttribute="trailing" constant="126" id="xwp-3h-6fz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="jsonButton" destination="gNc-kG-GpS" id="YHd-5j-mOs"/>
+                        <outlet property="notificationButton" destination="dDe-yg-aW8" id="IRs-4f-ZLn"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="32.799999999999997" y="39.130434782608695"/>
         </scene>
     </scenes>
 </document>

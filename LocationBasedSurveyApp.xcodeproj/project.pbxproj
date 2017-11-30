@@ -14,6 +14,7 @@
 		30DDC1A51F90162C000469BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30DDC1A31F90162C000469BA /* LaunchScreen.storyboard */; };
 		30DDC1B01F90162C000469BA /* LocationBasedSurveyAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DDC1AF1F90162C000469BA /* LocationBasedSurveyAppTests.swift */; };
 		30DDC1BB1F90162C000469BA /* LocationBasedSurveyAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DDC1BA1F90162C000469BA /* LocationBasedSurveyAppUITests.swift */; };
+		967F8A171FC476EC000F28DC /* LocationNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967F8A161FC476EC000F28DC /* LocationNotification.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,8 @@
 		30DDC1B61F90162C000469BA /* LocationBasedSurveyAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocationBasedSurveyAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		30DDC1BA1F90162C000469BA /* LocationBasedSurveyAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationBasedSurveyAppUITests.swift; sourceTree = "<group>"; };
 		30DDC1BC1F90162C000469BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		967BA82E1FBF7B6300B1CABE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		967F8A161FC476EC000F28DC /* LocationNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationNotification.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +84,7 @@
 				30DDC1AE1F90162C000469BA /* LocationBasedSurveyAppTests */,
 				30DDC1B91F90162C000469BA /* LocationBasedSurveyAppUITests */,
 				30DDC1981F90162C000469BA /* Products */,
+				967BA82D1FBF7B6200B1CABE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,11 +101,12 @@
 		30DDC1991F90162C000469BA /* LocationBasedSurveyApp */ = {
 			isa = PBXGroup;
 			children = (
-				30DDC19A1F90162C000469BA /* AppDelegate.swift */,
 				30DDC19C1F90162C000469BA /* ViewController.swift */,
 				30DDC19E1F90162C000469BA /* Main.storyboard */,
-				30DDC1A11F90162C000469BA /* Assets.xcassets */,
 				30DDC1A31F90162C000469BA /* LaunchScreen.storyboard */,
+				967F8A161FC476EC000F28DC /* LocationNotification.swift */,
+				30DDC19A1F90162C000469BA /* AppDelegate.swift */,
+				30DDC1A11F90162C000469BA /* Assets.xcassets */,
 				30DDC1A61F90162C000469BA /* Info.plist */,
 			);
 			path = LocationBasedSurveyApp;
@@ -123,6 +128,14 @@
 				30DDC1BC1F90162C000469BA /* Info.plist */,
 			);
 			path = LocationBasedSurveyAppUITests;
+			sourceTree = "<group>";
+		};
+		967BA82D1FBF7B6200B1CABE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				967BA82E1FBF7B6300B1CABE /* CoreLocation.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,6 +273,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				30DDC19D1F90162C000469BA /* ViewController.swift in Sources */,
+				967F8A171FC476EC000F28DC /* LocationNotification.swift in Sources */,
 				30DDC19B1F90162C000469BA /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
