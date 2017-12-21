@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="v3Q-bH-a0j">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -9,67 +9,131 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <!--Home-->
+        <scene sceneID="lVZ-w5-wTg">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="LocationBasedSurveyApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                <viewController id="Vfh-hO-eAB" customClass="HomeViewController" customModule="LocationBasedSurveyApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Y76-pV-wbF">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gNc-kG-GpS">
-                                <rect key="frame" x="127" y="281" width="120" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e8I-6e-bed">
+                                <rect key="frame" x="137" y="299" width="100" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="JSON Request">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                 </state>
                                 <connections>
-                                    <action selector="jsonButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vYn-31-xBv"/>
+                                    <action selector="jsonButton:" destination="Vfh-hO-eAB" eventType="touchUpInside" id="Rdn-A3-jR4"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dDe-yg-aW8">
-                                <rect key="frame" x="137" y="319" width="104" height="30"/>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bkt-N2-e0n">
+                                <rect key="frame" x="148" y="338.5" width="79" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Notification">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="notificationButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="81W-bU-Dm2"/>
+                                    <action selector="notificationButton:" destination="Vfh-hO-eAB" eventType="touchUpInside" id="TJ0-62-Ull"/>
                                 </connections>
                             </button>
-                            <tabBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4bf-Mn-WI9">
-                                <rect key="frame" x="0.0" y="618" width="375" height="49"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <items>
-                                    <tabBarItem title="Home" id="zvD-DE-0nu"/>
-                                    <tabBarItem title="Available Surveys" id="VGo-jZ-CkV"/>
-                                    <tabBarItem title="History" id="Vic-hB-FiW"/>
-                                </items>
-                            </tabBar>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="gNc-kG-GpS" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="261" id="3x1-tU-6ou"/>
-                            <constraint firstItem="dDe-yg-aW8" firstAttribute="top" secondItem="gNc-kG-GpS" secondAttribute="bottom" constant="8" symbolic="YES" id="4io-y1-g0Z"/>
-                            <constraint firstItem="dDe-yg-aW8" firstAttribute="centerX" secondItem="gNc-kG-GpS" secondAttribute="centerX" id="64D-t1-x7s"/>
-                            <constraint firstItem="dDe-yg-aW8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="137" id="dqK-hc-RRl"/>
-                            <constraint firstItem="gNc-kG-GpS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="129" id="kBp-Ba-yug"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="gNc-kG-GpS" secondAttribute="trailing" constant="126" id="xwp-3h-6fz"/>
+                            <constraint firstItem="bkt-N2-e0n" firstAttribute="centerX" secondItem="Y76-pV-wbF" secondAttribute="centerX" id="Qsl-Ac-Tf5"/>
+                            <constraint firstItem="bkt-N2-e0n" firstAttribute="centerY" secondItem="Y76-pV-wbF" secondAttribute="centerY" constant="20" id="fnK-ok-XRM"/>
+                            <constraint firstItem="e8I-6e-bed" firstAttribute="centerY" secondItem="Y76-pV-wbF" secondAttribute="centerY" constant="-20" id="i2S-uw-n1M"/>
+                            <constraint firstItem="e8I-6e-bed" firstAttribute="centerX" secondItem="Y76-pV-wbF" secondAttribute="centerX" id="mQh-g2-9fo"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <viewLayoutGuide key="safeArea" id="Nxv-we-jBb"/>
                     </view>
-                    <toolbarItems/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <tabBarItem key="tabBarItem" title="Home" id="jkJ-P3-fzH"/>
                     <connections>
-                        <outlet property="jsonButton" destination="gNc-kG-GpS" id="YHd-5j-mOs"/>
-                        <outlet property="notificationButton" destination="dDe-yg-aW8" id="IRs-4f-ZLn"/>
+                        <outlet property="jsonButton" destination="e8I-6e-bed" id="Kks-hH-IaC"/>
+                        <outlet property="notificationButton" destination="bkt-N2-e0n" id="GOQ-SD-34F"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zq1-Vm-I2c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="32.799999999999997" y="39.130434782608695"/>
+            <point key="canvasLocation" x="1541.5999999999999" y="-281.10944527736132"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="Zws-0h-KzT">
+            <objects>
+                <tabBarController id="v3Q-bH-a0j" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Hr8-WP-KHj">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="Vfh-hO-eAB" kind="relationship" relationship="viewControllers" id="EFz-6g-AGz"/>
+                        <segue destination="PdI-0N-OIc" kind="relationship" relationship="viewControllers" id="rYC-HD-lSh"/>
+                        <segue destination="m4j-xu-BGZ" kind="relationship" relationship="viewControllers" id="1Ou-w9-dby"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ibu-VD-5IW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="764" y="39"/>
+        </scene>
+        <!--History-->
+        <scene sceneID="Sih-LW-pi9">
+            <objects>
+                <tableViewController id="m4j-xu-BGZ" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="NUi-5i-XPx">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="jc3-OG-P4f">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jc3-OG-P4f" id="Khw-Po-zWT">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="m4j-xu-BGZ" id="ZnV-Ke-8A9"/>
+                            <outlet property="delegate" destination="m4j-xu-BGZ" id="LsH-e5-Znr"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="History" id="18h-7K-fRG"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GIa-U4-NVK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="764" y="740"/>
+        </scene>
+        <!--Available Surveys-->
+        <scene sceneID="HmY-2W-LHc">
+            <objects>
+                <tableViewController id="PdI-0N-OIc" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="bgd-dn-Phb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="jT5-Op-sz6">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jT5-Op-sz6" id="Cgb-QN-IYz">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="PdI-0N-OIc" id="nwY-A3-hpm"/>
+                            <outlet property="delegate" destination="PdI-0N-OIc" id="6A8-6b-UGh"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="Available Surveys" id="Qf2-tf-bY8"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9Rl-P6-UFT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1542" y="385"/>
         </scene>
     </scenes>
 </document>

@@ -6,19 +6,12 @@
 //  Copyright © 2017 Mitchell Lombardi. All rights reserved.
 //
 
-// Replaced with HomeViewController, left for reference. 
-
 import UIKit
 import UserNotifications
 import CoreLocation
 import Foundation
 
-struct Response: Codable {
-    let response: String
-    let time: String
-}
-
-class ViewController: UIViewController, UNUserNotificationCenterDelegate {
+class HomeViewController: UIViewController, UNUserNotificationCenterDelegate {
     
     var isGrantedNotificationAccess:Bool = false
     let locationNotification = LocationNotification()
@@ -30,7 +23,7 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         UNUserNotificationCenter.current().delegate = self
- 
+        
         locationNotification.addLocation(latitude: 41.805179, longitude: -72.253386, radius: 50, identifier: "Bookstore")
         locationNotification.addLocation(latitude: 41.908072, longitude: -72.371841, radius: 50, identifier: "Home")
         locationNotification.addLocation(latitude: 41.806844, longitude: -72.251954, radius: 20, identifier: "Work")
@@ -40,7 +33,7 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
             options: [.alert,.sound,.badge],
             completionHandler: { (granted,error) in
                 self.isGrantedNotificationAccess = granted
-            }
+        }
         )
         
         // rounds the edges of buttons
@@ -50,7 +43,7 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
     }
     
     //MARK: Actions
-    @IBAction func jsonButton(_ sender: Any) {
+    @IBAction func jsonButton(_ sender: UIButton) {
         guard let url = URL(string: "http://sdp-2017-survey.cse.uconn.edu/test") else { return }
         
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
@@ -89,16 +82,17 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
 }
 
 // Allows notifications with app in the foreground
-extension ViewController {
+extension HomeViewController {
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.alert, .sound])
     }
 }
 
-extension ViewController: CLLocationManagerDelegate {
+extension HomeViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         //let location = locations.last!
         //print("Location: \(location)") // Updates location to the console
     }
     
 }
+
