@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -28,16 +28,8 @@
                                     <action selector="jsonButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="vYn-31-xBv"/>
                                 </connections>
                             </button>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aAA-Kl-17o">
-                                <rect key="frame" x="0.0" y="579" width="375" height="44"/>
-                                <items>
-                                    <barButtonItem title="Home" width="82" id="W4a-Kx-gTm"/>
-                                    <barButtonItem title="Surveys" width="220" id="Bms-Rx-TOr"/>
-                                    <barButtonItem title="History" id="7oo-Ut-oyW"/>
-                                </items>
-                            </toolbar>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dDe-yg-aW8">
-                                <rect key="frame" x="137" y="319" width="100" height="30"/>
+                                <rect key="frame" x="137" y="319" width="104" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <state key="normal" title="Notification">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -46,18 +38,24 @@
                                     <action selector="notificationButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="81W-bU-Dm2"/>
                                 </connections>
                             </button>
+                            <tabBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4bf-Mn-WI9">
+                                <rect key="frame" x="0.0" y="618" width="375" height="49"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <tabBarItem title="Home" id="zvD-DE-0nu"/>
+                                    <tabBarItem title="Available Surveys" id="VGo-jZ-CkV"/>
+                                    <tabBarItem title="History" id="Vic-hB-FiW"/>
+                                </items>
+                            </tabBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="gNc-kG-GpS" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="261" id="3x1-tU-6ou"/>
                             <constraint firstItem="dDe-yg-aW8" firstAttribute="top" secondItem="gNc-kG-GpS" secondAttribute="bottom" constant="8" symbolic="YES" id="4io-y1-g0Z"/>
                             <constraint firstItem="dDe-yg-aW8" firstAttribute="centerX" secondItem="gNc-kG-GpS" secondAttribute="centerX" id="64D-t1-x7s"/>
-                            <constraint firstItem="aAA-Kl-17o" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="8ZB-0l-D45"/>
-                            <constraint firstItem="dDe-yg-aW8" firstAttribute="centerX" secondItem="aAA-Kl-17o" secondAttribute="centerX" id="Z7U-xS-hJj"/>
                             <constraint firstItem="dDe-yg-aW8" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="137" id="dqK-hc-RRl"/>
-                            <constraint firstAttribute="trailing" secondItem="aAA-Kl-17o" secondAttribute="trailing" id="gpr-Cj-q8A"/>
                             <constraint firstItem="gNc-kG-GpS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="129" id="kBp-Ba-yug"/>
-                            <constraint firstItem="aAA-Kl-17o" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="mdM-km-5jy"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="gNc-kG-GpS" secondAttribute="trailing" constant="126" id="xwp-3h-6fz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
