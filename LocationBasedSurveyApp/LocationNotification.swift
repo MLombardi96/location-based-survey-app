@@ -12,7 +12,8 @@ import UserNotifications
 
 /*
  * Used to create locations and notify the user when they have entered
- * one of the specified regions.
+ * one of the specified regions. Allows the geofences to be handled
+ * solely in this class.
  */
 class LocationNotification: NSObject, CLLocationManagerDelegate, UNUserNotificationCenterDelegate {
     
@@ -62,4 +63,6 @@ class LocationNotification: NSObject, CLLocationManagerDelegate, UNUserNotificat
             //Add the notification to the currnet notification center
             UNUserNotificationCenter.current().add(request,withCompletionHandler: nil)
     }
+    
+    //TODO: function that returns true is user is within geofence of selected survey
 }

@@ -14,8 +14,14 @@
 		30DDC1A51F90162C000469BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 30DDC1A31F90162C000469BA /* LaunchScreen.storyboard */; };
 		30DDC1B01F90162C000469BA /* LocationBasedSurveyAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DDC1AF1F90162C000469BA /* LocationBasedSurveyAppTests.swift */; };
 		30DDC1BB1F90162C000469BA /* LocationBasedSurveyAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DDC1BA1F90162C000469BA /* LocationBasedSurveyAppUITests.swift */; };
+		6B1E5207CEFFBED3F304B1AD /* libPods-LocationBasedSurveyApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 35D265CE7EC2FC4131528137 /* libPods-LocationBasedSurveyApp.a */; };
 		9619589C1FEC4F3B00C28BEE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9619589B1FEC4F3B00C28BEE /* HomeViewController.swift */; };
+		962E54511FEE1EC60058D381 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 962E54501FEE1EC60058D381 /* Podfile */; };
 		967F8A171FC476EC000F28DC /* LocationNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967F8A161FC476EC000F28DC /* LocationNotification.swift */; };
+		968396741FED720E00A1BACD /* AvailableSurveysTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968396731FED720E00A1BACD /* AvailableSurveysTableViewCell.swift */; };
+		9683967C1FED784700A1BACD /* AvailableSurveysTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9683967B1FED784700A1BACD /* AvailableSurveysTableViewController.swift */; };
+		9683967E1FED798300A1BACD /* Survey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9683967D1FED798300A1BACD /* Survey.swift */; };
+		968396801FEE127400A1BACD /* GoogleMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9683967F1FEE127400A1BACD /* GoogleMapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,9 +55,17 @@
 		30DDC1B61F90162C000469BA /* LocationBasedSurveyAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocationBasedSurveyAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		30DDC1BA1F90162C000469BA /* LocationBasedSurveyAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationBasedSurveyAppUITests.swift; sourceTree = "<group>"; };
 		30DDC1BC1F90162C000469BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		35D265CE7EC2FC4131528137 /* libPods-LocationBasedSurveyApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LocationBasedSurveyApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9619589B1FEC4F3B00C28BEE /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		962E54501FEE1EC60058D381 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
 		967BA82E1FBF7B6300B1CABE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		967F8A161FC476EC000F28DC /* LocationNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationNotification.swift; sourceTree = "<group>"; };
+		968396731FED720E00A1BACD /* AvailableSurveysTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableSurveysTableViewCell.swift; sourceTree = "<group>"; };
+		9683967B1FED784700A1BACD /* AvailableSurveysTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableSurveysTableViewController.swift; sourceTree = "<group>"; };
+		9683967D1FED798300A1BACD /* Survey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Survey.swift; sourceTree = "<group>"; };
+		9683967F1FEE127400A1BACD /* GoogleMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapViewController.swift; sourceTree = "<group>"; };
+		BABD0DD450324C57D348A1AF /* Pods-LocationBasedSurveyApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationBasedSurveyApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-LocationBasedSurveyApp/Pods-LocationBasedSurveyApp.release.xcconfig"; sourceTree = "<group>"; };
+		BFE8BBE77ACDECD84CCA7CE8 /* Pods-LocationBasedSurveyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationBasedSurveyApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LocationBasedSurveyApp/Pods-LocationBasedSurveyApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B1E5207CEFFBED3F304B1AD /* libPods-LocationBasedSurveyApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,11 +97,13 @@
 		30DDC18E1F90162C000469BA = {
 			isa = PBXGroup;
 			children = (
+				962E54501FEE1EC60058D381 /* Podfile */,
 				30DDC1991F90162C000469BA /* LocationBasedSurveyApp */,
 				30DDC1AE1F90162C000469BA /* LocationBasedSurveyAppTests */,
 				30DDC1B91F90162C000469BA /* LocationBasedSurveyAppUITests */,
 				30DDC1981F90162C000469BA /* Products */,
 				967BA82D1FBF7B6200B1CABE /* Frameworks */,
+				C4D0A525CB64EFBD736B3903 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -103,10 +120,14 @@
 		30DDC1991F90162C000469BA /* LocationBasedSurveyApp */ = {
 			isa = PBXGroup;
 			children = (
-				9619589B1FEC4F3B00C28BEE /* HomeViewController.swift */,
 				30DDC19E1F90162C000469BA /* Main.storyboard */,
 				30DDC1A31F90162C000469BA /* LaunchScreen.storyboard */,
+				9619589B1FEC4F3B00C28BEE /* HomeViewController.swift */,
+				9683967B1FED784700A1BACD /* AvailableSurveysTableViewController.swift */,
+				9683967F1FEE127400A1BACD /* GoogleMapViewController.swift */,
+				968396731FED720E00A1BACD /* AvailableSurveysTableViewCell.swift */,
 				967F8A161FC476EC000F28DC /* LocationNotification.swift */,
+				9683967D1FED798300A1BACD /* Survey.swift */,
 				30DDC19A1F90162C000469BA /* AppDelegate.swift */,
 				30DDC19C1F90162C000469BA /* ViewController.swift */,
 				30DDC1A11F90162C000469BA /* Assets.xcassets */,
@@ -137,8 +158,18 @@
 			isa = PBXGroup;
 			children = (
 				967BA82E1FBF7B6300B1CABE /* CoreLocation.framework */,
+				35D265CE7EC2FC4131528137 /* libPods-LocationBasedSurveyApp.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C4D0A525CB64EFBD736B3903 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				BFE8BBE77ACDECD84CCA7CE8 /* Pods-LocationBasedSurveyApp.debug.xcconfig */,
+				BABD0DD450324C57D348A1AF /* Pods-LocationBasedSurveyApp.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,9 +179,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 30DDC1BF1F90162C000469BA /* Build configuration list for PBXNativeTarget "LocationBasedSurveyApp" */;
 			buildPhases = (
+				B370565A40546D4DD0AED4BD /* [CP] Check Pods Manifest.lock */,
 				30DDC1931F90162C000469BA /* Sources */,
 				30DDC1941F90162C000469BA /* Frameworks */,
 				30DDC1951F90162C000469BA /* Resources */,
+				5469E3C6275F83427D0F57B8 /* [CP] Embed Pods Frameworks */,
+				7C6BA927C8D08D00C03AE63E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -250,6 +284,7 @@
 			files = (
 				30DDC1A51F90162C000469BA /* LaunchScreen.storyboard in Resources */,
 				30DDC1A21F90162C000469BA /* Assets.xcassets in Resources */,
+				962E54511FEE1EC60058D381 /* Podfile in Resources */,
 				30DDC1A01F90162C000469BA /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -270,13 +305,72 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		5469E3C6275F83427D0F57B8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LocationBasedSurveyApp/Pods-LocationBasedSurveyApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7C6BA927C8D08D00C03AE63E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-LocationBasedSurveyApp/Pods-LocationBasedSurveyApp-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LocationBasedSurveyApp/Pods-LocationBasedSurveyApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B370565A40546D4DD0AED4BD /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LocationBasedSurveyApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		30DDC1931F90162C000469BA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				30DDC19D1F90162C000469BA /* ViewController.swift in Sources */,
+				9683967C1FED784700A1BACD /* AvailableSurveysTableViewController.swift in Sources */,
+				968396801FEE127400A1BACD /* GoogleMapViewController.swift in Sources */,
+				9683967E1FED798300A1BACD /* Survey.swift in Sources */,
 				967F8A171FC476EC000F28DC /* LocationNotification.swift in Sources */,
+				968396741FED720E00A1BACD /* AvailableSurveysTableViewCell.swift in Sources */,
 				30DDC19B1F90162C000469BA /* AppDelegate.swift in Sources */,
 				9619589C1FEC4F3B00C28BEE /* HomeViewController.swift in Sources */,
 			);
@@ -442,6 +536,7 @@
 		};
 		30DDC1C01F90162C000469BA /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BFE8BBE77ACDECD84CCA7CE8 /* Pods-LocationBasedSurveyApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -457,6 +552,7 @@
 		};
 		30DDC1C11F90162C000469BA /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BABD0DD450324C57D348A1AF /* Pods-LocationBasedSurveyApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

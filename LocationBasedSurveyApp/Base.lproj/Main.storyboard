@@ -69,7 +69,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="Vfh-hO-eAB" kind="relationship" relationship="viewControllers" id="EFz-6g-AGz"/>
-                        <segue destination="PdI-0N-OIc" kind="relationship" relationship="viewControllers" id="rYC-HD-lSh"/>
+                        <segue destination="yzY-mf-pdJ" kind="relationship" relationship="viewControllers" id="q5B-Ca-6mr"/>
                         <segue destination="m4j-xu-BGZ" kind="relationship" relationship="viewControllers" id="1Ou-w9-dby"/>
                     </connections>
                 </tabBarController>
@@ -109,19 +109,40 @@
         <!--Available Surveys-->
         <scene sceneID="HmY-2W-LHc">
             <objects>
-                <tableViewController id="PdI-0N-OIc" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="bgd-dn-Phb">
+                <tableViewController id="PdI-0N-OIc" customClass="AvailableSurveysTableViewController" customModule="LocationBasedSurveyApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="bgd-dn-Phb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="jT5-Op-sz6">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="AvailableSurveysTableViewCell" rowHeight="90" id="jT5-Op-sz6" customClass="AvailableSurveysTableViewCell" customModule="LocationBasedSurveyApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jT5-Op-sz6" id="Cgb-QN-IYz">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="89.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Survey Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sjr-7w-1Cv">
+                                            <rect key="frame" x="16" y="11" width="145" height="33"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Short description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Fo-SB-I3d">
+                                            <rect key="frame" x="16" y="46" width="300" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="surveyDemoDescription" destination="4Fo-SB-I3d" id="67m-Mw-1jw"/>
+                                    <outlet property="surveyTitle" destination="Sjr-7w-1Cv" id="ULT-Ck-N0g"/>
+                                    <segue destination="zyx-tA-POP" kind="show" id="PO4-kl-hmg"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -130,10 +151,44 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Available Surveys" id="Qf2-tf-bY8"/>
+                    <navigationItem key="navigationItem" id="cAx-wb-V3M"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Rl-P6-UFT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1542" y="385"/>
+            <point key="canvasLocation" x="2399" y="403"/>
+        </scene>
+        <!--Available Surveys-->
+        <scene sceneID="ajn-Sc-Drv">
+            <objects>
+                <navigationController id="yzY-mf-pdJ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Available Surveys" id="jrk-dB-miF"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="euS-MH-XIU">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="PdI-0N-OIc" kind="relationship" relationship="rootViewController" id="Ll1-0R-25k"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rna-3t-PKT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1542" y="403"/>
+        </scene>
+        <!--Google Map View Controller-->
+        <scene sceneID="m5r-pi-qY6">
+            <objects>
+                <viewController id="zyx-tA-POP" customClass="GoogleMapViewController" customModule="LocationBasedSurveyApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="RGb-uh-f2D">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="s49-5K-Agt"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="bU9-Z8-nG4"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tUw-AW-jg0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3196" y="403"/>
         </scene>
     </scenes>
 </document>
