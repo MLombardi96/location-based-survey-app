@@ -17,6 +17,7 @@
 		6B1E5207CEFFBED3F304B1AD /* libPods-LocationBasedSurveyApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 35D265CE7EC2FC4131528137 /* libPods-LocationBasedSurveyApp.a */; };
 		9619589C1FEC4F3B00C28BEE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9619589B1FEC4F3B00C28BEE /* HomeViewController.swift */; };
 		962E54511FEE1EC60058D381 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 962E54501FEE1EC60058D381 /* Podfile */; };
+		962E54521FEEC3660058D381 /* GoogleMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9683967F1FEE127400A1BACD /* GoogleMapViewController.swift */; };
 		967F8A171FC476EC000F28DC /* LocationNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967F8A161FC476EC000F28DC /* LocationNotification.swift */; };
 		968396741FED720E00A1BACD /* AvailableSurveysTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968396731FED720E00A1BACD /* AvailableSurveysTableViewCell.swift */; };
 		9683967C1FED784700A1BACD /* AvailableSurveysTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9683967B1FED784700A1BACD /* AvailableSurveysTableViewController.swift */; };
@@ -57,7 +58,7 @@
 		30DDC1BC1F90162C000469BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35D265CE7EC2FC4131528137 /* libPods-LocationBasedSurveyApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LocationBasedSurveyApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9619589B1FEC4F3B00C28BEE /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		962E54501FEE1EC60058D381 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		962E54501FEE1EC60058D381 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		967BA82E1FBF7B6300B1CABE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		967F8A161FC476EC000F28DC /* LocationNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationNotification.swift; sourceTree = "<group>"; };
 		968396731FED720E00A1BACD /* AvailableSurveysTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableSurveysTableViewCell.swift; sourceTree = "<group>"; };
@@ -388,6 +389,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				962E54521FEEC3660058D381 /* GoogleMapViewController.swift in Sources */,
 				30DDC1BB1F90162C000469BA /* LocationBasedSurveyAppUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -541,12 +543,20 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z9YQ2SB6KC;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/GoogleMaps/Base/Frameworks\"",
+					"\"${PODS_ROOT}/GoogleMaps/Maps/Frameworks\"",
+					"\"${PODS_ROOT}/GooglePlaces/Frameworks\"",
+				);
 				INFOPLIST_FILE = LocationBasedSurveyApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cse.seniordesign.LocationBasedSurveyApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
+				USER_HEADER_SEARCH_PATHS = "Pods/**";
 			};
 			name = Debug;
 		};
@@ -557,12 +567,20 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z9YQ2SB6KC;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/GoogleMaps/Base/Frameworks\"",
+					"\"${PODS_ROOT}/GoogleMaps/Maps/Frameworks\"",
+					"\"${PODS_ROOT}/GooglePlaces/Frameworks\"",
+				);
 				INFOPLIST_FILE = LocationBasedSurveyApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cse.seniordesign.LocationBasedSurveyApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
+				USER_HEADER_SEARCH_PATHS = "Pods/**";
 			};
 			name = Release;
 		};

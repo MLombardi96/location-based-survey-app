@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        GMSServices.provideAPIKey("AIzaSyBO2Cu3X-dKtI1AhvJjYAOtegeTtXgcT8w")
+        GMSServices.provideAPIKey("AIzaSyAfT_vi41OGKGWv4TQWEKn-peBOaxu6jpQ")
         return true
     }
 
