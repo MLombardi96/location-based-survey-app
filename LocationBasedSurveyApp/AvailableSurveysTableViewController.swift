@@ -113,7 +113,7 @@ class AvailableSurveysTableViewController: UITableViewController {
         // grabs the current selected available survey from array
         // passes it to the GoogleMapsViewController
         let survey = availableSurveys[(tableView.indexPathForSelectedRow?.row)!]
-        if let destinationViewController = segue.destination as? GoogleMapViewController {
+        if let destinationViewController = segue.destination as? GoogleMapsViewController {
             destinationViewController.survey = survey
         }
     }

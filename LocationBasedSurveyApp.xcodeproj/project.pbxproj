@@ -15,14 +15,13 @@
 		30DDC1B01F90162C000469BA /* LocationBasedSurveyAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DDC1AF1F90162C000469BA /* LocationBasedSurveyAppTests.swift */; };
 		30DDC1BB1F90162C000469BA /* LocationBasedSurveyAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DDC1BA1F90162C000469BA /* LocationBasedSurveyAppUITests.swift */; };
 		6B1E5207CEFFBED3F304B1AD /* libPods-LocationBasedSurveyApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 35D265CE7EC2FC4131528137 /* libPods-LocationBasedSurveyApp.a */; };
+		960619FA1FEED21200B58F48 /* GoogleMapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960619F91FEED21200B58F48 /* GoogleMapsViewController.swift */; };
 		9619589C1FEC4F3B00C28BEE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9619589B1FEC4F3B00C28BEE /* HomeViewController.swift */; };
 		962E54511FEE1EC60058D381 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 962E54501FEE1EC60058D381 /* Podfile */; };
-		962E54521FEEC3660058D381 /* GoogleMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9683967F1FEE127400A1BACD /* GoogleMapViewController.swift */; };
 		967F8A171FC476EC000F28DC /* LocationNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967F8A161FC476EC000F28DC /* LocationNotification.swift */; };
 		968396741FED720E00A1BACD /* AvailableSurveysTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968396731FED720E00A1BACD /* AvailableSurveysTableViewCell.swift */; };
 		9683967C1FED784700A1BACD /* AvailableSurveysTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9683967B1FED784700A1BACD /* AvailableSurveysTableViewController.swift */; };
 		9683967E1FED798300A1BACD /* Survey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9683967D1FED798300A1BACD /* Survey.swift */; };
-		968396801FEE127400A1BACD /* GoogleMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9683967F1FEE127400A1BACD /* GoogleMapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +56,7 @@
 		30DDC1BA1F90162C000469BA /* LocationBasedSurveyAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationBasedSurveyAppUITests.swift; sourceTree = "<group>"; };
 		30DDC1BC1F90162C000469BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		35D265CE7EC2FC4131528137 /* libPods-LocationBasedSurveyApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LocationBasedSurveyApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		960619F91FEED21200B58F48 /* GoogleMapsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapsViewController.swift; sourceTree = "<group>"; };
 		9619589B1FEC4F3B00C28BEE /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		962E54501FEE1EC60058D381 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		967BA82E1FBF7B6300B1CABE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -64,7 +64,6 @@
 		968396731FED720E00A1BACD /* AvailableSurveysTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableSurveysTableViewCell.swift; sourceTree = "<group>"; };
 		9683967B1FED784700A1BACD /* AvailableSurveysTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableSurveysTableViewController.swift; sourceTree = "<group>"; };
 		9683967D1FED798300A1BACD /* Survey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Survey.swift; sourceTree = "<group>"; };
-		9683967F1FEE127400A1BACD /* GoogleMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapViewController.swift; sourceTree = "<group>"; };
 		BABD0DD450324C57D348A1AF /* Pods-LocationBasedSurveyApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationBasedSurveyApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-LocationBasedSurveyApp/Pods-LocationBasedSurveyApp.release.xcconfig"; sourceTree = "<group>"; };
 		BFE8BBE77ACDECD84CCA7CE8 /* Pods-LocationBasedSurveyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationBasedSurveyApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LocationBasedSurveyApp/Pods-LocationBasedSurveyApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -124,8 +123,8 @@
 				30DDC19E1F90162C000469BA /* Main.storyboard */,
 				30DDC1A31F90162C000469BA /* LaunchScreen.storyboard */,
 				9619589B1FEC4F3B00C28BEE /* HomeViewController.swift */,
+				960619F91FEED21200B58F48 /* GoogleMapsViewController.swift */,
 				9683967B1FED784700A1BACD /* AvailableSurveysTableViewController.swift */,
-				9683967F1FEE127400A1BACD /* GoogleMapViewController.swift */,
 				968396731FED720E00A1BACD /* AvailableSurveysTableViewCell.swift */,
 				967F8A161FC476EC000F28DC /* LocationNotification.swift */,
 				9683967D1FED798300A1BACD /* Survey.swift */,
@@ -368,11 +367,11 @@
 			files = (
 				30DDC19D1F90162C000469BA /* ViewController.swift in Sources */,
 				9683967C1FED784700A1BACD /* AvailableSurveysTableViewController.swift in Sources */,
-				968396801FEE127400A1BACD /* GoogleMapViewController.swift in Sources */,
 				9683967E1FED798300A1BACD /* Survey.swift in Sources */,
 				967F8A171FC476EC000F28DC /* LocationNotification.swift in Sources */,
 				968396741FED720E00A1BACD /* AvailableSurveysTableViewCell.swift in Sources */,
 				30DDC19B1F90162C000469BA /* AppDelegate.swift in Sources */,
+				960619FA1FEED21200B58F48 /* GoogleMapsViewController.swift in Sources */,
 				9619589C1FEC4F3B00C28BEE /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -389,7 +388,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				962E54521FEEC3660058D381 /* GoogleMapViewController.swift in Sources */,
 				30DDC1BB1F90162C000469BA /* LocationBasedSurveyAppUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
