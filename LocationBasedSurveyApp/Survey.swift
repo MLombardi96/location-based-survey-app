@@ -6,11 +6,12 @@
 //  Copyright © 2017 Mitchell Lombardi. All rights reserved.
 //
 
-import UIKit // gives access to both Foundation and UIKit
+import Foundation 
 
+/****
+ * Survey Data Model
+ ***/
 class Survey {
-    
-    // This is a beginning guess of what we'll need in this Data Model for Surveys
     
     let locationNotification = LocationNotification()
     

@@ -17,7 +17,8 @@ import UserNotifications
  */
 class LocationNotification: NSObject, CLLocationManagerDelegate, UNUserNotificationCenterDelegate {
     
-    let locationManager: CLLocationManager
+    private let locationManager: CLLocationManager
+    var userLocation: CLLocationCoordinate2D?
     
     override init() {
         self.locationManager = CLLocationManager()
@@ -28,9 +29,9 @@ class LocationNotification: NSObject, CLLocationManagerDelegate, UNUserNotificat
         self.locationManager.delegate = self
     }
     
-    /*
+    /****
  `  * Add a new location, can add a max of 20.
-    */
+    ****/
     func addLocation(latitude lat: Double, longitude long: Double, radius rad: Double, identifier ident: String) {
         let center = CLLocationCoordinate2D(latitude: lat, longitude: long)
         let region = CLCircularRegion(center: center, radius: rad, identifier: ident)
@@ -40,6 +41,10 @@ class LocationNotification: NSObject, CLLocationManagerDelegate, UNUserNotificat
     
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         sendNotification(notificationTitle: "Welcome to \(region.identifier)!", notificationBody: "You made it.")
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+        
     }
     
     func sendNotification(notificationTitle title: String, notificationBody body: String) {

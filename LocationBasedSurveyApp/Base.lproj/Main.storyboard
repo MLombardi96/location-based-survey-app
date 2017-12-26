@@ -184,7 +184,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="s49-5K-Agt"/>
                     </view>
-                    <navigationItem key="navigationItem" id="bU9-Z8-nG4"/>
+                    <navigationItem key="navigationItem" id="bU9-Z8-nG4">
+                        <barButtonItem key="rightBarButtonItem" title="Get Directions" id="k7g-5N-zYI">
+                            <connections>
+                                <action selector="getDirections:" destination="zyx-tA-POP" id="BIB-v4-LtY"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tUw-AW-jg0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -121,7 +121,6 @@
 			isa = PBXGroup;
 			children = (
 				30DDC19E1F90162C000469BA /* Main.storyboard */,
-				30DDC1A31F90162C000469BA /* LaunchScreen.storyboard */,
 				9619589B1FEC4F3B00C28BEE /* HomeViewController.swift */,
 				960619F91FEED21200B58F48 /* GoogleMapsViewController.swift */,
 				9683967B1FED784700A1BACD /* AvailableSurveysTableViewController.swift */,
@@ -130,6 +129,7 @@
 				9683967D1FED798300A1BACD /* Survey.swift */,
 				30DDC19A1F90162C000469BA /* AppDelegate.swift */,
 				30DDC19C1F90162C000469BA /* ViewController.swift */,
+				30DDC1A31F90162C000469BA /* LaunchScreen.storyboard */,
 				30DDC1A11F90162C000469BA /* Assets.xcassets */,
 				30DDC1A61F90162C000469BA /* Info.plist */,
 			);

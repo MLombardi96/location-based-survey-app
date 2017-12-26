@@ -27,6 +27,33 @@ class LocationBasedSurveyAppTests: XCTestCase {
         let lowBoundsLatitude = Survey.init(name: "Lat Low", shortDescription: "Bounds", latitude: -91, longitude: 0, radius: 50)
         XCTAssertNil(lowBoundsLatitude)
         
+        let highBoundsLatitude = Survey.init(name: "Lat High", shortDescription: "Bounds", latitude: 91, longitude: 0, radius: 50)
+        XCTAssertNil(highBoundsLatitude)
+        
+        let lowBoundsLongitude = Survey.init(name: "Long Low", shortDescription: "Bounds", latitude: 0, longitude: -181, radius: 50)
+        XCTAssertNil(lowBoundsLongitude)
+        
+        let highBoundsLongitude = Survey.init(name: "Lat High", shortDescription: "Bounds", latitude: 0, longitude: 181, radius: 50)
+        XCTAssertNil(highBoundsLongitude)
+        
+        let noRadius = Survey.init(name: "No radius", shortDescription: "Bounds", latitude: 0, longitude: 0, radius: 0)
+        XCTAssertNil(noRadius)
+    }
+    
+    func testSurveyInitializationSucceeds() {
+        
+        let lowBoundsLatitude = Survey.init(name: "Lat Low", shortDescription: "Bounds", latitude: 90, longitude: 0, radius: 50)
+        XCTAssertNotNil(lowBoundsLatitude)
+        
+        let highBoundsLatitude = Survey.init(name: "Lat High", shortDescription: "Bounds", latitude: 90, longitude: 0, radius: 50)
+        XCTAssertNotNil(highBoundsLatitude)
+        
+        let lowBoundsLongitude = Survey.init(name: "Long Low", shortDescription: "Bounds", latitude: 0, longitude: -180, radius: 50)
+        XCTAssertNotNil(lowBoundsLongitude)
+        
+        let highBoundsLongitude = Survey.init(name: "Lat High", shortDescription: "Bounds", latitude: 0, longitude: 180, radius: 50)
+        XCTAssertNotNil(highBoundsLongitude)
+        
     }
     
     

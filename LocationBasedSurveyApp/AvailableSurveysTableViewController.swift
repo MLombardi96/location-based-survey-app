@@ -27,10 +27,6 @@ class AvailableSurveysTableViewController: UITableViewController {
         
         availableSurveys += [survey1, survey2]
     }
-    
-    @IBAction func myUnwindAction(unwindSegue: UIStoryboardSegue) {
-        
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +40,6 @@ class AvailableSurveysTableViewController: UITableViewController {
     }
 
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
