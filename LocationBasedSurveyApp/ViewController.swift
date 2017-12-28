@@ -30,10 +30,6 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         UNUserNotificationCenter.current().delegate = self
- 
-        locationNotification.addLocation(latitude: 41.805179, longitude: -72.253386, radius: 50, identifier: "Bookstore")
-        locationNotification.addLocation(latitude: 41.908072, longitude: -72.371841, radius: 50, identifier: "Home")
-        locationNotification.addLocation(latitude: 41.806844, longitude: -72.251954, radius: 20, identifier: "Work")
         
         // Prompts user to allow notifications when it first loads
         UNUserNotificationCenter.current().requestAuthorization(

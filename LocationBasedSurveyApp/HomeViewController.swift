@@ -11,10 +11,10 @@ import UserNotifications
 import CoreLocation
 import Foundation
 
-class HomeViewController: UIViewController, UNUserNotificationCenterDelegate {
+class HomeViewController: UIViewController {
     
     var isGrantedNotificationAccess:Bool = false
-    let locationNotification = LocationNotification()
+    let availableSurveys = AvailableSurveysTableViewController()
     
     //MARK: Properties
     @IBOutlet weak var jsonButton: UIButton!
@@ -22,16 +22,14 @@ class HomeViewController: UIViewController, UNUserNotificationCenterDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        UNUserNotificationCenter.current().delegate = self
         
         // Prompts user to allow notifications when it first loads
         UNUserNotificationCenter.current().requestAuthorization(
             options: [.alert,.sound,.badge],
             completionHandler: { (granted,error) in
                 self.isGrantedNotificationAccess = granted
-        }
-        )
-        
+        })
+ 
         // rounds the edges of buttons
         jsonButton.layer.cornerRadius = 4
         notificationButton.layer.cornerRadius = 4
@@ -72,23 +70,7 @@ class HomeViewController: UIViewController, UNUserNotificationCenterDelegate {
     }
     
     @IBAction func notificationButton(_ sender: UIButton) {
-        locationNotification.sendNotification(notificationTitle: "You pushed the button!", notificationBody: "Good work!")
+        //locationNotification.sendNotification(notificationTitle: "You pushed the button!", notificationBody: "Good work!")
     }
     
 }
-
-// Allows notifications with app in the foreground
-extension HomeViewController {
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler([.alert, .sound])
-    }
-}
-
-extension HomeViewController: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        //let location = locations.last!
-        //print("Location: \(location)") // Updates location to the console
-    }
-    
-}
-

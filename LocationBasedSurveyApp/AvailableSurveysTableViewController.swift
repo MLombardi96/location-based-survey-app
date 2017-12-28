@@ -7,11 +7,16 @@
 //
 
 import UIKit
+import CoreLocation
+import UserNotifications
 
-class AvailableSurveysTableViewController: UITableViewController {
+class AvailableSurveysTableViewController: UITableViewController, CLLocationManagerDelegate {
     
     //MARK: Properties
+    let locationManager = CLLocationManager()
+    let section = ["Surveys To Complete", "Available Surveys"]
     var availableSurveys = [Survey]() // Empty array of available survey objects
+    var surveysToComplete = [Survey]()
     
     //MARK: Private Methods
     private func loadSampleSurveys() {
@@ -24,33 +29,50 @@ class AvailableSurveysTableViewController: UITableViewController {
             else {
                 fatalError("Unable to initalize survey2")
         }
-        
-        availableSurveys += [survey1, survey2]
+        availableSurveys = [survey1, survey2]
     }
-
+    
+    private func addGeofences() {
+        for survey in availableSurveys {
+            let center = CLLocationCoordinate2D(latitude: survey.latitude, longitude: survey.longitude)
+            let region = CLCircularRegion(center: center, radius: survey.radius, identifier: survey.name)
+            locationManager.startMonitoring(for: region)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.locationManager.requestAlwaysAuthorization()
+        self.locationManager.requestWhenInUseAuthorization()
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+            locationManager.startUpdatingLocation()
+        }
         // load sample data
         loadSampleSurveys()
+        addGeofences()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
 
-    // MARK: - Table view data source
+    // MARK: - Table View Methods
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        return self.section.count
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return self.section[section]
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return availableSurveys.count
+        return self.availableSurveys.count - self.surveysToComplete.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
         let cellIdentifier = "AvailableSurveysTableViewCell"
         
         // As the user scrolls the cells are reused with the ones off screen
@@ -61,46 +83,68 @@ class AvailableSurveysTableViewController: UITableViewController {
         // double check this code, needs more with optionals
         let survey = availableSurveys[indexPath.row] // fetches the correct survey from the array
         cell.surveyTitle.text = survey.name
-        cell.surveyDemoDescription.text = survey.shortDescription
+        cell.surveyDemoDescription.text = survey.name
 
         return cell
     }
     
+    // MARK: Location Manager Methods
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+        sendNotification(notificationTitle: "Welcome to \(region.identifier)!", notificationBody: "You made it.")
+        
+        if availableSurveys.count != 0 {
+            var indexToRemove = 0
+            for i in 0..<availableSurveys.count {
+                if region.identifier == availableSurveys[i].name {
+                    indexToRemove = i
+                    availableSurveys[i].isSelected = true
+                    surveysToComplete += [availableSurveys[i]]
+                }
+            }
+            availableSurveys.remove(at: indexToRemove)
+        }
+        print("Available Surveys: \(availableSurveys.count)")
+        print("Surveys to complete: \(surveysToComplete.count)")
     }
-    */
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+        if surveysToComplete.count != 0 {
+            var indexToRemove = 0
+            for i in 0..<surveysToComplete.count {
+                if region.identifier == surveysToComplete[i].name {
+                    indexToRemove = i
+                    surveysToComplete[i].isSelected = true
+                    availableSurveys += [surveysToComplete[i]]
+                }
+            }
+            surveysToComplete.remove(at: indexToRemove)
+        }
+        print("Available Surveys: \(availableSurveys.count)")
+        print("Surveys to complete: \(surveysToComplete.count)")
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+    
+    func sendNotification(notificationTitle title: String, notificationBody body: String) {
+        let content = UNMutableNotificationContent()
+        content.title = title
+        content.body = body
+        content.sound = UNNotificationSound.default()
+        
+        // Gives time to exit the app, notification will not appear if app is open
+        let trigger = UNTimeIntervalNotificationTrigger(
+            timeInterval: 0.1,
+            repeats: false)
+        
+        //Set the request for the notification from the above
+        let request = UNNotificationRequest(
+            identifier: "button.survey",
+            content: content,
+            trigger: trigger
+        )
+        
+        //Add the notification to the currnet notification center
+        UNUserNotificationCenter.current().add(request,withCompletionHandler: nil)
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
 
     
     // MARK: - Navigation
@@ -112,6 +156,4 @@ class AvailableSurveysTableViewController: UITableViewController {
             destinationViewController.survey = survey
         }
     }
-    
-
 }

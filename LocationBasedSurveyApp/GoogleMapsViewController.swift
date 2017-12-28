@@ -20,12 +20,13 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate {
     var surveyLocation: CLLocationCoordinate2D?
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         // CLLocationManager initialization
         self.locationManager.requestAlwaysAuthorization()
         self.locationManager.requestWhenInUseAuthorization()
         if CLLocationManager.locationServicesEnabled() {
             locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
             locationManager.startUpdatingLocation()
         }
         
@@ -53,6 +54,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate {
      * When pressed attempts to open Google Maps, if not available opens Apple Maps.
      * !!!Haven't tested on an actual phone with Google Maps installed!!!
      ****/
+    // UPDATE: Google Maps does not work
     @IBAction func getDirections(_ sender: UIBarButtonItem) {
         let testURL = URL(string: "comgooglemaps-x-callback://")!
         if UIApplication.shared.canOpenURL(testURL) {
@@ -75,12 +77,13 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate {
      ****/
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let currentLocation = manager.location!.coordinate // convert user's location to CLLocationCoordinate2D
-        let inset = UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 50) // area around the two bounds
+        let inset = UIEdgeInsets(top: 100, left: 100, bottom: 100, right: 100) // area around the two bounds
         
         let bounds = GMSCoordinateBounds(coordinate: surveyLocation!, coordinate: currentLocation)
         let camera = mapView.camera(for: bounds, insets: inset)
         mapView.camera = camera!
         mapView.isMyLocationEnabled = true
+        locationManager.stopUpdatingLocation()
     }
 
     override func didReceiveMemoryWarning() {

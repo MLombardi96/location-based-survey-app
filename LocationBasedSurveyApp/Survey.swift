@@ -21,6 +21,7 @@ class Survey {
     var latitude: Double
     var longitude: Double
     var radius: Double
+    var isSelected: Bool
  
     //MARK: Initialization
     init?(name: String, shortDescription: String, latitude: Double, longitude: Double, radius: Double) {
@@ -41,9 +42,17 @@ class Survey {
         self.latitude = latitude
         self.longitude = longitude
         self.radius = radius
+        self.isSelected = false
         
         // create a geofence when a survey is created
-        locationNotification.addLocation(latitude: latitude, longitude: longitude, radius: radius, identifier: name)
+        //locationNotification.addGeofenceForSurvey(self)//(latitude: latitude, longitude: longitude, radius: radius, identifier: name)
+    }
+    
+    func inSurveyArea(latitude lat: Double, longitude long: Double) -> Bool {
+        if lat == self.latitude && long == self.longitude {
+            return true
+        }
+        return false
     }
     
 }
