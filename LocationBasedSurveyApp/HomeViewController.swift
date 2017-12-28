@@ -11,10 +11,11 @@ import UserNotifications
 import CoreLocation
 import Foundation
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, CLLocationManagerDelegate {
     
     var isGrantedNotificationAccess:Bool = false
-    let availableSurveys = AvailableSurveysTableViewController()
+    let locationManager = CLLocationManager()
+    let locationNotification = LocationNotification()
     
     //MARK: Properties
     @IBOutlet weak var jsonButton: UIButton!
@@ -29,6 +30,15 @@ class HomeViewController: UIViewController {
             completionHandler: { (granted,error) in
                 self.isGrantedNotificationAccess = granted
         })
+        
+        // For authorizing Location Services
+        self.locationManager.requestAlwaysAuthorization()
+        self.locationManager.requestWhenInUseAuthorization()
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+            locationManager.startUpdatingLocation()
+        }
  
         // rounds the edges of buttons
         jsonButton.layer.cornerRadius = 4
@@ -70,7 +80,7 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func notificationButton(_ sender: UIButton) {
-        //locationNotification.sendNotification(notificationTitle: "You pushed the button!", notificationBody: "Good work!")
+        locationNotification.sendNotification(notificationTitle: "You pushed the button!", notificationBody: "Good work!")
     }
     
 }

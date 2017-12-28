@@ -19,7 +19,7 @@ import UserNotifications
 class LocationNotification: NSObject, CLLocationManagerDelegate, UNUserNotificationCenterDelegate {
     
     private let locationManager: CLLocationManager
-    var currentSurveysManaged = [Survey]() // keeps list of managed surveys
+    private var currentSurveysManaged = [Survey]() // keeps list of managed surveys
     
     override init() {
         self.locationManager = CLLocationManager()
@@ -56,7 +56,7 @@ class LocationNotification: NSObject, CLLocationManagerDelegate, UNUserNotificat
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
         for survey in currentSurveysManaged {
             if region.identifier == survey.name {
-                survey.isSelected = false
+                survey.isSelected = true
             }
         }
     }
@@ -84,6 +84,3 @@ class LocationNotification: NSObject, CLLocationManagerDelegate, UNUserNotificat
     }
 
 }
-    
-    //TODO: function that returns true is user is within geofence of selected survey
-

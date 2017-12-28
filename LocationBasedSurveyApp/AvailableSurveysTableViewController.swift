@@ -10,13 +10,17 @@ import UIKit
 import CoreLocation
 import UserNotifications
 
+//TODO: figure out how to move surveys based off where the user is
+//TODO: setup JSON handler to create surveys
+//TODO: change segue to open to survey if survey is in 'Ready Surveys' and Google Maps if 'Not Ready Surveys'
+
 class AvailableSurveysTableViewController: UITableViewController, CLLocationManagerDelegate {
     
     //MARK: Properties
-    let locationManager = CLLocationManager()
-    let section = ["Surveys To Complete", "Available Surveys"]
-    var availableSurveys = [Survey]() // Empty array of available survey objects
-    var surveysToComplete = [Survey]()
+    let sections = ["Surveys Ready", "Surveys"]
+    var totalSurveys = [[Survey]]()
+    var surveysOutsideRegion = [Survey]() // Empty array of available survey objects
+    var surveysInsideRegion = [Survey]()
     
     //MARK: Private Methods
     private func loadSampleSurveys() {
@@ -29,49 +33,45 @@ class AvailableSurveysTableViewController: UITableViewController, CLLocationMana
             else {
                 fatalError("Unable to initalize survey2")
         }
-        availableSurveys = [survey1, survey2]
-    }
-    
-    private func addGeofences() {
-        for survey in availableSurveys {
-            let center = CLLocationCoordinate2D(latitude: survey.latitude, longitude: survey.longitude)
-            let region = CLCircularRegion(center: center, radius: survey.radius, identifier: survey.name)
-            locationManager.startMonitoring(for: region)
+        
+        guard let survey3 = Survey(name: "Library", shortDescription: "How many books can you read?", latitude: 41.806791, longitude: -72.251737, radius: 50)
+            else {
+                fatalError("Unable to initalize survey3")
         }
+        
+        guard  let survey4 = Survey(name: "Dairy Bar", shortDescription: "How good is the ice cream?", latitude: 41.814438, longitude: -72.249793, radius: 50)
+            else {
+                fatalError("Unable to initialize survey4")
+        }
+        
+        surveysOutsideRegion += [survey1, survey2]
+        surveysInsideRegion += [survey3, survey4]
+        //availableSurveys = [survey1, survey2]
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.locationManager.requestAlwaysAuthorization()
-        self.locationManager.requestWhenInUseAuthorization()
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-            locationManager.startUpdatingLocation()
-        }
         // load sample data
         loadSampleSurveys()
-        addGeofences()
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+        
+        // add both groups to the total surveys
+        totalSurveys.append(surveysInsideRegion)
+        totalSurveys.append(surveysOutsideRegion)
     }
 
     // MARK: - Table View Methods
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return self.section.count
+        return self.sections.count
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return self.section[section]
+        return self.sections[section]
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.availableSurveys.count - self.surveysToComplete.count
+        return self.totalSurveys[section].count
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "AvailableSurveysTableViewCell"
         
@@ -81,77 +81,19 @@ class AvailableSurveysTableViewController: UITableViewController, CLLocationMana
         }
         
         // double check this code, needs more with optionals
-        let survey = availableSurveys[indexPath.row] // fetches the correct survey from the array
+        //let survey = availableSurveys[indexPath.row] // fetches the correct survey from the array
+        let survey = totalSurveys[indexPath.section][indexPath.row]
         cell.surveyTitle.text = survey.name
-        cell.surveyDemoDescription.text = survey.name
+        cell.surveyDemoDescription.text = survey.shortDescription
 
         return cell
     }
-    
-    // MARK: Location Manager Methods
-    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-
-        sendNotification(notificationTitle: "Welcome to \(region.identifier)!", notificationBody: "You made it.")
-        
-        if availableSurveys.count != 0 {
-            var indexToRemove = 0
-            for i in 0..<availableSurveys.count {
-                if region.identifier == availableSurveys[i].name {
-                    indexToRemove = i
-                    availableSurveys[i].isSelected = true
-                    surveysToComplete += [availableSurveys[i]]
-                }
-            }
-            availableSurveys.remove(at: indexToRemove)
-        }
-        print("Available Surveys: \(availableSurveys.count)")
-        print("Surveys to complete: \(surveysToComplete.count)")
-    }
-
-    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
-        if surveysToComplete.count != 0 {
-            var indexToRemove = 0
-            for i in 0..<surveysToComplete.count {
-                if region.identifier == surveysToComplete[i].name {
-                    indexToRemove = i
-                    surveysToComplete[i].isSelected = true
-                    availableSurveys += [surveysToComplete[i]]
-                }
-            }
-            surveysToComplete.remove(at: indexToRemove)
-        }
-        print("Available Surveys: \(availableSurveys.count)")
-        print("Surveys to complete: \(surveysToComplete.count)")
-    }
-    
-    func sendNotification(notificationTitle title: String, notificationBody body: String) {
-        let content = UNMutableNotificationContent()
-        content.title = title
-        content.body = body
-        content.sound = UNNotificationSound.default()
-        
-        // Gives time to exit the app, notification will not appear if app is open
-        let trigger = UNTimeIntervalNotificationTrigger(
-            timeInterval: 0.1,
-            repeats: false)
-        
-        //Set the request for the notification from the above
-        let request = UNNotificationRequest(
-            identifier: "button.survey",
-            content: content,
-            trigger: trigger
-        )
-        
-        //Add the notification to the currnet notification center
-        UNUserNotificationCenter.current().add(request,withCompletionHandler: nil)
-    }
-
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // grabs the current selected available survey from array
         // passes it to the GoogleMapsViewController
-        let survey = availableSurveys[(tableView.indexPathForSelectedRow?.row)!]
+        let survey = totalSurveys[(tableView.indexPathForSelectedRow?.section)!][(tableView.indexPathForSelectedRow?.row)!]
         if let destinationViewController = segue.destination as? GoogleMapsViewController {
             destinationViewController.survey = survey
         }
