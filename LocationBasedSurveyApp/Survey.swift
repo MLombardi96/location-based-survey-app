@@ -13,39 +13,26 @@ import Foundation
  ***/
 class Survey {
     
-    let locationNotification = LocationNotification()
+    //let locationNotification = LocationNotification()
     
     //MARK: Properties
+    var id: String
     var name: String
-    var shortDescription: String
+    //var shortDescription: String // Used when the survey questions are available
     var latitude: Double
     var longitude: Double
     var radius: Double
-    var isSelected: Bool
+    var isSelected = false
  
     //MARK: Initialization
-    init?(name: String, shortDescription: String, latitude: Double, longitude: Double, radius: Double) {
+    init?(_ survey: inout Root.Survey) {
         
-        // test cases
-        if name.isEmpty || shortDescription.isEmpty {
-            return nil
-        } else if latitude < -90 || latitude > 90 {
-            return nil
-        } else if longitude < -180 || longitude > 180 {
-            return nil
-        } else if radius <= 0 {
-            return nil
-        }
-        
-        self.name = name
-        self.shortDescription = shortDescription
-        self.latitude = latitude
-        self.longitude = longitude
-        self.radius = radius
-        self.isSelected = false
-        
-        // create a geofence when a survey is created
-        locationNotification.addGeofenceForSurvey(self)//(latitude: latitude, longitude: longitude, radius: radius, identifier: name)
+        self.id = survey.ID
+        self.name = survey.Name
+        self.latitude = survey.LatLng[0]
+        self.longitude = survey.LatLng[1]
+        self.radius = survey.Radius
+        //self.shortDescription = survey.Description
     }
     
 }

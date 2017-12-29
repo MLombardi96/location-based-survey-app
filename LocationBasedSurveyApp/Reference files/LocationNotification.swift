@@ -11,11 +11,9 @@ import CoreLocation
 import UserNotifications
 
 /*
- * Used to create locations and notify the user when they have entered
- * one of the specified regions. Allows the geofences to be handled
- * solely in this class.
- * May want to merge this with the Survey Data Model???
+ * Replaced with SurveyHandler.swift, left for reference
  */
+
 class LocationNotification: NSObject, CLLocationManagerDelegate, UNUserNotificationCenterDelegate {
     
     private let locationManager: CLLocationManager
@@ -42,7 +40,7 @@ class LocationNotification: NSObject, CLLocationManagerDelegate, UNUserNotificat
         locationManager.startMonitoring(for: region)
         currentSurveysManaged += [survey] // add to list of managed surveys
     }
-    
+    /*
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
         sendNotification(notificationTitle: "Welcome to \(region.identifier)!", notificationBody: "You made it.")
         for survey in currentSurveysManaged {
@@ -56,10 +54,11 @@ class LocationNotification: NSObject, CLLocationManagerDelegate, UNUserNotificat
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
         for survey in currentSurveysManaged {
             if region.identifier == survey.name {
-                survey.isSelected = true
+                survey.isSelected = false
             }
         }
     }
+ */
     
     func sendNotification(notificationTitle title: String, notificationBody body: String) {
             let content = UNMutableNotificationContent()
@@ -82,5 +81,4 @@ class LocationNotification: NSObject, CLLocationManagerDelegate, UNUserNotificat
             //Add the notification to the currnet notification center
             UNUserNotificationCenter.current().add(request,withCompletionHandler: nil)
     }
-
 }

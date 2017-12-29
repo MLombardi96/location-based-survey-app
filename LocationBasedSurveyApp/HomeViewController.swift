@@ -11,11 +11,9 @@ import UserNotifications
 import CoreLocation
 import Foundation
 
-class HomeViewController: UIViewController, CLLocationManagerDelegate {
+class HomeViewController: UIViewController {
     
-    var isGrantedNotificationAccess:Bool = false
-    let locationManager = CLLocationManager()
-    let locationNotification = LocationNotification()
+    var surveyHandler = SurveyHandler()
     
     //MARK: Properties
     @IBOutlet weak var jsonButton: UIButton!
@@ -23,22 +21,6 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Prompts user to allow notifications when it first loads
-        UNUserNotificationCenter.current().requestAuthorization(
-            options: [.alert,.sound,.badge],
-            completionHandler: { (granted,error) in
-                self.isGrantedNotificationAccess = granted
-        })
-        
-        // For authorizing Location Services
-        self.locationManager.requestAlwaysAuthorization()
-        self.locationManager.requestWhenInUseAuthorization()
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.delegate = self
-            locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-            locationManager.startUpdatingLocation()
-        }
  
         // rounds the edges of buttons
         jsonButton.layer.cornerRadius = 4
@@ -80,7 +62,7 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     @IBAction func notificationButton(_ sender: UIButton) {
-        locationNotification.sendNotification(notificationTitle: "You pushed the button!", notificationBody: "Good work!")
+        surveyHandler.sendNotification(notificationTitle: "You pushed the button!", notificationBody: "Good work!")
     }
     
 }

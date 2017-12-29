@@ -48,7 +48,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Nxv-we-jBb"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" id="jkJ-P3-fzH"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="ic_home" id="jkJ-P3-fzH"/>
                     <connections>
                         <outlet property="jsonButton" destination="e8I-6e-bed" id="Kks-hH-IaC"/>
                         <outlet property="notificationButton" destination="bkt-N2-e0n" id="GOQ-SD-34F"/>
@@ -56,7 +56,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zq1-Vm-I2c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1541.5999999999999" y="-281.10944527736132"/>
+            <point key="canvasLocation" x="1542" y="-820"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Zws-0h-KzT">
@@ -100,11 +100,11 @@
                             <outlet property="delegate" destination="m4j-xu-BGZ" id="LsH-e5-Znr"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="History" id="18h-7K-fRG"/>
+                    <tabBarItem key="tabBarItem" title="History" image="ic_history" id="18h-7K-fRG"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GIa-U4-NVK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="764" y="740"/>
+            <point key="canvasLocation" x="1542" y="809"/>
         </scene>
         <!--Available Surveys-->
         <scene sceneID="HmY-2W-LHc">
@@ -141,7 +141,6 @@
                                 <connections>
                                     <outlet property="surveyDemoDescription" destination="4Fo-SB-I3d" id="67m-Mw-1jw"/>
                                     <outlet property="surveyTitle" destination="Sjr-7w-1Cv" id="ULT-Ck-N0g"/>
-                                    <segue destination="zyx-tA-POP" kind="show" id="PO4-kl-hmg"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -152,16 +151,50 @@
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Available Surveys" id="Qf2-tf-bY8"/>
                     <navigationItem key="navigationItem" id="cAx-wb-V3M"/>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="U8H-yO-0qd">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </refreshControl>
+                    <connections>
+                        <segue destination="uHC-xg-cpb" kind="show" identifier="ReadySurvey" id="Mhw-Xg-Qyf"/>
+                        <segue destination="zyx-tA-POP" kind="show" identifier="NotReadySurvey" id="k4w-Di-1g8"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9Rl-P6-UFT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2399" y="403"/>
+            <point key="canvasLocation" x="2311" y="38"/>
         </scene>
-        <!--Available Surveys-->
+        <!--Survey Questions View Controller-->
+        <scene sceneID="ez8-60-fut">
+            <objects>
+                <viewController id="uHC-xg-cpb" customClass="SurveyQuestionsViewController" customModule="LocationBasedSurveyApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Nnj-35-rid">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kYH-5g-bgF">
+                                <rect key="frame" x="66" y="323" width="243" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <viewLayoutGuide key="safeArea" id="bcf-YA-maS"/>
+                    </view>
+                    <connections>
+                        <outlet property="surveyLabel" destination="kYH-5g-bgF" id="Qgt-25-qc3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Dhr-rc-NBn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3094" y="-283"/>
+        </scene>
+        <!--Surveys-->
         <scene sceneID="ajn-Sc-Drv">
             <objects>
                 <navigationController id="yzY-mf-pdJ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Available Surveys" id="jrk-dB-miF"/>
+                    <tabBarItem key="tabBarItem" title="Surveys" image="ic_assessment" id="jrk-dB-miF"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="euS-MH-XIU">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -172,7 +205,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rna-3t-PKT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1542" y="403"/>
+            <point key="canvasLocation" x="1542" y="38"/>
         </scene>
         <!--Google Maps View Controller-->
         <scene sceneID="m5r-pi-qY6">
@@ -194,7 +227,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tUw-AW-jg0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3182" y="775"/>
+            <point key="canvasLocation" x="3094" y="380"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="ic_assessment" width="24" height="24"/>
+        <image name="ic_history" width="24" height="24"/>
+        <image name="ic_home" width="24" height="24"/>
+    </resources>
 </document>

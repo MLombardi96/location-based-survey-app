@@ -25,10 +25,6 @@ class AvailableSurveysTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
         
-        
-        //TODO: when selected, and outside geofence open google maps in different view
-        
-        //TODO: when selected, and within geofence start questionaire
     }
 
 }

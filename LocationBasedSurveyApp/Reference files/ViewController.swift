@@ -55,10 +55,9 @@ class ViewController: UIViewController, UNUserNotificationCenterDelegate {
             }
             
             guard let data = data else { return }
-            
+
             do {
                 let jsonData = try JSONDecoder().decode(Response.self, from: data)
-                
                 let alertController = UIAlertController(
                     title: "JSON Request",
                     message: jsonData.response,
