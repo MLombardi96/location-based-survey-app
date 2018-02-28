@@ -10,7 +10,8 @@ import Foundation
 import CoreLocation
 import UserNotifications
 
-//TODO: add a maximum of 20 and cache the rest
+//TODO: add a maximum of 20 and cache the rest (Database?)
+// TODO: save JSON question file in the survey parse if user enters area
 //TODO: when questions are available manage a 'short description' for tableView
 
 // Structure used to contain json elements, created to match Colin's sample file
@@ -71,18 +72,18 @@ class SurveyHandler: NSObject, CLLocationManagerDelegate, UNUserNotificationCent
             for i in 0..<root.Surveys.count {
 
                 if let userCoordinates = locationManager.location?.coordinate {
-                    
-                    let userLat = Double(userCoordinates.latitude)
-                    let userLong = Double(userCoordinates.longitude)
+                    user.setUserCoordinates(coordinates: userCoordinates)
                     
                     if let newSurvey = Survey(&root.Surveys[i]) {
                         
                         // Add GeoFence for new Surveys
                         let center = CLLocationCoordinate2D(latitude: newSurvey.latitude, longitude: newSurvey.longitude)
-                        let region = CLCircularRegion(center: center, radius: newSurvey.radius, identifier: newSurvey.id)
+                        
+                        guard let identifier = newSurvey.id else {return}
+                        let region = CLCircularRegion(center: center, radius: newSurvey.radius, identifier: identifier)
                         locationManager.startMonitoring(for: region)
                         
-                        if userLat == newSurvey.latitude && userLong == newSurvey.longitude {
+                        if user.latitude == newSurvey.latitude && user.longitude == newSurvey.longitude {
                             newSurvey.isSelected = true
                             surveysReadyToComplete.append(newSurvey)
                         } else {
@@ -94,6 +95,13 @@ class SurveyHandler: NSObject, CLLocationManagerDelegate, UNUserNotificationCent
         } catch let jsonError {
             print(jsonError)
         }
+    }
+    
+    // default function until database is setup
+    func loadSurveyHistory() -> [Survey] {
+        // load survey history from database
+        // if history is empty, load the empty survey
+        return [Survey()]
     }
     
     // Made public so the notification button on the homepage will still operate
@@ -122,6 +130,8 @@ class SurveyHandler: NSObject, CLLocationManagerDelegate, UNUserNotificationCent
     //MARK: Location Manager Methods
     // Handles what happens when the user enters a geofenced region
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        // TODO: parse JSON question file and 
+        
         sendNotification(notificationTitle: "Welcome to \(region.identifier)!", notificationBody: "You made it.")
         if surveysWithinArea.contains(where: {$0.id == region.identifier}) && !surveysWithinArea.isEmpty {
             let index = surveysWithinArea.index(where: {$0.id == region.identifier})
@@ -134,6 +144,8 @@ class SurveyHandler: NSObject, CLLocationManagerDelegate, UNUserNotificationCent
     
     // Handles what happens when the user exits a geofenced region
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+        // TODO: if user exits their area, notify server
+        
         if surveysReadyToComplete.contains(where: {$0.id == region.identifier}) && !surveysReadyToComplete.isEmpty {
             let index = surveysReadyToComplete.index(where: {$0.id == region.identifier})
             if index != nil {

@@ -16,7 +16,7 @@ class Survey {
     //let locationNotification = LocationNotification()
     
     //MARK: Properties
-    var id: String
+    var id: String?
     var name: String
     //var shortDescription: String // Used when the survey questions are available
     var latitude: Double
@@ -33,6 +33,14 @@ class Survey {
         self.longitude = survey.LatLng[1]
         self.radius = survey.Radius
         //self.shortDescription = survey.Description
+    }
+    
+    init() {
+        self.id = nil
+        self.name = "No History"
+        self.latitude = 0
+        self.longitude = 0
+        self.radius = 0
     }
     
 }
