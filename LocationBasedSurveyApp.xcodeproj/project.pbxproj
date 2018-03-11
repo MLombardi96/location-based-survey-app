@@ -27,6 +27,13 @@
 		968396741FED720E00A1BACD /* AvailableSurveysTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968396731FED720E00A1BACD /* AvailableSurveysTableViewCell.swift */; };
 		9683967C1FED784700A1BACD /* AvailableSurveysTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9683967B1FED784700A1BACD /* AvailableSurveysTableViewController.swift */; };
 		9683967E1FED798300A1BACD /* Survey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9683967D1FED798300A1BACD /* Survey.swift */; };
+		96889B252054D0920003EFE7 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 96889B242054D0920003EFE7 /* libsqlite3.0.tbd */; };
+		96889B342054D5110003EFE7 /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 96889B2A2054D50F0003EFE7 /* FMDatabaseAdditions.m */; };
+		96889B352054D5110003EFE7 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 96889B2B2054D50F0003EFE7 /* FMDatabasePool.m */; };
+		96889B362054D5110003EFE7 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 96889B2D2054D5100003EFE7 /* FMResultSet.m */; };
+		96889B372054D5110003EFE7 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 96889B302054D5100003EFE7 /* FMDatabaseQueue.m */; };
+		96889B382054D5110003EFE7 /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 96889B332054D5110003EFE7 /* FMDatabase.m */; };
+		96889B3A2054D6560003EFE7 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96889B392054D6560003EFE7 /* DBManager.swift */; };
 		96D2B2B51FF577E400D9B2A5 /* SurveyHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D2B2B41FF577E400D9B2A5 /* SurveyHandler.swift */; };
 		96D2B2B81FF579E000D9B2A5 /* Surveys.json in Resources */ = {isa = PBXBuildFile; fileRef = 96D2B2B71FF579E000D9B2A5 /* Surveys.json */; };
 /* End PBXBuildFile section */
@@ -75,6 +82,20 @@
 		968396731FED720E00A1BACD /* AvailableSurveysTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableSurveysTableViewCell.swift; sourceTree = "<group>"; };
 		9683967B1FED784700A1BACD /* AvailableSurveysTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableSurveysTableViewController.swift; sourceTree = "<group>"; };
 		9683967D1FED798300A1BACD /* Survey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Survey.swift; sourceTree = "<group>"; };
+		96889B242054D0920003EFE7 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		96889B282054D50E0003EFE7 /* LocationBasedSurveyApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LocationBasedSurveyApp-Bridging-Header.h"; sourceTree = "<group>"; };
+		96889B292054D50F0003EFE7 /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabasePool.h; path = "../../../../../../../Downloads/fmdb-master/src/fmdb/FMDatabasePool.h"; sourceTree = "<group>"; };
+		96889B2A2054D50F0003EFE7 /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMDatabaseAdditions.m; path = "../../../../../../../Downloads/fmdb-master/src/fmdb/FMDatabaseAdditions.m"; sourceTree = "<group>"; };
+		96889B2B2054D50F0003EFE7 /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMDatabasePool.m; path = "../../../../../../../Downloads/fmdb-master/src/fmdb/FMDatabasePool.m"; sourceTree = "<group>"; };
+		96889B2C2054D5100003EFE7 /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabaseQueue.h; path = "../../../../../../../Downloads/fmdb-master/src/fmdb/FMDatabaseQueue.h"; sourceTree = "<group>"; };
+		96889B2D2054D5100003EFE7 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMResultSet.m; path = "../../../../../../../Downloads/fmdb-master/src/fmdb/FMResultSet.m"; sourceTree = "<group>"; };
+		96889B2E2054D5100003EFE7 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDB.h; path = "../../../../../../../Downloads/fmdb-master/src/fmdb/FMDB.h"; sourceTree = "<group>"; };
+		96889B2F2054D5100003EFE7 /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabase.h; path = "../../../../../../../Downloads/fmdb-master/src/fmdb/FMDatabase.h"; sourceTree = "<group>"; };
+		96889B302054D5100003EFE7 /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMDatabaseQueue.m; path = "../../../../../../../Downloads/fmdb-master/src/fmdb/FMDatabaseQueue.m"; sourceTree = "<group>"; };
+		96889B312054D5110003EFE7 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMResultSet.h; path = "../../../../../../../Downloads/fmdb-master/src/fmdb/FMResultSet.h"; sourceTree = "<group>"; };
+		96889B322054D5110003EFE7 /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FMDatabaseAdditions.h; path = "../../../../../../../Downloads/fmdb-master/src/fmdb/FMDatabaseAdditions.h"; sourceTree = "<group>"; };
+		96889B332054D5110003EFE7 /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FMDatabase.m; path = "../../../../../../../Downloads/fmdb-master/src/fmdb/FMDatabase.m"; sourceTree = "<group>"; };
+		96889B392054D6560003EFE7 /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 		96D2B2B41FF577E400D9B2A5 /* SurveyHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyHandler.swift; sourceTree = "<group>"; };
 		96D2B2B71FF579E000D9B2A5 /* Surveys.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Surveys.json; sourceTree = "<group>"; };
 		AA22AE093BAC0DCE0D31903F /* Pods_LocationBasedSurveyApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LocationBasedSurveyApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,6 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96889B252054D0920003EFE7 /* libsqlite3.0.tbd in Frameworks */,
 				863D0C4BE27367C35FFE50A0 /* Pods_LocationBasedSurveyApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -135,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				30DDC19E1F90162C000469BA /* Main.storyboard */,
+				96889B392054D6560003EFE7 /* DBManager.swift */,
 				96D2B2B41FF577E400D9B2A5 /* SurveyHandler.swift */,
 				963BB607204378A300B897EA /* ServerHandler.swift */,
 				9683967D1FED798300A1BACD /* Survey.swift */,
@@ -142,6 +165,7 @@
 				30DDC1A61F90162C000469BA /* Info.plist */,
 				963BB60220430AEB00B897EA /* Supporting Files */,
 				963BB5FE2043099F00B897EA /* View */,
+				96889B272054D4D30003EFE7 /* FMDB */,
 				96A5649E1FF6B7E0006188B3 /* Reference files */,
 				96D2B2B61FF579B100D9B2A5 /* JSON_testfiles */,
 			);
@@ -183,8 +207,8 @@
 		963BB60220430AEB00B897EA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				30DDC1A31F90162C000469BA /* LaunchScreen.storyboard */,
 				30DDC19A1F90162C000469BA /* AppDelegate.swift */,
+				30DDC1A31F90162C000469BA /* LaunchScreen.storyboard */,
 				30DDC1A11F90162C000469BA /* Assets.xcassets */,
 			);
 			path = "Supporting Files";
@@ -193,10 +217,30 @@
 		967BA82D1FBF7B6200B1CABE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				96889B242054D0920003EFE7 /* libsqlite3.0.tbd */,
 				967BA82E1FBF7B6300B1CABE /* CoreLocation.framework */,
 				AA22AE093BAC0DCE0D31903F /* Pods_LocationBasedSurveyApp.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		96889B272054D4D30003EFE7 /* FMDB */ = {
+			isa = PBXGroup;
+			children = (
+				96889B2F2054D5100003EFE7 /* FMDatabase.h */,
+				96889B332054D5110003EFE7 /* FMDatabase.m */,
+				96889B322054D5110003EFE7 /* FMDatabaseAdditions.h */,
+				96889B2A2054D50F0003EFE7 /* FMDatabaseAdditions.m */,
+				96889B292054D50F0003EFE7 /* FMDatabasePool.h */,
+				96889B2B2054D50F0003EFE7 /* FMDatabasePool.m */,
+				96889B2C2054D5100003EFE7 /* FMDatabaseQueue.h */,
+				96889B302054D5100003EFE7 /* FMDatabaseQueue.m */,
+				96889B2E2054D5100003EFE7 /* FMDB.h */,
+				96889B312054D5110003EFE7 /* FMResultSet.h */,
+				96889B2D2054D5100003EFE7 /* FMResultSet.m */,
+				96889B282054D50E0003EFE7 /* LocationBasedSurveyApp-Bridging-Header.h */,
+			);
+			path = FMDB;
 			sourceTree = "<group>";
 		};
 		96A5649E1FF6B7E0006188B3 /* Reference files */ = {
@@ -296,6 +340,7 @@
 				TargetAttributes = {
 					30DDC1961F90162C000469BA = {
 						CreatedOnToolsVersion = 9.0;
+						LastSwiftMigration = 0920;
 						ProvisioningStyle = Automatic;
 					};
 					30DDC1AA1F90162C000469BA = {
@@ -367,11 +412,11 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-LocationBasedSurveyApp/Pods-LocationBasedSurveyApp-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework",
+				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLite.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -424,6 +469,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				30DDC19D1F90162C000469BA /* ViewController.swift in Sources */,
+				96889B382054D5110003EFE7 /* FMDatabase.m in Sources */,
 				9683967C1FED784700A1BACD /* AvailableSurveysTableViewController.swift in Sources */,
 				9683967E1FED798300A1BACD /* Survey.swift in Sources */,
 				963BB608204378A300B897EA /* ServerHandler.swift in Sources */,
@@ -436,7 +482,12 @@
 				963BB60620430CD600B897EA /* HistoryTableViewController.swift in Sources */,
 				963BB60420430CC000B897EA /* HistoryTableViewCell.swift in Sources */,
 				96D2B2B51FF577E400D9B2A5 /* SurveyHandler.swift in Sources */,
+				96889B362054D5110003EFE7 /* FMResultSet.m in Sources */,
+				96889B3A2054D6560003EFE7 /* DBManager.swift in Sources */,
+				96889B352054D5110003EFE7 /* FMDatabasePool.m in Sources */,
 				9619589C1FEC4F3B00C28BEE /* HomeViewController.swift in Sources */,
+				96889B342054D5110003EFE7 /* FMDatabaseAdditions.m in Sources */,
+				96889B372054D5110003EFE7 /* FMDatabaseQueue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -603,6 +654,7 @@
 			baseConfigurationReference = BFE8BBE77ACDECD84CCA7CE8 /* Pods-LocationBasedSurveyApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z9YQ2SB6KC;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -615,7 +667,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cse.seniordesign.LocationBasedSurveyApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "LocationBasedSurveyApp/FMDB/LocationBasedSurveyApp-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "Pods/**";
@@ -627,6 +680,7 @@
 			baseConfigurationReference = BABD0DD450324C57D348A1AF /* Pods-LocationBasedSurveyApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z9YQ2SB6KC;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -639,7 +693,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cse.seniordesign.LocationBasedSurveyApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "LocationBasedSurveyApp/FMDB/LocationBasedSurveyApp-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "Pods/**";

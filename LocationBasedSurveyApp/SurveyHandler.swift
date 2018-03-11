@@ -32,16 +32,13 @@ struct Root: Decodable {
  ****/
 class SurveyHandler: NSObject, CLLocationManagerDelegate, UNUserNotificationCenterDelegate {
     
+    static let shared: SurveyHandler = SurveyHandler()
+    
     private let locationManager: CLLocationManager
     var surveysReadyToComplete = [Survey]()
     var surveysWithinArea = [Survey]()
-    
-    var totalSurveys: Int {
-        get {
-            return surveysReadyToComplete.count + surveysWithinArea.count
-        }
-    }
-    
+    var surveyHistory = [Survey]()
+
     override init() {
         // Location Manager initialization
         self.locationManager = CLLocationManager()
@@ -53,7 +50,6 @@ class SurveyHandler: NSObject, CLLocationManagerDelegate, UNUserNotificationCent
             self.locationManager.startUpdatingLocation()
             self.locationManager.delegate = self
         }
-        pullSurveysFromServer()
     }
     
     //MARK: Private Methods
@@ -61,7 +57,7 @@ class SurveyHandler: NSObject, CLLocationManagerDelegate, UNUserNotificationCent
      * Parses through json file creating Surveys with the data. Also
      * creates geofences for each Survey.
      ****/
-    private func pullSurveysFromServer() {
+    func pullSurveysFromServer() {
         // Currently gets json file locally
         let url = Bundle.main.url(forResource: "Surveys", withExtension: "json")
         do {
@@ -72,18 +68,18 @@ class SurveyHandler: NSObject, CLLocationManagerDelegate, UNUserNotificationCent
             for i in 0..<root.Surveys.count {
 
                 if let userCoordinates = locationManager.location?.coordinate {
-                    user.setUserCoordinates(coordinates: userCoordinates)
+                    User.shared.setUserCoordinates(coordinates: userCoordinates)
                     
                     if let newSurvey = Survey(&root.Surveys[i]) {
                         
                         // Add GeoFence for new Surveys
-                        let center = CLLocationCoordinate2D(latitude: newSurvey.latitude, longitude: newSurvey.longitude)
+                        //let center = CLLocationCoordinate2D(latitude: newSurvey.latitude, longitude: newSurvey.longitude)
                         
-                        guard let identifier = newSurvey.id else {return}
-                        let region = CLCircularRegion(center: center, radius: newSurvey.radius, identifier: identifier)
-                        locationManager.startMonitoring(for: region)
+                        //guard let identifier = newSurvey.id else {return}
+                        //let region = CLCircularRegion(center: center, radius: newSurvey.radius, identifier: identifier)
+                        locationManager.startMonitoring(for: newSurvey.region)
                         
-                        if user.latitude == newSurvey.latitude && user.longitude == newSurvey.longitude {
+                        if User.shared.latitude == newSurvey.latitude && User.shared.longitude == newSurvey.longitude {
                             newSurvey.isSelected = true
                             surveysReadyToComplete.append(newSurvey)
                         } else {
@@ -98,10 +94,27 @@ class SurveyHandler: NSObject, CLLocationManagerDelegate, UNUserNotificationCent
     }
     
     // default function until database is setup
-    func loadSurveyHistory() -> [Survey] {
-        // load survey history from database
-        // if history is empty, load the empty survey
-        return [Survey()]
+    func getSurveyHistory() -> [Survey] {
+        if surveyHistory.isEmpty {
+            return [Survey()]
+        }
+        return surveyHistory
+    }
+    
+    // called from SurveyQuestionViewController when the survey has been completed
+    func userHasCompleted(_ survey: Survey) {
+        survey.isComplete = true
+        guard let surveyID = survey.id else {
+            print("This survey does not have a valid ID.")
+            return
+        }
+        DBManager.shared.insertSurveyIntoTable(identifier: surveyID, name: survey.name, latitude: survey.latitude, longitude: survey.longitude)
+        let index = surveysReadyToComplete.index(where: {$0.id == surveyID})
+        if index != nil {
+            surveyHistory.append(surveysReadyToComplete.remove(at: index!))
+            locationManager.stopMonitoring(for: survey.region)
+        }
+        print(survey.name)
     }
     
     // Made public so the notification button on the homepage will still operate
@@ -130,11 +143,11 @@ class SurveyHandler: NSObject, CLLocationManagerDelegate, UNUserNotificationCent
     //MARK: Location Manager Methods
     // Handles what happens when the user enters a geofenced region
     func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        // TODO: parse JSON question file and 
+        // TODO: parse JSON file of questions to ready them for user
         
-        sendNotification(notificationTitle: "Welcome to \(region.identifier)!", notificationBody: "You made it.")
         if surveysWithinArea.contains(where: {$0.id == region.identifier}) && !surveysWithinArea.isEmpty {
             let index = surveysWithinArea.index(where: {$0.id == region.identifier})
+            sendNotification(notificationTitle: "Survey Available", notificationBody: "The \(surveysWithinArea[index!].name) survey is available to complete.")
             if index != nil {
                 surveysWithinArea[index!].isSelected = true
                 surveysReadyToComplete.append(surveysWithinArea.remove(at: index!))
@@ -144,7 +157,7 @@ class SurveyHandler: NSObject, CLLocationManagerDelegate, UNUserNotificationCent
     
     // Handles what happens when the user exits a geofenced region
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
-        // TODO: if user exits their area, notify server
+        // TODO: check if aurvey has been completed, if so send to server
         
         if surveysReadyToComplete.contains(where: {$0.id == region.identifier}) && !surveysReadyToComplete.isEmpty {
             let index = surveysReadyToComplete.index(where: {$0.id == region.identifier})
