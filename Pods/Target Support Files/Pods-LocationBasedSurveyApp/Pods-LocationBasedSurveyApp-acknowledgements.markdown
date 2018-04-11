@@ -5,10 +5,6 @@ This application makes use of the following third party libraries:
 
 Copyright 2017 Google
 
-## GooglePlaces
-
-Copyright 2017 Google
-
 ## SwiftyJSON
 
 The MIT License (MIT)
