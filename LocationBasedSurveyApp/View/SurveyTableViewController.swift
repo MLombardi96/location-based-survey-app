@@ -9,9 +9,9 @@
 import UIKit
 import CoreData
 
-class HistoryTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
+class SurveyTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
-    var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer { didSet { updateUI() } }
+    private var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer { didSet { updateUI() } }
     
     private var fetchedResultsController: NSFetchedResultsController<Survey>?
     
@@ -20,15 +20,15 @@ class HistoryTableViewController: UITableViewController, NSFetchedResultsControl
         self.refreshControl?.addTarget(self, action: #selector(HistoryTableViewController.handleRefresh(_:)), for: UIControlEvents.valueChanged)
     }
     
-    private func updateUI() {
+    internal func updateUI() {
         if let context = container?.viewContext {
             let request: NSFetchRequest<Survey> = Survey.fetchRequest()
-            request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
-            request.predicate = NSPredicate(format: "isComplete = YES")
+            request.sortDescriptors = [NSSortDescriptor(key: "sectionName", ascending: true), NSSortDescriptor(key: "name", ascending: true)]
+            request.predicate = NSPredicate(format: "isComplete = NO")
             fetchedResultsController = NSFetchedResultsController<Survey>(
                 fetchRequest: request,
                 managedObjectContext: context,
-                sectionNameKeyPath: nil,
+                sectionNameKeyPath: "sectionName",
                 cacheName: nil
             )
             try? fetchedResultsController?.performFetch()
@@ -47,12 +47,12 @@ class HistoryTableViewController: UITableViewController, NSFetchedResultsControl
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellIdentifier = "HistoryTableViewCell"
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? HistoryTableViewCell else {
+        let cellIdentifier = "AvailableSurveysTableViewCell"
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as? AvailableSurveysTableViewCell else {
             fatalError("The dequeue cell is not an instance of HistoryTableViewCell")
         }
         if let currentSurvey = fetchedResultsController?.object(at: indexPath) {
-            cell.historyTitle.text = currentSurvey.name
+            cell.surveyTitle.text = currentSurvey.name
         }
         return cell
     }
@@ -84,9 +84,25 @@ class HistoryTableViewController: UITableViewController, NSFetchedResultsControl
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
     }
+    
+    // MARK: Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let indexPath = tableView.indexPathForSelectedRow!
+        let selectedSurvey = fetchedResultsController?.object(at: indexPath)
+        if segue.identifier == "ReadySurvey" {
+            if let destinationViewController = segue.destination as? SurveyQuestionsViewController {
+                destinationViewController.survey = selectedSurvey
+            }
+        } else {
+            if let destinationViewController = segue.destination as? GoogleMapsViewController {
+                destinationViewController.survey = selectedSurvey
+            }
+        }
+    }
+    
 }
 
-extension HistoryTableViewController {
+extension SurveyTableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return fetchedResultsController?.sections?.count ?? 1
     }
@@ -114,7 +130,16 @@ extension HistoryTableViewController {
     override func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
         return fetchedResultsController?.section(forSectionIndexTitle: title, at: index) ?? 0
     }
-
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let selectedCell = fetchedResultsController?.object(at: indexPath) {
+            if selectedCell.sectionName == "Ready to Complete" {
+                self.performSegue(withIdentifier: "ReadySurvey", sender: nil)
+            } else {
+                self.performSegue(withIdentifier: "NotReadySurvey", sender: nil)
+            }
+        }
+    }
 }
 
 

@@ -18,8 +18,9 @@ import CoreLocation
 struct User {
     // Singleton for now at least
     static var shared: User = User(email: "jasonwest1013@yahoo.com")
+    let locationManager = SurveyHandler.shared.locationManager
     
-    let email: String?
+    let email: String
     var radiusSetting: Double                             // set in settings
     var latitude: Double?
     var longitude: Double?
@@ -30,26 +31,26 @@ struct User {
         self.email = email
         self.radiusSetting = 100
         self.lengthOfSurveyHistory = 50
-        self.timeOutRequest = 3             // hours
-        self.latitude = 0
-        self.longitude = 0
+        self.timeOutRequest = 3
     }
     
-    mutating func setUserCoordinates(coordinates: CLLocationCoordinate2D) {
-        self.latitude = coordinates.latitude
-        self.longitude = coordinates.longitude
+    mutating func updateUserCoordinates() {
+        self.latitude = locationManager.location?.coordinate.latitude
+        self.longitude = locationManager.location?.coordinate.longitude
     }
     
-    func getUserCoordinates() -> CLLocationCoordinate2D {
-        return CLLocationCoordinate2D(latitude: self.latitude!, longitude: self.longitude!)
-    }
-    
-    mutating func resetGeofence() {
-        let location = SurveyHandler.shared.locationManager.location
-        self.latitude = location?.coordinate.latitude
-        self.longitude = location?.coordinate.longitude
-        let center = CLLocationCoordinate2D(latitude: self.latitude!, longitude: self.longitude!)
-        SurveyHandler.shared.createGeofence(with: CLCircularRegion(center: center, radius: radiusSetting, identifier: "User"))
+    mutating func checkDistance() -> Bool {
+        if self.latitude != nil && self.longitude != nil {
+            guard let lat = locationManager.location?.coordinate.latitude else {return false}
+            guard let long = locationManager.location?.coordinate.longitude else {return false}
+            let location = CLLocation(latitude: lat, longitude: long)
+            if location.distance(from: CLLocation(latitude: self.latitude!, longitude: self.longitude!)) >= radiusSetting {
+                return true
+            }
+            return false
+        } else {
+            return false
+        }
     }
 
 }

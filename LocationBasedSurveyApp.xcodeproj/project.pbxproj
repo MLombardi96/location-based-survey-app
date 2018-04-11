@@ -20,17 +20,19 @@
 		962E54511FEE1EC60058D381 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 962E54501FEE1EC60058D381 /* Podfile */; };
 		963BB60420430CC000B897EA /* HistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963BB60320430CC000B897EA /* HistoryTableViewCell.swift */; };
 		963BB60620430CD600B897EA /* HistoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963BB60520430CD600B897EA /* HistoryTableViewController.swift */; };
-		963BB608204378A300B897EA /* ServerHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963BB607204378A300B897EA /* ServerHandler.swift */; };
 		963BB60A20437A5B00B897EA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963BB60920437A5B00B897EA /* User.swift */; };
 		9675538E1FF5590700A17C58 /* SurveyQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9675538D1FF5590700A17C58 /* SurveyQuestionsViewController.swift */; };
+		967683C9207DC0B60023675A /* SurveyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967683C8207DC0B60023675A /* SurveyTableViewController.swift */; };
 		967F8A171FC476EC000F28DC /* LocationNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967F8A161FC476EC000F28DC /* LocationNotification.swift */; };
 		968396741FED720E00A1BACD /* AvailableSurveysTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968396731FED720E00A1BACD /* AvailableSurveysTableViewCell.swift */; };
-		9683967C1FED784700A1BACD /* AvailableSurveysTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9683967B1FED784700A1BACD /* AvailableSurveysTableViewController.swift */; };
-		9683967E1FED798300A1BACD /* Survey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9683967D1FED798300A1BACD /* Survey.swift */; };
 		96889B252054D0920003EFE7 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 96889B242054D0920003EFE7 /* libsqlite3.0.tbd */; };
-		96889B3A2054D6560003EFE7 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96889B392054D6560003EFE7 /* DBManager.swift */; };
+		96B67606205CC3E50051A90F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B67605205CC3E50051A90F /* CoreData.framework */; };
+		96B67646205CC5F10051A90F /* LocationBasedSurveyApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 96B67644205CC5F10051A90F /* LocationBasedSurveyApp.xcdatamodeld */; };
 		96D2B2B51FF577E400D9B2A5 /* SurveyHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D2B2B41FF577E400D9B2A5 /* SurveyHandler.swift */; };
 		96D2B2B81FF579E000D9B2A5 /* Surveys.json in Resources */ = {isa = PBXBuildFile; fileRef = 96D2B2B71FF579E000D9B2A5 /* Surveys.json */; };
+		96DCE916207E83C8003F4F86 /* NewSurvey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DCE915207E83C8003F4F86 /* NewSurvey.swift */; };
+		96DCE918207E8445003F4F86 /* Survey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DCE917207E8445003F4F86 /* Survey.swift */; };
+		96DCE91A207E8566003F4F86 /* Questions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DCE919207E8566003F4F86 /* Questions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,19 +71,20 @@
 		962E54501FEE1EC60058D381 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		963BB60320430CC000B897EA /* HistoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewCell.swift; sourceTree = "<group>"; };
 		963BB60520430CD600B897EA /* HistoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryTableViewController.swift; sourceTree = "<group>"; };
-		963BB607204378A300B897EA /* ServerHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerHandler.swift; sourceTree = "<group>"; };
 		963BB60920437A5B00B897EA /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9675538D1FF5590700A17C58 /* SurveyQuestionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyQuestionsViewController.swift; sourceTree = "<group>"; };
+		967683C8207DC0B60023675A /* SurveyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyTableViewController.swift; sourceTree = "<group>"; };
 		967BA82E1FBF7B6300B1CABE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		967F8A161FC476EC000F28DC /* LocationNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationNotification.swift; sourceTree = "<group>"; };
 		968396731FED720E00A1BACD /* AvailableSurveysTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableSurveysTableViewCell.swift; sourceTree = "<group>"; };
-		9683967B1FED784700A1BACD /* AvailableSurveysTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableSurveysTableViewController.swift; sourceTree = "<group>"; };
-		9683967D1FED798300A1BACD /* Survey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Survey.swift; sourceTree = "<group>"; };
 		96889B242054D0920003EFE7 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
-		96889B282054D50E0003EFE7 /* LocationBasedSurveyApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LocationBasedSurveyApp-Bridging-Header.h"; sourceTree = "<group>"; };
-		96889B392054D6560003EFE7 /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
+		96B67605205CC3E50051A90F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		96B67645205CC5F10051A90F /* LocationBasedSurveyApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocationBasedSurveyApp.xcdatamodel; sourceTree = "<group>"; };
 		96D2B2B41FF577E400D9B2A5 /* SurveyHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyHandler.swift; sourceTree = "<group>"; };
 		96D2B2B71FF579E000D9B2A5 /* Surveys.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Surveys.json; sourceTree = "<group>"; };
+		96DCE915207E83C8003F4F86 /* NewSurvey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSurvey.swift; sourceTree = "<group>"; };
+		96DCE917207E8445003F4F86 /* Survey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Survey.swift; sourceTree = "<group>"; };
+		96DCE919207E8566003F4F86 /* Questions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Questions.swift; sourceTree = "<group>"; };
 		AA22AE093BAC0DCE0D31903F /* Pods_LocationBasedSurveyApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LocationBasedSurveyApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BABD0DD450324C57D348A1AF /* Pods-LocationBasedSurveyApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationBasedSurveyApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-LocationBasedSurveyApp/Pods-LocationBasedSurveyApp.release.xcconfig"; sourceTree = "<group>"; };
 		BFE8BBE77ACDECD84CCA7CE8 /* Pods-LocationBasedSurveyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationBasedSurveyApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LocationBasedSurveyApp/Pods-LocationBasedSurveyApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -92,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				96B67606205CC3E50051A90F /* CoreData.framework in Frameworks */,
 				96889B252054D0920003EFE7 /* libsqlite3.0.tbd in Frameworks */,
 				863D0C4BE27367C35FFE50A0 /* Pods_LocationBasedSurveyApp.framework in Frameworks */,
 			);
@@ -141,15 +145,15 @@
 			isa = PBXGroup;
 			children = (
 				30DDC19E1F90162C000469BA /* Main.storyboard */,
-				96889B392054D6560003EFE7 /* DBManager.swift */,
 				96D2B2B41FF577E400D9B2A5 /* SurveyHandler.swift */,
-				963BB607204378A300B897EA /* ServerHandler.swift */,
-				9683967D1FED798300A1BACD /* Survey.swift */,
 				963BB60920437A5B00B897EA /* User.swift */,
+				96DCE915207E83C8003F4F86 /* NewSurvey.swift */,
+				96DCE917207E8445003F4F86 /* Survey.swift */,
+				96DCE919207E8566003F4F86 /* Questions.swift */,
+				96B67644205CC5F10051A90F /* LocationBasedSurveyApp.xcdatamodeld */,
 				30DDC1A61F90162C000469BA /* Info.plist */,
 				963BB60220430AEB00B897EA /* Supporting Files */,
 				963BB5FE2043099F00B897EA /* View */,
-				96889B272054D4D30003EFE7 /* FMDB */,
 				96A5649E1FF6B7E0006188B3 /* Reference files */,
 				96D2B2B61FF579B100D9B2A5 /* JSON_testfiles */,
 			);
@@ -179,7 +183,7 @@
 			children = (
 				9619589B1FEC4F3B00C28BEE /* HomeViewController.swift */,
 				960619F91FEED21200B58F48 /* GoogleMapsViewController.swift */,
-				9683967B1FED784700A1BACD /* AvailableSurveysTableViewController.swift */,
+				967683C8207DC0B60023675A /* SurveyTableViewController.swift */,
 				968396731FED720E00A1BACD /* AvailableSurveysTableViewCell.swift */,
 				9675538D1FF5590700A17C58 /* SurveyQuestionsViewController.swift */,
 				963BB60520430CD600B897EA /* HistoryTableViewController.swift */,
@@ -201,19 +205,12 @@
 		967BA82D1FBF7B6200B1CABE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				96B67605205CC3E50051A90F /* CoreData.framework */,
 				96889B242054D0920003EFE7 /* libsqlite3.0.tbd */,
 				967BA82E1FBF7B6300B1CABE /* CoreLocation.framework */,
 				AA22AE093BAC0DCE0D31903F /* Pods_LocationBasedSurveyApp.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		96889B272054D4D30003EFE7 /* FMDB */ = {
-			isa = PBXGroup;
-			children = (
-				96889B282054D50E0003EFE7 /* LocationBasedSurveyApp-Bridging-Header.h */,
-			);
-			path = FMDB;
 			sourceTree = "<group>";
 		};
 		96A5649E1FF6B7E0006188B3 /* Reference files */ = {
@@ -308,7 +305,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0900;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Mitchell Lombardi";
 				TargetAttributes = {
 					30DDC1961F90162C000469BA = {
@@ -385,11 +382,11 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-LocationBasedSurveyApp/Pods-LocationBasedSurveyApp-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -442,19 +439,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				30DDC19D1F90162C000469BA /* ViewController.swift in Sources */,
-				9683967C1FED784700A1BACD /* AvailableSurveysTableViewController.swift in Sources */,
-				9683967E1FED798300A1BACD /* Survey.swift in Sources */,
-				963BB608204378A300B897EA /* ServerHandler.swift in Sources */,
+				967683C9207DC0B60023675A /* SurveyTableViewController.swift in Sources */,
+				96B67646205CC5F10051A90F /* LocationBasedSurveyApp.xcdatamodeld in Sources */,
+				96DCE916207E83C8003F4F86 /* NewSurvey.swift in Sources */,
 				9675538E1FF5590700A17C58 /* SurveyQuestionsViewController.swift in Sources */,
 				967F8A171FC476EC000F28DC /* LocationNotification.swift in Sources */,
 				963BB60A20437A5B00B897EA /* User.swift in Sources */,
+				96DCE918207E8445003F4F86 /* Survey.swift in Sources */,
+				96DCE91A207E8566003F4F86 /* Questions.swift in Sources */,
 				968396741FED720E00A1BACD /* AvailableSurveysTableViewCell.swift in Sources */,
 				30DDC19B1F90162C000469BA /* AppDelegate.swift in Sources */,
 				960619FA1FEED21200B58F48 /* GoogleMapsViewController.swift in Sources */,
 				963BB60620430CD600B897EA /* HistoryTableViewController.swift in Sources */,
 				963BB60420430CC000B897EA /* HistoryTableViewCell.swift in Sources */,
 				96D2B2B51FF577E400D9B2A5 /* SurveyHandler.swift in Sources */,
-				96889B3A2054D6560003EFE7 /* DBManager.swift in Sources */,
 				9619589C1FEC4F3B00C28BEE /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -524,6 +522,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -531,6 +530,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -581,6 +581,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -588,6 +589,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -635,7 +637,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cse.seniordesign.LocationBasedSurveyApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "LocationBasedSurveyApp/FMDB/LocationBasedSurveyApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -661,7 +662,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cse.seniordesign.LocationBasedSurveyApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "LocationBasedSurveyApp/FMDB/LocationBasedSurveyApp-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "Pods/**";
@@ -770,6 +770,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		96B67644205CC5F10051A90F /* LocationBasedSurveyApp.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				96B67645205CC5F10051A90F /* LocationBasedSurveyApp.xcdatamodel */,
+			);
+			currentVersion = 96B67645205CC5F10051A90F /* LocationBasedSurveyApp.xcdatamodel */;
+			path = LocationBasedSurveyApp.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 30DDC18F1F90162C000469BA /* Project object */;
 }

@@ -17,7 +17,7 @@ import UserNotifications
 class LocationNotification: NSObject, CLLocationManagerDelegate, UNUserNotificationCenterDelegate {
     
     private let locationManager: CLLocationManager
-    private var currentSurveysManaged = [Survey]() // keeps list of managed surveys
+    private var currentSurveysManaged = [NewSurvey]() // keeps list of managed surveys
     
     override init() {
         self.locationManager = CLLocationManager()
@@ -34,7 +34,7 @@ class LocationNotification: NSObject, CLLocationManagerDelegate, UNUserNotificat
     /****
  `  * Add a new geofence, can add a max of 20.
     ****/
-    func addGeofenceForSurvey(_ survey: Survey) {
+    func addGeofenceForSurvey(_ survey: NewSurvey) {
         let center = CLLocationCoordinate2D(latitude: survey.latitude, longitude: survey.longitude)
         let region = CLCircularRegion(center: center, radius: survey.radius, identifier: survey.name)
         locationManager.startMonitoring(for: region)

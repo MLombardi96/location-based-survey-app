@@ -2,55 +2,66 @@
 //  Survey.swift
 //  LocationBasedSurveyApp
 //
-//  Created by Jason West on 12/22/17.
-//  Copyright © 2017 Mitchell Lombardi. All rights reserved.
+//  Created by Jason West on 4/11/18.
+//  Copyright © 2018 Mitchell Lombardi. All rights reserved.
 //
 
-import Foundation
-import CoreLocation
+import UIKit
+import CoreData
 
-/****
- * Survey Data Model
- ***/
-class Survey {
+class Survey: NSManagedObject {
     
-    //let locationNotification = LocationNotification()
-    
-    //MARK: Properties
-    var id: String?
-    var name: String
-    //var shortDescription: String // Used when the survey questions are available
-    var latitude: Double
-    var longitude: Double
-    var radius: Double
-    var isSelected = false
-    var isComplete = false
-    
-    var center: CLLocationCoordinate2D
-    var region: CLCircularRegion
- 
-    //MARK: Initialization
-    init?(_ survey: inout Root.Survey) {
+    // either finds existing survey or creates a new one in the database
+    class func findOrCreateSurvey(matching surveyInfo: NewSurvey, in context: NSManagedObjectContext) throws -> Survey? {
+        let request: NSFetchRequest<Survey> = Survey.fetchRequest()
+        guard let surveyId = surveyInfo.id else { return nil }                      // may want to change this
+        request.predicate = NSPredicate(format: "id = %@", surveyId)
         
-        self.id = survey.ID
-        self.name = survey.Name
-        self.latitude = survey.LatLng[0]
-        self.longitude = survey.LatLng[1]
-        self.radius = survey.Radius
-        self.center = CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude)
-        self.region = CLCircularRegion(center: self.center, radius: self.radius, identifier: self.id!)
-        //self.shortDescription = survey.Description
+        do {
+            let matches = try context.fetch(request)
+            if matches.count > 0 {
+                assert(matches.count == 1, "database inconsistency")
+                return matches[0]
+            }
+        } catch {
+            throw error
+        }
+        
+        // otherwise, make new survey in database
+        let survey = Survey(context: context)
+        survey.id = surveyInfo.id
+        survey.name = surveyInfo.name
+        survey.latitude = surveyInfo.latitude
+        survey.longitude = surveyInfo.longitude
+        survey.radius = surveyInfo.radius
+        survey.isComplete = surveyInfo.isComplete
+        return survey
+        
     }
     
-    // Constructor for an empty survey
-    init() {
-        self.id = nil
-        self.name = "No History"
-        self.latitude = 0
-        self.longitude = 0
-        self.radius = 0
-        self.center = CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude)
-        self.region = CLCircularRegion(center: self.center, radius: self.radius, identifier: "Empty")
+    // finds the survey in the database with the mathing identifier passed as a parameter
+    class func findSurveyWith(matching identifier: String, in context: NSManagedObjectContext) throws -> Survey {
+        let request: NSFetchRequest<Survey> = Survey.fetchRequest()
+        request.predicate = NSPredicate(format: "id = %@", identifier)
+        
+        do {
+            let matchingSurvey = try context.fetch(request)
+            return matchingSurvey[0]
+        } catch {
+            throw error
+        }
+        
     }
     
+    // Removes survey from the database, may not need to return but left it open
+    // ** haven't tested yet **
+    class func removeFromDatabaseWith(matching identifier: String, in context: NSManagedObjectContext) throws -> Survey {
+        do {
+            let survey = try findSurveyWith(matching: identifier, in: context)
+            context.delete(survey)
+            return survey
+        } catch {
+            throw error
+        }
+    }
 }

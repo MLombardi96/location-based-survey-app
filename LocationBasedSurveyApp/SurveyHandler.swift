@@ -5,25 +5,29 @@
 //  Created by Jason West on 12/28/17.
 //  Copyright © 2017 Mitchell Lombardi. All rights reserved.
 //
-
 import Foundation
 import CoreLocation
 import UserNotifications
+import SwiftyJSON
+import CoreData
 
 //TODO: add a maximum of 20 and cache the rest (Database?)
-// TODO: save JSON question file in the survey parse if user enters area
 //TODO: when questions are available manage a 'short description' for tableView
+//TODO: create function that parses and sets up currentSurveys
 
-// Structure used to contain json elements, created to match Colin's sample file
-struct Root: Decodable {
-    struct Survey: Decodable {
-        let ID: String
-        let Name: String
-        let LatLng: [Double]
-        //let Description: String
-        let Radius: Double
+struct Fence: Codable {
+    struct Regions: Codable {
+        let name: String
+        let id: String
+        let surveys: [String]
+        struct Center: Codable {
+            let lat: Double
+            let lng: Double
+        }
+        let center: Center
+        let radius: Double
     }
-    var Surveys: [Survey]
+    var regions: [Regions]
 }
 
 /****
@@ -33,14 +37,13 @@ struct Root: Decodable {
 class SurveyHandler: NSObject, CLLocationManagerDelegate, UNUserNotificationCenterDelegate {
     
     static let shared: SurveyHandler = SurveyHandler()
-    
+    let serverURL = "http://sdp-2017-survey.cse.uconn.edu/testFence"
     let locationManager: CLLocationManager
-    let maxGeoFences = 19
-    var surveysReadyToComplete = [Survey]()
-    var surveysWithinArea = [Survey]()
-    var surveyHistory = [Survey]()
+    let maxGeoFences = 20
+    
+    var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
 
-    override init() {
+    override public init() {
         // Location Manager initialization
         self.locationManager = CLLocationManager()
         self.locationManager.requestAlwaysAuthorization()
@@ -53,63 +56,127 @@ class SurveyHandler: NSObject, CLLocationManagerDelegate, UNUserNotificationCent
         }
     }
     
-    //MARK: Private Methods
-    /****
-     * Parses through json file creating Surveys with the data. Also
-     * creates geofences for each Survey.
-     ****/
-    func setupSurveyFences() {
-        User.shared.resetGeofence()
-        // Currently gets json file locally
-        let url = Bundle.main.url(forResource: "Surveys", withExtension: "json")
-        do {
-            let data = try Data.init(contentsOf: url!, options: .alwaysMapped)
-            var root  = try JSONDecoder().decode(Root.self, from: data)
+    //MARK: Methods
+    // parses JSON file and puts surveys in correct lists
+    func requestSurveyFences() {
+        if let url = NSURL(string: "http://sdp-2017-survey.cse.uconn.edu/testFence") {
+            let urlSession = URLSession.shared
+            let request = URLRequest(url: url as URL)
             
-            // loop through parsing the survey info out of json file creating Surveys
-            for i in 0..<root.Surveys.count {
-                if surveysReadyToComplete.contains(where: {$0.id == root.Surveys[i].ID}) || surveysWithinArea.contains(where: {$0.id == root.Surveys[i].ID}){
-                    continue
+            let task = urlSession.dataTask(with: request) { (data, response, error) in
+                if error != nil {
+                    print("There was an error downloading data from the server. Error: \(String(describing: error))")
                 }
-                guard let newSurvey = Survey(&root.Surveys[i]) else {return}
-                
-                // Add GeoFence for new Surveys
-                createGeofence(with: newSurvey.region)
-                
-                if User.shared.latitude == newSurvey.latitude && User.shared.longitude == newSurvey.longitude {
-                    newSurvey.isSelected = true
-                    surveysReadyToComplete.append(newSurvey)
-                } else {
-                    surveysWithinArea.append(newSurvey)
+                do {
+                    if let jsonData = data {
+                        let fence = try JSONDecoder().decode(Fence.self, from: jsonData)
+                        self.updateDatabase(with: fence)
+                    }
+                } catch {
+                    print("Could not get data from server")
                 }
-
+                var surveyID: [String] = []
+                let jsonFile = JSON(data)
+                let arrayFences = jsonFile["regions"].arrayValue
+                for regions in arrayFences {
+                    let name = regions["name"].stringValue
+                    let id = regions["id"].stringValue
+                    let surveyIds = regions["surveys"].arrayValue
+                    for ids in surveyIds {
+                        surveyID.append(ids.stringValue)
+                    }
+                    print(surveyID)
+                    let lat = regions["center"]["lat"].doubleValue
+                    let long = regions["center"]["long"].doubleValue
+                    let radius = regions["radius"].doubleValue
+                    let newSurvey = NewSurvey(name, identifier: id, surveyID: surveyID, latitude: lat, longitude: long, radius: radius)
+                }
+                
             }
-        } catch let jsonError {
-            print(jsonError.localizedDescription)
+            task.resume()
         }
     }
     
-    // populates the history table
-    func getSurveyHistory() -> [Survey] {
-        if surveyHistory.isEmpty {
-            return [Survey()]
+    // takes a Fence type and loops putting all the surveys in the database
+    func updateDatabase(with fence: Fence) {
+        // remove all non-completed surveys from database
+        // stop monitoring geofences of removed surveys
+        container?.performBackgroundTask { [weak self] context in
+            for regions in fence.regions {
+                var region = regions
+                let newSurvey = NewSurvey(&region)
+                self!.createGeofence(with: newSurvey!.region)
+                // test and set isSelected value
+                _ = try? Survey.findOrCreateSurvey(matching: newSurvey!, in: context)
+            }
+            try? context.save()
+            self?.printDatabaseStatistic()
         }
-        return surveyHistory
     }
+    
+    // prints how many surveys are currently in the database, ran on the main queue
+    private func printDatabaseStatistic() {
+        DispatchQueue.main.async {
+            if let context = self.container?.viewContext {
+                if let surveyCount = try? context.count(for: Survey.fetchRequest()) {
+                    print("\(surveyCount) surveys")
+                }
+            }
+        }
+    }
+    
+    // marks the survey so it is placed in the HistoryViewTable, run on the background
+    func userHasCompleted(_ survey: Survey) {
+        container?.performBackgroundTask { context in
+            do {
+                if let surveyID = survey.id {
+                    let survey = try Survey.findSurveyWith(matching: surveyID, in: context)
+                    survey.isComplete = true
+                }
+            } catch {
+                print("Not possible.")
+            }
+            try? context.save()
+        }
+    }
+}
+
+// extension that contains all the CLLocaitonManager and UNUserNotification methods
+extension SurveyHandler {
     
     func createGeofence(with region: CLCircularRegion) {
         locationManager.startMonitoring(for: region)
     }
     
-    // called from SurveyQuestionViewController when the survey has been completed
-    func userHasCompleted(_ survey: Survey) {
-        survey.isComplete = true
-        guard let surveyID = survey.id else {return}
-        DBManager.shared.insertSurveyIntoTable(identifier: surveyID, name: survey.name, latitude: survey.latitude, longitude: survey.longitude)
-        let index = surveysReadyToComplete.index(where: {$0.id == surveyID})
-        if index != nil {
-            surveyHistory.append(surveysReadyToComplete.remove(at: index!))
-            locationManager.stopMonitoring(for: survey.region)
+    // Handles when the user walks into survey area, sends notification and adjusts table
+    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
+        self.sendNotification(notificationTitle: "A Survey is ready", notificationBody: "complete survey")
+        if let context = self.container?.viewContext {
+            context.perform {
+                do {
+                    let survey = try Survey.findSurveyWith(matching: region.identifier, in: context)
+                    survey.sectionName = "Ready to Complete"
+                } catch {
+                    print("Could not locate Survey in database.")
+                }
+                try? context.save()
+            }
+        }
+    }
+    
+    // Handles when the user leaves the area, updates tables and will post answers to the server
+    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
+        // send info to server (questions yada yada)
+        if let context = self.container?.viewContext {
+            context.perform {
+                do {
+                    let survey = try Survey.findSurveyWith(matching: region.identifier, in: context)
+                    survey.sectionName = "Surveys"
+                } catch {
+                    print("Could not location Survey with id \(region.identifier) in database.")
+                }
+                try? context.save()
+            }
         }
     }
     
@@ -135,37 +202,6 @@ class SurveyHandler: NSObject, CLLocationManagerDelegate, UNUserNotificationCent
         //Add the notification to the currnet notification center
         UNUserNotificationCenter.current().add(request,withCompletionHandler: nil)
     }
-    
-    //MARK: Location Manager Methods
-    // Handles what happens when the user enters a geofenced region
-    func locationManager(_ manager: CLLocationManager, didEnterRegion region: CLRegion) {
-        // TODO: parse JSON file of questions to ready them for user
-        
-        if surveysWithinArea.contains(where: {$0.id == region.identifier}) && !surveysWithinArea.isEmpty {
-            let index = surveysWithinArea.index(where: {$0.id == region.identifier})
-            sendNotification(notificationTitle: "Survey Available", notificationBody: "The \(surveysWithinArea[index!].name) survey is available to complete.")
-            if index != nil {
-                surveysWithinArea[index!].isSelected = true
-                surveysReadyToComplete.append(surveysWithinArea.remove(at: index!))
-            }
-        }
-    }
-    
-    // Handles what happens when the user exits a geofenced region
-    func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
-        // TODO: check if aurvey has been completed, if so send to server
-        
-        if surveysReadyToComplete.contains(where: {$0.id == region.identifier}) && !surveysReadyToComplete.isEmpty {
-            let index = surveysReadyToComplete.index(where: {$0.id == region.identifier})
-            if index != nil {
-                surveysReadyToComplete[index!].isSelected = false
-                surveysWithinArea.append(surveysReadyToComplete.remove(at: index!))
-            }
-        } else if region.identifier == "User" {
-            locationManager.stopMonitoring(for: region)
-            // request from server
-            sendNotification(notificationTitle: "You left?", notificationBody: "Why you leave?")
-            User.shared.resetGeofence()
-        }
-    }
 }
+
+

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14133" systemVersion="17E199" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Questions" representedClassName=".Questions" syncable="YES" codeGenerationType="category">
+        <attribute name="answer" optional="YES" attributeType="String" defaultValueString="nil" syncable="YES"/>
+        <attribute name="question" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="questionNumber" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="surveyID" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="surveyFence" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Survey" inverseName="surveyQuestions" inverseEntity="Survey" syncable="YES"/>
+    </entity>
+    <entity name="Survey" representedClassName=".Survey" syncable="YES" codeGenerationType="category">
+        <attribute name="id" optional="YES" attributeType="String" minValueString="1" syncable="YES"/>
+        <attribute name="isComplete" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" minValueString="-90" maxValueString="90" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" minValueString="-180" maxValueString="180" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" minValueString="1" syncable="YES"/>
+        <attribute name="radius" optional="YES" attributeType="Double" minValueString="0" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="sectionName" optional="YES" attributeType="String" defaultValueString="Surveys" syncable="YES"/>
+        <relationship name="surveyQuestions" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Questions" inverseName="surveyFence" inverseEntity="Questions" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Questions" positionX="-4331" positionY="-2752" width="128" height="118"/>
+        <element name="Survey" positionX="-4581" positionY="-2781" width="128" height="163"/>
+    </elements>
+</model>

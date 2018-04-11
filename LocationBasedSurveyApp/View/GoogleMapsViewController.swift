@@ -62,7 +62,7 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate {
         } else {
             let coordinate = CLLocationCoordinate2DMake(survey!.latitude,survey!.longitude)
             let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate, addressDictionary:nil))
-            mapItem.name = "\(survey!.name) Survey"
+            mapItem.name = "\(String(describing: survey!.name)) Survey"
             mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
         }
     }

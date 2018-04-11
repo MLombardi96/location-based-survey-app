@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "830D700E5180CEB2DE8374D6F41A660B"
+               BlueprintIdentifier = "61C7C21D467814F4A9E75122AD25FE64"
                BuildableName = "Pods_LocationBasedSurveyApp.framework"
                BlueprintName = "Pods-LocationBasedSurveyApp"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -26,7 +26,6 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
@@ -37,7 +36,6 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      language = ""
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -47,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "830D700E5180CEB2DE8374D6F41A660B"
+            BlueprintIdentifier = "61C7C21D467814F4A9E75122AD25FE64"
             BuildableName = "Pods_LocationBasedSurveyApp.framework"
             BlueprintName = "Pods-LocationBasedSurveyApp"
             ReferencedContainer = "container:Pods.xcodeproj">
