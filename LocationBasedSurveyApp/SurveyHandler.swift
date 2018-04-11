@@ -76,7 +76,7 @@ class SurveyHandler: NSObject, CLLocationManagerDelegate, UNUserNotificationCent
                     print("Could not get data from server")
                 }
                 var surveyID: [String] = []
-                let jsonFile = JSON(data)
+                let jsonFile = JSON(data!)
                 let arrayFences = jsonFile["regions"].arrayValue
                 for regions in arrayFences {
                     let name = regions["name"].stringValue
