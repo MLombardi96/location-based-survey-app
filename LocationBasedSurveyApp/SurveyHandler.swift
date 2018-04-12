@@ -11,38 +11,20 @@ import UserNotifications
 import SwiftyJSON
 import CoreData
 
-//TODO: add a maximum of 20 and cache the rest (Database?)
 //TODO: when questions are available manage a 'short description' for tableView
-//TODO: create function that parses and sets up currentSurveys
-
-struct Fence: Codable {
-    struct Regions: Codable {
-        let name: String
-        let id: String
-        let surveys: [String]
-        struct Center: Codable {
-            let lat: Double
-            let lng: Double
-        }
-        let center: Center
-        let radius: Double
-    }
-    var regions: [Regions]
-}
 
 /****
  * Handles parsing json files for survey data, creating surveys, creating geofences, and
- * displaying notifications. 
+ * displaying notifications.
  ****/
 class SurveyHandler: NSObject, CLLocationManagerDelegate, UNUserNotificationCenterDelegate {
     
     static let shared: SurveyHandler = SurveyHandler()
-    let serverURL = "http://sdp-2017-survey.cse.uconn.edu/testFence"
     let locationManager: CLLocationManager
     let maxGeoFences = 20
     
     var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
-
+    
     override public init() {
         // Location Manager initialization
         self.locationManager = CLLocationManager()
@@ -67,47 +49,45 @@ class SurveyHandler: NSObject, CLLocationManagerDelegate, UNUserNotificationCent
                 if error != nil {
                     print("There was an error downloading data from the server. Error: \(String(describing: error))")
                 }
-                do {
-                    if let jsonData = data {
-                        let fence = try JSONDecoder().decode(Fence.self, from: jsonData)
-                        self.updateDatabase(with: fence)
-                    }
-                } catch {
-                    print("Could not get data from server")
-                }
-                var surveyID: [String] = []
-                let jsonFile = JSON(data!)
-                let arrayFences = jsonFile["regions"].arrayValue
-                for regions in arrayFences {
-                    let name = regions["name"].stringValue
-                    let id = regions["id"].stringValue
-                    let surveyIds = regions["surveys"].arrayValue
-                    for ids in surveyIds {
-                        surveyID.append(ids.stringValue)
-                    }
-                    print(surveyID)
-                    let lat = regions["center"]["lat"].doubleValue
-                    let long = regions["center"]["long"].doubleValue
-                    let radius = regions["radius"].doubleValue
-                    let newSurvey = NewSurvey(name, identifier: id, surveyID: surveyID, latitude: lat, longitude: long, radius: radius)
-                }
                 
+                // Double(String(format: "%.6f", regions["center"]["lat"].doubleValue))!
+                var newSurveys = [NewSurvey]()
+                
+                if let jsonData = data {
+                    var surveyID: [String] = []
+                    let jsonFile = JSON(jsonData)
+                    let arrayFences = jsonFile["regions"].arrayValue
+                    
+                    for regions in arrayFences {
+                        let surveyIds = regions["surveys"].arrayValue
+                        for ids in surveyIds {
+                            surveyID.append(ids.stringValue)
+                        }
+                        newSurveys.append(NewSurvey(
+                            id: regions["id"].stringValue,
+                            name: regions["name"].stringValue,
+                            surveys: surveyID,
+                            latitude: regions["center"]["lat"].doubleValue,
+                            longitude: regions["center"]["lng"].doubleValue,
+                            radius: regions["radius"].doubleValue,
+                            isSelected: false,
+                            isComplete: false
+                        ))
+                    }
+                    self.updateDatabase(with: newSurveys)
+                }
             }
             task.resume()
         }
     }
     
-    // takes a Fence type and loops putting all the surveys in the database
-    func updateDatabase(with fence: Fence) {
-        // remove all non-completed surveys from database
-        // stop monitoring geofences of removed surveys
-        container?.performBackgroundTask { [weak self] context in
-            for regions in fence.regions {
-                var region = regions
-                let newSurvey = NewSurvey(&region)
-                self!.createGeofence(with: newSurvey!.region)
-                // test and set isSelected value
-                _ = try? Survey.findOrCreateSurvey(matching: newSurvey!, in: context)
+    
+    // MARK: Database methods
+    func updateDatabase(with newSurveys: [NewSurvey]) {
+        container?.performBackgroundTask{ [weak self] context in
+            for survey in newSurveys {
+                self?.createGeofence(with: survey.region)
+                _ = try? Survey.findOrCreateSurvey(matching: survey, in: context)
             }
             try? context.save()
             self?.printDatabaseStatistic()

@@ -14,8 +14,7 @@ class Survey: NSManagedObject {
     // either finds existing survey or creates a new one in the database
     class func findOrCreateSurvey(matching surveyInfo: NewSurvey, in context: NSManagedObjectContext) throws -> Survey? {
         let request: NSFetchRequest<Survey> = Survey.fetchRequest()
-        guard let surveyId = surveyInfo.id else { return nil }                      // may want to change this
-        request.predicate = NSPredicate(format: "id = %@", surveyId)
+        request.predicate = NSPredicate(format: "id = %@", surveyInfo.id)
         
         do {
             let matches = try context.fetch(request)

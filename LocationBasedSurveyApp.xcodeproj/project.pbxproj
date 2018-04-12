@@ -27,11 +27,12 @@
 		968396741FED720E00A1BACD /* AvailableSurveysTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968396731FED720E00A1BACD /* AvailableSurveysTableViewCell.swift */; };
 		96B67606205CC3E50051A90F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B67605205CC3E50051A90F /* CoreData.framework */; };
 		96B67646205CC5F10051A90F /* LocationBasedSurveyApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 96B67644205CC5F10051A90F /* LocationBasedSurveyApp.xcdatamodeld */; };
+		96D18CFA207FA59200D99F20 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D18CF9207FA59200D99F20 /* Question.swift */; };
+		96D18CFC207FA5BF00D99F20 /* NewQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D18CFB207FA5BF00D99F20 /* NewQuestion.swift */; };
 		96D2B2B51FF577E400D9B2A5 /* SurveyHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D2B2B41FF577E400D9B2A5 /* SurveyHandler.swift */; };
 		96D2B2B81FF579E000D9B2A5 /* Surveys.json in Resources */ = {isa = PBXBuildFile; fileRef = 96D2B2B71FF579E000D9B2A5 /* Surveys.json */; };
 		96DCE916207E83C8003F4F86 /* NewSurvey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DCE915207E83C8003F4F86 /* NewSurvey.swift */; };
 		96DCE918207E8445003F4F86 /* Survey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DCE917207E8445003F4F86 /* Survey.swift */; };
-		96DCE91A207E8566003F4F86 /* Questions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DCE919207E8566003F4F86 /* Questions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,11 +80,12 @@
 		968396731FED720E00A1BACD /* AvailableSurveysTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableSurveysTableViewCell.swift; sourceTree = "<group>"; };
 		96B67605205CC3E50051A90F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		96B67645205CC5F10051A90F /* LocationBasedSurveyApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocationBasedSurveyApp.xcdatamodel; sourceTree = "<group>"; };
+		96D18CF9207FA59200D99F20 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
+		96D18CFB207FA5BF00D99F20 /* NewQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewQuestion.swift; sourceTree = "<group>"; };
 		96D2B2B41FF577E400D9B2A5 /* SurveyHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyHandler.swift; sourceTree = "<group>"; };
 		96D2B2B71FF579E000D9B2A5 /* Surveys.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Surveys.json; sourceTree = "<group>"; };
 		96DCE915207E83C8003F4F86 /* NewSurvey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSurvey.swift; sourceTree = "<group>"; };
 		96DCE917207E8445003F4F86 /* Survey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Survey.swift; sourceTree = "<group>"; };
-		96DCE919207E8566003F4F86 /* Questions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Questions.swift; sourceTree = "<group>"; };
 		BABD0DD450324C57D348A1AF /* Pods-LocationBasedSurveyApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationBasedSurveyApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-LocationBasedSurveyApp/Pods-LocationBasedSurveyApp.release.xcconfig"; sourceTree = "<group>"; };
 		BFE8BBE77ACDECD84CCA7CE8 /* Pods-LocationBasedSurveyApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LocationBasedSurveyApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LocationBasedSurveyApp/Pods-LocationBasedSurveyApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -144,9 +146,10 @@
 				30DDC19E1F90162C000469BA /* Main.storyboard */,
 				96D2B2B41FF577E400D9B2A5 /* SurveyHandler.swift */,
 				963BB60920437A5B00B897EA /* User.swift */,
+				96D18CFB207FA5BF00D99F20 /* NewQuestion.swift */,
 				96DCE915207E83C8003F4F86 /* NewSurvey.swift */,
 				96DCE917207E8445003F4F86 /* Survey.swift */,
-				96DCE919207E8566003F4F86 /* Questions.swift */,
+				96D18CF9207FA59200D99F20 /* Question.swift */,
 				96B67644205CC5F10051A90F /* LocationBasedSurveyApp.xcdatamodeld */,
 				30DDC1A61F90162C000469BA /* Info.plist */,
 				963BB60220430AEB00B897EA /* Supporting Files */,
@@ -433,6 +436,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				30DDC19D1F90162C000469BA /* ViewController.swift in Sources */,
+				96D18CFA207FA59200D99F20 /* Question.swift in Sources */,
 				967683C9207DC0B60023675A /* SurveyTableViewController.swift in Sources */,
 				96B67646205CC5F10051A90F /* LocationBasedSurveyApp.xcdatamodeld in Sources */,
 				96DCE916207E83C8003F4F86 /* NewSurvey.swift in Sources */,
@@ -440,12 +444,12 @@
 				967F8A171FC476EC000F28DC /* LocationNotification.swift in Sources */,
 				963BB60A20437A5B00B897EA /* User.swift in Sources */,
 				96DCE918207E8445003F4F86 /* Survey.swift in Sources */,
-				96DCE91A207E8566003F4F86 /* Questions.swift in Sources */,
 				968396741FED720E00A1BACD /* AvailableSurveysTableViewCell.swift in Sources */,
 				30DDC19B1F90162C000469BA /* AppDelegate.swift in Sources */,
 				960619FA1FEED21200B58F48 /* GoogleMapsViewController.swift in Sources */,
 				963BB60620430CD600B897EA /* HistoryTableViewController.swift in Sources */,
 				963BB60420430CC000B897EA /* HistoryTableViewCell.swift in Sources */,
+				96D18CFC207FA5BF00D99F20 /* NewQuestion.swift in Sources */,
 				96D2B2B51FF577E400D9B2A5 /* SurveyHandler.swift in Sources */,
 				9619589C1FEC4F3B00C28BEE /* HomeViewController.swift in Sources */,
 			);
