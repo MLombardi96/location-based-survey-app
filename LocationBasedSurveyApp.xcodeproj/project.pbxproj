@@ -25,7 +25,6 @@
 		967683C9207DC0B60023675A /* SurveyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967683C8207DC0B60023675A /* SurveyTableViewController.swift */; };
 		967F8A171FC476EC000F28DC /* LocationNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967F8A161FC476EC000F28DC /* LocationNotification.swift */; };
 		968396741FED720E00A1BACD /* AvailableSurveysTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968396731FED720E00A1BACD /* AvailableSurveysTableViewCell.swift */; };
-		96889B252054D0920003EFE7 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 96889B242054D0920003EFE7 /* libsqlite3.0.tbd */; };
 		96B67606205CC3E50051A90F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B67605205CC3E50051A90F /* CoreData.framework */; };
 		96B67646205CC5F10051A90F /* LocationBasedSurveyApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 96B67644205CC5F10051A90F /* LocationBasedSurveyApp.xcdatamodeld */; };
 		96D2B2B51FF577E400D9B2A5 /* SurveyHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D2B2B41FF577E400D9B2A5 /* SurveyHandler.swift */; };
@@ -78,7 +77,6 @@
 		967BA82E1FBF7B6300B1CABE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		967F8A161FC476EC000F28DC /* LocationNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationNotification.swift; sourceTree = "<group>"; };
 		968396731FED720E00A1BACD /* AvailableSurveysTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableSurveysTableViewCell.swift; sourceTree = "<group>"; };
-		96889B242054D0920003EFE7 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		96B67605205CC3E50051A90F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		96B67645205CC5F10051A90F /* LocationBasedSurveyApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocationBasedSurveyApp.xcdatamodel; sourceTree = "<group>"; };
 		96D2B2B41FF577E400D9B2A5 /* SurveyHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyHandler.swift; sourceTree = "<group>"; };
@@ -96,7 +94,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				96B67606205CC3E50051A90F /* CoreData.framework in Frameworks */,
-				96889B252054D0920003EFE7 /* libsqlite3.0.tbd in Frameworks */,
 				90AA7340BC6F02BFBE46AA4E /* Pods_LocationBasedSurveyApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -206,7 +203,6 @@
 			isa = PBXGroup;
 			children = (
 				96B67605205CC3E50051A90F /* CoreData.framework */,
-				96889B242054D0920003EFE7 /* libsqlite3.0.tbd */,
 				967BA82E1FBF7B6300B1CABE /* CoreLocation.framework */,
 				1829E5E27820524FC0A7DFD6 /* Pods_LocationBasedSurveyApp.framework */,
 			);
