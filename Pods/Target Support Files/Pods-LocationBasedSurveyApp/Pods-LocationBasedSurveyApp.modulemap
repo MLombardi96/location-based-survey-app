@@ -1,6 +1,0 @@
-framework module Pods_LocationBasedSurveyApp {
-  umbrella header "Pods-LocationBasedSurveyApp-umbrella.h"
-
-  export *
-  module * { export * }
-}
