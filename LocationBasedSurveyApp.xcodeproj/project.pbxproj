@@ -27,8 +27,6 @@
 		968396741FED720E00A1BACD /* AvailableSurveysTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 968396731FED720E00A1BACD /* AvailableSurveysTableViewCell.swift */; };
 		96B67606205CC3E50051A90F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 96B67605205CC3E50051A90F /* CoreData.framework */; };
 		96B67646205CC5F10051A90F /* LocationBasedSurveyApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 96B67644205CC5F10051A90F /* LocationBasedSurveyApp.xcdatamodeld */; };
-		96D18CFA207FA59200D99F20 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D18CF9207FA59200D99F20 /* Question.swift */; };
-		96D18CFC207FA5BF00D99F20 /* NewQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D18CFB207FA5BF00D99F20 /* NewQuestion.swift */; };
 		96D2B2B51FF577E400D9B2A5 /* SurveyHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D2B2B41FF577E400D9B2A5 /* SurveyHandler.swift */; };
 		96D2B2B81FF579E000D9B2A5 /* Surveys.json in Resources */ = {isa = PBXBuildFile; fileRef = 96D2B2B71FF579E000D9B2A5 /* Surveys.json */; };
 		96DCE916207E83C8003F4F86 /* NewSurvey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DCE915207E83C8003F4F86 /* NewSurvey.swift */; };
@@ -80,8 +78,6 @@
 		968396731FED720E00A1BACD /* AvailableSurveysTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableSurveysTableViewCell.swift; sourceTree = "<group>"; };
 		96B67605205CC3E50051A90F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		96B67645205CC5F10051A90F /* LocationBasedSurveyApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocationBasedSurveyApp.xcdatamodel; sourceTree = "<group>"; };
-		96D18CF9207FA59200D99F20 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
-		96D18CFB207FA5BF00D99F20 /* NewQuestion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewQuestion.swift; sourceTree = "<group>"; };
 		96D2B2B41FF577E400D9B2A5 /* SurveyHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyHandler.swift; sourceTree = "<group>"; };
 		96D2B2B71FF579E000D9B2A5 /* Surveys.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Surveys.json; sourceTree = "<group>"; };
 		96DCE915207E83C8003F4F86 /* NewSurvey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewSurvey.swift; sourceTree = "<group>"; };
@@ -146,10 +142,8 @@
 				30DDC19E1F90162C000469BA /* Main.storyboard */,
 				96D2B2B41FF577E400D9B2A5 /* SurveyHandler.swift */,
 				963BB60920437A5B00B897EA /* User.swift */,
-				96D18CFB207FA5BF00D99F20 /* NewQuestion.swift */,
 				96DCE915207E83C8003F4F86 /* NewSurvey.swift */,
 				96DCE917207E8445003F4F86 /* Survey.swift */,
-				96D18CF9207FA59200D99F20 /* Question.swift */,
 				96B67644205CC5F10051A90F /* LocationBasedSurveyApp.xcdatamodeld */,
 				30DDC1A61F90162C000469BA /* Info.plist */,
 				963BB60220430AEB00B897EA /* Supporting Files */,
@@ -436,7 +430,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				30DDC19D1F90162C000469BA /* ViewController.swift in Sources */,
-				96D18CFA207FA59200D99F20 /* Question.swift in Sources */,
 				967683C9207DC0B60023675A /* SurveyTableViewController.swift in Sources */,
 				96B67646205CC5F10051A90F /* LocationBasedSurveyApp.xcdatamodeld in Sources */,
 				96DCE916207E83C8003F4F86 /* NewSurvey.swift in Sources */,
@@ -449,7 +442,6 @@
 				960619FA1FEED21200B58F48 /* GoogleMapsViewController.swift in Sources */,
 				963BB60620430CD600B897EA /* HistoryTableViewController.swift in Sources */,
 				963BB60420430CC000B897EA /* HistoryTableViewCell.swift in Sources */,
-				96D18CFC207FA5BF00D99F20 /* NewQuestion.swift in Sources */,
 				96D2B2B51FF577E400D9B2A5 /* SurveyHandler.swift in Sources */,
 				9619589C1FEC4F3B00C28BEE /* HomeViewController.swift in Sources */,
 			);
@@ -625,6 +617,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z9YQ2SB6KC;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = LocationBasedSurveyApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -645,6 +641,10 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Z9YQ2SB6KC;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = LocationBasedSurveyApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

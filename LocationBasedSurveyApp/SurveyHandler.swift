@@ -39,54 +39,63 @@ class SurveyHandler: NSObject, CLLocationManagerDelegate, UNUserNotificationCent
     }
     
     //MARK: Methods
-    // parses JSON file and puts surveys in correct lists
+    // TODO: pass the surveyIDs to another method that requests the actual surveys then build
+    // TODO: when the server is up and running POST the location, email, and phone id? to the server
     func requestSurveyFences() {
         if let url = NSURL(string: "http://sdp-2017-survey.cse.uconn.edu/testFence") {
             let urlSession = URLSession.shared
             let request = URLRequest(url: url as URL)
             
-            let task = urlSession.dataTask(with: request) { (data, response, error) in
+            let task = urlSession.dataTask(with: request) { data, response, error in
                 if error != nil {
                     print("There was an error downloading data from the server. Error: \(String(describing: error))")
                 }
                 
-                // Double(String(format: "%.6f", regions["center"]["lat"].doubleValue))!
-                var newSurveys = [NewSurvey]()
+                var newSurvey = [NewSurvey]()
                 
                 if let jsonData = data {
-                    var surveyID: [String] = []
+                    // Create Fences
                     let jsonFile = JSON(jsonData)
                     let arrayFences = jsonFile["regions"].arrayValue
-                    
-                    for regions in arrayFences {
-                        let surveyIds = regions["surveys"].arrayValue
-                        for ids in surveyIds {
-                            surveyID.append(ids.stringValue)
+                    for region in arrayFences {
+                        let fenceID = region["id"].stringValue
+                        let latitude = Double(String(format: "%.6f", region["center"]["lat"].doubleValue))!
+                        let longitude = Double(String(format: "%.6f", region["center"]["lng"].doubleValue))!
+                        let center = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+                        let fence = CLCircularRegion(center: center, radius: region["radius"].doubleValue, identifier: fenceID)
+                        self.locationManager.startMonitoring(for: fence)
+                        
+                        // Create Surveys
+                        let surveyArray = region["surveys"].arrayValue
+                        for survey in surveyArray {
+                            let surveyID = survey["id"].stringValue
+                            if newSurvey.isEmpty || !newSurvey.contains(where: {$0.surveyID == surveyID}) {
+                                newSurvey.append(NewSurvey(
+                                    fenceID: fenceID,
+                                    surveyID: surveyID,
+                                    name: survey["name"].stringValue,
+                                    latitude: latitude,
+                                    longitude: longitude,
+                                    radius: region["radius"].doubleValue,
+                                    url: survey["URL"].stringValue,
+                                    isSelected: self.testContentsOfRegion(fence),
+                                    isComplete: false
+                                ))
+                            }
                         }
-                        newSurveys.append(NewSurvey(
-                            id: regions["id"].stringValue,
-                            name: regions["name"].stringValue,
-                            surveys: surveyID,
-                            latitude: regions["center"]["lat"].doubleValue,
-                            longitude: regions["center"]["lng"].doubleValue,
-                            radius: regions["radius"].doubleValue,
-                            isSelected: false,
-                            isComplete: false
-                        ))
                     }
-                    self.updateDatabase(with: newSurveys)
+                    self.updateDatabase(with: newSurvey)
                 }
             }
             task.resume()
         }
     }
     
-    
     // MARK: Database methods
     func updateDatabase(with newSurveys: [NewSurvey]) {
         container?.performBackgroundTask{ [weak self] context in
             for survey in newSurveys {
-                self?.createGeofence(with: survey.region)
+                //self?.createGeofence(with: survey.region)
                 _ = try? Survey.findOrCreateSurvey(matching: survey, in: context)
             }
             try? context.save()
@@ -109,8 +118,9 @@ class SurveyHandler: NSObject, CLLocationManagerDelegate, UNUserNotificationCent
     func userHasCompleted(_ survey: Survey) {
         container?.performBackgroundTask { context in
             do {
-                if let surveyID = survey.id {
-                    let survey = try Survey.findSurveyWith(matching: surveyID, in: context)
+                if let surveyID = survey.fenceID {
+                    // TODO: will change to surveyID when finished adjusting
+                    let survey = try Survey.findSurveyWithFenceID(surveyID, in: context)
                     survey.isComplete = true
                 }
             } catch {
@@ -124,8 +134,19 @@ class SurveyHandler: NSObject, CLLocationManagerDelegate, UNUserNotificationCent
 // extension that contains all the CLLocaitonManager and UNUserNotification methods
 extension SurveyHandler {
     
+    // Not used
     func createGeofence(with region: CLCircularRegion) {
         locationManager.startMonitoring(for: region)
+    }
+    
+    func testContentsOfRegion(_ region: CLCircularRegion) -> Bool {
+        let currentLat = locationManager.location?.coordinate.latitude
+        let currentLong = locationManager.location?.coordinate.longitude
+        let currentCoordinate = CLLocationCoordinate2D(latitude: currentLat!, longitude: currentLong!)
+        if region.contains(currentCoordinate) {
+            return true
+        }
+        return false
     }
     
     // Handles when the user walks into survey area, sends notification and adjusts table
@@ -134,7 +155,7 @@ extension SurveyHandler {
         if let context = self.container?.viewContext {
             context.perform {
                 do {
-                    let survey = try Survey.findSurveyWith(matching: region.identifier, in: context)
+                    let survey = try Survey.findSurveyWithFenceID(region.identifier, in: context)
                     survey.sectionName = "Ready to Complete"
                 } catch {
                     print("Could not locate Survey in database.")
@@ -150,7 +171,7 @@ extension SurveyHandler {
         if let context = self.container?.viewContext {
             context.perform {
                 do {
-                    let survey = try Survey.findSurveyWith(matching: region.identifier, in: context)
+                    let survey = try Survey.findSurveyWithFenceID(region.identifier, in: context)
                     survey.sectionName = "Surveys"
                 } catch {
                     print("Could not location Survey with id \(region.identifier) in database.")

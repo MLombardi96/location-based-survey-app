@@ -12,15 +12,16 @@ import CoreLocation
 struct NewSurvey {
     
     //MARK: Properties
-    var id: String
+    var fenceID: String
+    var surveyID: String
     var name: String
-    var surveys: [String]
     var latitude: Double
     var longitude: Double
     var radius: Double
+    var url: String
     var isSelected = false
     var isComplete = false
     var center: CLLocationCoordinate2D { get { return CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude) } }
-    var region: CLCircularRegion { get { return CLCircularRegion(center: self.center, radius: self.radius, identifier: self.id) } }
+    var region: CLCircularRegion { get { return CLCircularRegion(center: self.center, radius: self.radius, identifier: self.fenceID) } }
     
 }

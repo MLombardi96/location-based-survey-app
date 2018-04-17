@@ -92,6 +92,8 @@ class SurveyTableViewController: UITableViewController, NSFetchedResultsControll
         if segue.identifier == "ReadySurvey" {
             if let destinationViewController = segue.destination as? SurveyQuestionsViewController {
                 destinationViewController.survey = selectedSurvey
+                destinationViewController.hidesBottomBarWhenPushed = true
+                destinationViewController.extendedLayoutIncludesOpaqueBars = true
             }
         } else {
             if let destinationViewController = segue.destination as? GoogleMapsViewController {

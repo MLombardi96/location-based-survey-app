@@ -14,7 +14,8 @@ class Survey: NSManagedObject {
     // either finds existing survey or creates a new one in the database
     class func findOrCreateSurvey(matching surveyInfo: NewSurvey, in context: NSManagedObjectContext) throws -> Survey? {
         let request: NSFetchRequest<Survey> = Survey.fetchRequest()
-        request.predicate = NSPredicate(format: "id = %@", surveyInfo.id)
+        // need to change to fenceID when fully adjusted
+        request.predicate = NSPredicate(format: "surveyID = %@", surveyInfo.surveyID)
         
         do {
             let matches = try context.fetch(request)
@@ -28,20 +29,25 @@ class Survey: NSManagedObject {
         
         // otherwise, make new survey in database
         let survey = Survey(context: context)
-        survey.id = surveyInfo.id
+        survey.fenceID = surveyInfo.fenceID
+        survey.surveyID = surveyInfo.surveyID
         survey.name = surveyInfo.name
         survey.latitude = surveyInfo.latitude
         survey.longitude = surveyInfo.longitude
         survey.radius = surveyInfo.radius
+        survey.url = surveyInfo.url
         survey.isComplete = surveyInfo.isComplete
+        if surveyInfo.isSelected {
+            survey.sectionName = "Ready to Complete"
+        }
         return survey
         
     }
     
-    // finds the survey in the database with the mathing identifier passed as a parameter
-    class func findSurveyWith(matching identifier: String, in context: NSManagedObjectContext) throws -> Survey {
+    // finds the survey in the database with the mathing fence id passed as a parameter
+    class func findSurveyWithFenceID(_ identifier: String, in context: NSManagedObjectContext) throws -> Survey {
         let request: NSFetchRequest<Survey> = Survey.fetchRequest()
-        request.predicate = NSPredicate(format: "id = %@", identifier)
+        request.predicate = NSPredicate(format: "fenceID = %@", identifier)
         
         do {
             let matchingSurvey = try context.fetch(request)
@@ -52,11 +58,23 @@ class Survey: NSManagedObject {
         
     }
     
+    // finds the survey in the database with the matching survey id
+    class func findSurveyWithSurveyID(_ identifier: String, in context: NSManagedObjectContext) throws -> Survey {
+        let request: NSFetchRequest<Survey> = Survey.fetchRequest()
+        request.predicate = NSPredicate(format: "surveyID = %@", identifier)
+        do {
+            let matchingSurvey = try context.fetch(request)
+            return matchingSurvey[0]
+        } catch {
+            throw error
+        }
+    }
+    
     // Removes survey from the database, may not need to return but left it open
     // ** haven't tested yet **
     class func removeFromDatabaseWith(matching identifier: String, in context: NSManagedObjectContext) throws -> Survey {
         do {
-            let survey = try findSurveyWith(matching: identifier, in: context)
+            let survey = try findSurveyWithFenceID(identifier, in: context)
             context.delete(survey)
             return survey
         } catch {
