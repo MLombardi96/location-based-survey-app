@@ -17,7 +17,7 @@ class SurveyTableViewController: UITableViewController, NSFetchedResultsControll
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.refreshControl?.addTarget(self, action: #selector(HistoryTableViewController.handleRefresh(_:)), for: UIControlEvents.valueChanged)
+        self.refreshControl?.addTarget(self, action: #selector(SurveyTableViewController.handleRefresh(_:)), for: UIControlEvents.valueChanged)
     }
     
     internal func updateUI() {

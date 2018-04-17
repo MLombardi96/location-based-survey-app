@@ -78,8 +78,7 @@ class SurveyHandler: NSObject, CLLocationManagerDelegate, UNUserNotificationCent
                                     longitude: longitude,
                                     radius: region["radius"].doubleValue,
                                     url: survey["URL"].stringValue,
-                                    isSelected: self.testContentsOfRegion(fence),
-                                    isComplete: false
+                                    isSelected: self.testContentsOfRegion(fence)
                                 ))
                             }
                         }
@@ -111,22 +110,6 @@ class SurveyHandler: NSObject, CLLocationManagerDelegate, UNUserNotificationCent
                     print("\(surveyCount) surveys")
                 }
             }
-        }
-    }
-    
-    // marks the survey so it is placed in the HistoryViewTable, run on the background
-    func userHasCompleted(_ survey: Survey) {
-        container?.performBackgroundTask { context in
-            do {
-                if let surveyID = survey.fenceID {
-                    // TODO: will change to surveyID when finished adjusting
-                    let survey = try Survey.findSurveyWithFenceID(surveyID, in: context)
-                    survey.isComplete = true
-                }
-            } catch {
-                print("Not possible.")
-            }
-            try? context.save()
         }
     }
 }

@@ -36,7 +36,6 @@ class Survey: NSManagedObject {
         survey.longitude = surveyInfo.longitude
         survey.radius = surveyInfo.radius
         survey.url = surveyInfo.url
-        survey.isComplete = surveyInfo.isComplete
         if surveyInfo.isSelected {
             survey.sectionName = "Ready to Complete"
         }
