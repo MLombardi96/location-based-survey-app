@@ -11,8 +11,6 @@
 import Foundation
 import CoreLocation
 
-//var shared: User = User(email: "jasonwest1013@yahoo.com")
-
 // test struct used to possibly keep user defined data, there should only be one instance
 // only need to set email, everything else will get default values to start
 struct User {
