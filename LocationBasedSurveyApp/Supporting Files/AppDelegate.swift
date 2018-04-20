@@ -19,12 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     static var persistentContainer: NSPersistentContainer {return (UIApplication.shared.delegate as! AppDelegate).persistentContainer}
     static var viewContext: NSManagedObjectContext {return persistentContainer.viewContext}
 
-    //let serverHandler = ServerHandler()
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         GMSServices.provideAPIKey("AIzaSyAfT_vi41OGKGWv4TQWEKn-peBOaxu6jpQ")
         UNUserNotificationCenter.current().delegate = self
-        SurveyHandler.shared.requestSurveyFences() // Used to load request from server for now
+        
+        // Load the request from the server for now
+        SurveyHandler.shared.requestSurveys()
         return true
     }
 

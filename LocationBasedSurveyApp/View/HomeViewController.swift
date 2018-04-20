@@ -16,8 +16,6 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var jsonButton: UIButton!
     @IBOutlet weak var notificationButton: UIButton!
     
-    //let serverHandler = ServerHandler()
-    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -27,10 +25,9 @@ class HomeViewController: UIViewController {
             completionHandler: { (granted,error) in}
         )
  
-        // rounds the edges of buttons
+        // Rounds the edges of buttons
         jsonButton.layer.cornerRadius = 4
         notificationButton.layer.cornerRadius = 4
-        
     }
     
     //MARK: Actions
@@ -38,7 +35,6 @@ class HomeViewController: UIViewController {
     }
     
     @IBAction func notificationButton(_ sender: UIButton) {
-        //serverHandler.sendTestJSON()
     }
     
 }

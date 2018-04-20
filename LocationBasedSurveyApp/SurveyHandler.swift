@@ -38,56 +38,75 @@ class SurveyHandler: NSObject, CLLocationManagerDelegate, UNUserNotificationCent
         }
     }
     
-    //MARK: Methods
+    // MARK: Methods
     // TODO: pass the surveyIDs to another method that requests the actual surveys then build
-    // TODO: when the server is up and running POST the location, email, and phone id? to the server
-    func requestSurveyFences() {
-        if let url = NSURL(string: "http://sdp-2017-survey.cse.uconn.edu/testFence") {
-            let urlSession = URLSession.shared
-            let request = URLRequest(url: url as URL)
+    func requestSurveys() {
+        // Endpoint: http://sdp-2017-survey.cse.uconn.edu/get_surveys
+        // POST with JSON: { lat: <lat>, lng: <lng>, email: <email> }
+        // Need 'Content-Type: application/json' in Header of POST request
+        
+        let userLatitude = Double((locationManager.location?.coordinate.latitude)!)
+        let userLongitude = Double((locationManager.location?.coordinate.longitude)!)
+        let userEmail = User.shared.email
+        
+        struct Request: Codable {
+            let lat: String
+            let lng: String
+            let email: String
+        }
+        
+        let request = Request(lat: String(userLatitude), lng: String(userLongitude), email: userEmail)
+        let encodedRequest = try? JSONEncoder().encode(request)
+        
+        let url = URL(string: "http://sdp-2017-survey.cse.uconn.edu/get_surveys")
+        var httpRequest = URLRequest(url: url!)
+        httpRequest.httpMethod = "POST"
+        httpRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        httpRequest.httpBody = encodedRequest
+        
+        let task = URLSession.shared.dataTask(with: httpRequest) { data, response, error in
+            if error != nil {
+                print("There was an error sending a POST request to the server. Error: \(String(describing: error))")
+            }
             
-            let task = urlSession.dataTask(with: request) { data, response, error in
-                if error != nil {
-                    print("There was an error downloading data from the server. Error: \(String(describing: error))")
-                }
+            var newSurvey = [NewSurvey]()
+            
+            // TODO: Change JSON parsing to use Apple's built in JSONDecoder()
+            if let jsonData = data {
+                // Create Fences
+                let jsonFile = JSON(jsonData)
                 
-                var newSurvey = [NewSurvey]()
-                
-                if let jsonData = data {
-                    // Create Fences
-                    let jsonFile = JSON(jsonData)
-                    let arrayFences = jsonFile["regions"].arrayValue
-                    for region in arrayFences {
-                        let fenceID = region["id"].stringValue
-                        let latitude = Double(String(format: "%.6f", region["center"]["lat"].doubleValue))!
-                        let longitude = Double(String(format: "%.6f", region["center"]["lng"].doubleValue))!
-                        let center = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-                        let fence = CLCircularRegion(center: center, radius: region["radius"].doubleValue, identifier: fenceID)
-                        self.locationManager.startMonitoring(for: fence)
-                        
-                        // Create Surveys
-                        let surveyArray = region["surveys"].arrayValue
-                        for survey in surveyArray {
-                            let surveyID = survey["id"].stringValue
-                            if newSurvey.isEmpty || !newSurvey.contains(where: {$0.surveyID == surveyID}) {
-                                newSurvey.append(NewSurvey(
-                                    fenceID: fenceID,
-                                    surveyID: surveyID,
-                                    name: survey["name"].stringValue,
-                                    latitude: latitude,
-                                    longitude: longitude,
-                                    radius: region["radius"].doubleValue,
-                                    url: survey["URL"].stringValue,
-                                    isSelected: self.testContentsOfRegion(fence)
-                                ))
-                            }
+                let arrayFences = jsonFile["regions"].arrayValue
+                for region in arrayFences {
+                    let fenceID = region["id"].stringValue
+                    let latitude = Double(String(format: "%.6f", region["center"]["lat"].doubleValue))!
+                    let longitude = Double(String(format: "%.6f", region["center"]["lng"].doubleValue))!
+                    let center = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+                    let fence = CLCircularRegion(center: center, radius: region["radius"].doubleValue, identifier: fenceID)
+                    self.locationManager.startMonitoring(for: fence)
+                    
+                    // Create Surveys
+                    let surveyArray = region["surveys"].arrayValue
+                    for survey in surveyArray {
+                        let surveyID = survey["id"].stringValue
+                        if newSurvey.isEmpty || !newSurvey.contains(where: {$0.surveyID == surveyID}) {
+                            newSurvey.append(NewSurvey(
+                                fenceID: fenceID,
+                                surveyID: surveyID,
+                                name: survey["name"].stringValue,
+                                latitude: latitude,
+                                longitude: longitude,
+                                radius: region["radius"].doubleValue,
+                                url: survey["URL"].stringValue,
+                                isSelected: self.testContentsOfRegion(fence)
+                            ))
                         }
                     }
-                    self.updateDatabase(with: newSurvey)
                 }
+                self.updateDatabase(with: newSurvey)
             }
-            task.resume()
         }
+        task.resume()
     }
     
     // MARK: Database methods
@@ -126,9 +145,11 @@ extension SurveyHandler {
         let currentLat = locationManager.location?.coordinate.latitude
         let currentLong = locationManager.location?.coordinate.longitude
         let currentCoordinate = CLLocationCoordinate2D(latitude: currentLat!, longitude: currentLong!)
+        
         if region.contains(currentCoordinate) {
             return true
         }
+        
         return false
     }
     
