@@ -87,7 +87,7 @@ class SurveyTableViewController: UITableViewController, NSFetchedResultsControll
     
     // MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let indexPath = tableView.indexPathForSelectedRow!
+        guard let indexPath = tableView.indexPathForSelectedRow else { return }
         let selectedSurvey = fetchedResultsController?.object(at: indexPath)
         if segue.identifier == "ReadySurvey" {
             if let destinationViewController = segue.destination as? SurveyQuestionsViewController {
