@@ -47,7 +47,10 @@ class SurveyHandler: NSObject, CLLocationManagerDelegate, UNUserNotificationCent
         
         let userLatitude = Double((locationManager.location?.coordinate.latitude)!)
         let userLongitude = Double((locationManager.location?.coordinate.longitude)!)
-        let userEmail = User.shared.email
+        guard let userEmail = User.shared.email else {
+            print("No user email to request surveys.")
+            return
+        }
         
         struct Request: Codable {
             let lat: String
@@ -68,10 +71,19 @@ class SurveyHandler: NSObject, CLLocationManagerDelegate, UNUserNotificationCent
             if error != nil {
                 print("There was an error sending a POST request to the server. Error: \(String(describing: error))")
             }
-            
+            /*
+            do {
+                if let jsonData = data {
+                    let fence = try JSONDecoder().decode(SurveyFence.self, from: jsonData)
+                    //print(fence.regions[0].surveys[0].name)
+                }
+            } catch {
+                print(error.localizedDescription)
+            }*/
             var newSurvey = [NewSurvey]()
             
             // TODO: Change JSON parsing to use Apple's built in JSONDecoder()
+            // when the damn JSON's are correct.........
             if let jsonData = data {
                 // Create Fences
                 let jsonFile = JSON(jsonData)
@@ -113,7 +125,6 @@ class SurveyHandler: NSObject, CLLocationManagerDelegate, UNUserNotificationCent
     func updateDatabase(with newSurveys: [NewSurvey]) {
         container?.performBackgroundTask{ [weak self] context in
             for survey in newSurveys {
-                //self?.createGeofence(with: survey.region)
                 _ = try? Survey.findOrCreateSurvey(matching: survey, in: context)
             }
             try? context.save()

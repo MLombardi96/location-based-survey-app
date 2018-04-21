@@ -17,12 +17,12 @@ struct User {
     // Singleton for now at least
     static var shared: User = User()
     
-    let email: String?      // Needs to be set
+    var email: String?      // Needs to be set
     var radiusSetting: Double
     var timeOutRequest: Int
     
     init() {
-        self.email = nil
+        self.email = "coolguy2018@aol.com"
         self.radiusSetting = 100
         self.timeOutRequest = 3
     }

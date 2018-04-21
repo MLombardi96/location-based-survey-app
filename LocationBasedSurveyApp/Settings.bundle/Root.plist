@@ -8,11 +8,69 @@
 	<array>
 		<dict>
 			<key>Type</key>
-			<string>PSTitleValueSpecifier</string>
+			<string>PSGroupSpecifier</string>
 			<key>Title</key>
-			<string></string>
+			<string>User Settings</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSTextFieldSpecifier</string>
+			<key>Title</key>
+			<string>Email</string>
 			<key>Key</key>
+			<string>userEmail</string>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Update Radius</string>
+			<key>Key</key>
+			<string>userUpdateRadius</string>
+			<key>DefaultValue</key>
 			<string></string>
+			<key>Values</key>
+			<array>
+				<integer>3218</integer>
+				<integer>40233</integer>
+				<integer>80467</integer>
+				<string>120701</string>
+				<string>160934</string>
+			</array>
+			<key>Titles</key>
+			<array>
+				<string>2 miles</string>
+				<string>25 miles</string>
+				<string>50 miles</string>
+				<string>75 miles</string>
+				<string>100 miles</string>
+			</array>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSMultiValueSpecifier</string>
+			<key>Title</key>
+			<string>Timeout for request</string>
+			<key>Key</key>
+			<string>timeout</string>
+			<key>DefaultValue</key>
+			<string>3</string>
+			<key>Values</key>
+			<array>
+				<integer>3600000000000</integer>
+				<string>7200000000000</string>
+				<string>10800000000000</string>
+				<string>14400000000000</string>
+				<string>18000000000000</string>
+			</array>
+			<key>Titles</key>
+			<array>
+				<string>1 hour</string>
+				<string>2 hours</string>
+				<string>3 hours</string>
+				<string>4 hours</string>
+				<string>5 hours</string>
+			</array>
 		</dict>
 	</array>
 </dict>
