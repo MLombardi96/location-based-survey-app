@@ -9,20 +9,52 @@
 import UIKit
 import WebKit
 
-class SurveyQuestionsViewController: UIViewController {
+class SurveyQuestionsViewController: UIViewController, WKScriptMessageHandler, WKNavigationDelegate {
     
+    @IBOutlet weak var doneButton: UIBarButtonItem!
     @IBOutlet weak var surveyLabel: UILabel!
+    @IBOutlet weak var webView: WKWebView!
+    
     var survey: Survey?
     let surveyHandler = SurveyHandler.shared
-    @IBOutlet weak var webView: WKWebView!
+    
+    func setupWebView() {
+        let source = """
+                        document.addEventListener('DOMSubtreeModified', function(e) {
+                            let el = document.getElementById('EndOfSurvey');
+                            
+                            if (el) {
+                                document.removeEventListener(e.type, arguments.callee);
+                                webkit.messageHandlers.surveyEnd.postMessage('Survey Complete!');
+                            }
+                        });
+                        """
+        
+        let script = WKUserScript(source: source, injectionTime: .atDocumentEnd, forMainFrameOnly: false)
+        
+        self.webView.configuration.userContentController.addUserScript(script)
+        self.webView.configuration.userContentController.add(self, name: "surveyEnd")
+        self.webView.navigationDelegate = self
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.setupWebView()
         
         let url = URL(string: (survey?.url)!)
         let request = URLRequest(url: url!)
         
         webView.load(request)
     }
+    
+    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+    }
+    func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+        print("Message:", message.body)
+    }
 
+    @IBAction func doneButtonPressed(_ sender: Any) {
+        
+    }
 }
