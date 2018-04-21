@@ -26,6 +26,9 @@ class SurveyHandler: NSObject, CLLocationManagerDelegate, UNUserNotificationCent
     var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     
     override public init() {
+        // To use user defaults
+        UserDefaults.standard.register(defaults: [String : Any]())
+        
         // Location Manager initialization
         self.locationManager = CLLocationManager()
         self.locationManager.requestAlwaysAuthorization()
@@ -47,8 +50,8 @@ class SurveyHandler: NSObject, CLLocationManagerDelegate, UNUserNotificationCent
         
         let userLatitude = Double((locationManager.location?.coordinate.latitude)!)
         let userLongitude = Double((locationManager.location?.coordinate.longitude)!)
-        guard let userEmail = User.shared.email else {
-            print("No user email to request surveys.")
+        guard let userEmail = UserDefaults.standard.string(forKey: "userEmail") else {
+            print("User email could not be pulled from settings bundle.")
             return
         }
         
@@ -71,19 +74,9 @@ class SurveyHandler: NSObject, CLLocationManagerDelegate, UNUserNotificationCent
             if error != nil {
                 print("There was an error sending a POST request to the server. Error: \(String(describing: error))")
             }
-            /*
-            do {
-                if let jsonData = data {
-                    let fence = try JSONDecoder().decode(SurveyFence.self, from: jsonData)
-                    //print(fence.regions[0].surveys[0].name)
-                }
-            } catch {
-                print(error.localizedDescription)
-            }*/
+            
             var newSurvey = [NewSurvey]()
             
-            // TODO: Change JSON parsing to use Apple's built in JSONDecoder()
-            // when the damn JSON's are correct.........
             if let jsonData = data {
                 // Create Fences
                 let jsonFile = JSON(jsonData)
@@ -98,6 +91,7 @@ class SurveyHandler: NSObject, CLLocationManagerDelegate, UNUserNotificationCent
                     self.locationManager.startMonitoring(for: fence)
                     
                     // Create Surveys
+                    // Should make an array of fence ids so surveys will geofence properly
                     let surveyArray = region["surveys"].arrayValue
                     for survey in surveyArray {
                         let surveyID = survey["id"].stringValue
@@ -119,6 +113,39 @@ class SurveyHandler: NSObject, CLLocationManagerDelegate, UNUserNotificationCent
             }
         }
         task.resume()
+    }
+    
+    func surveyCompleted(with identifier: String) -> Bool {
+        // Endpoint: http://sdp-2017-survey.cse.uconn.edu/complete_survey
+        // POST with JSON: {survey:<surveyID>, email:<email>}
+        
+        guard let userEmail = UserDefaults.standard.string(forKey: "userEmail") else {
+            print("User email could not be pulled from settings bundle.")
+            return false
+        }
+        
+        struct Request: Codable {
+            let surveyID: String
+            let email: String
+        }
+        
+        let request = Request(surveyID: identifier, email: userEmail)
+        let encodedRequest = try? JSONEncoder().encode(request)
+        
+        let url = URL(string: "http://sdp-2017-survey.cse.uconn.edu/complete_survey")
+        var httpRequest = URLRequest(url: url!)
+        httpRequest.httpMethod = "POST"
+        httpRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        httpRequest.httpBody = encodedRequest
+        
+        let task = URLSession.shared.dataTask(with: httpRequest) { data, response, error in
+            if error != nil {
+                print("There was an error sending a POST request to the server. Error: \(String(describing: error))")
+            }
+            print("The survey was successfully sent to the server.")
+        }
+        task.resume()
+        return true
     }
     
     // MARK: Database methods
@@ -147,11 +174,6 @@ class SurveyHandler: NSObject, CLLocationManagerDelegate, UNUserNotificationCent
 // extension that contains all the CLLocaitonManager and UNUserNotification methods
 extension SurveyHandler {
     
-    // Not used
-    func createGeofence(with region: CLCircularRegion) {
-        locationManager.startMonitoring(for: region)
-    }
-    
     func testContentsOfRegion(_ region: CLCircularRegion) -> Bool {
         let currentLat = locationManager.location?.coordinate.latitude
         let currentLong = locationManager.location?.coordinate.longitude
@@ -171,7 +193,9 @@ extension SurveyHandler {
             context.perform {
                 do {
                     let survey = try Survey.findSurveyWithFenceID(region.identifier, in: context)
-                    survey.sectionName = "Ready to Complete"
+                    for surveys in survey {
+                        surveys.sectionName = "Ready to Complete"
+                    }
                 } catch {
                     print("Could not locate Survey in database.")
                 }
@@ -187,7 +211,24 @@ extension SurveyHandler {
             context.perform {
                 do {
                     let survey = try Survey.findSurveyWithFenceID(region.identifier, in: context)
-                    survey.sectionName = "Surveys"
+                    for surveys in survey {
+                        if surveys.isComplete {
+                            if self.surveyCompleted(with: surveys.surveyID!) {
+                                // remove fence
+                                let center = CLLocationCoordinate2D(latitude: surveys.latitude, longitude: surveys.longitude)
+                                let region = CLCircularRegion(center: center, radius: surveys.radius, identifier: surveys.fenceID!)
+                                self.locationManager.stopMonitoring(for: region)
+                                // remove from database
+                                _ = try Survey.removeFromDatabaseWith(survey: surveys.surveyID!, in: context)
+                                self.printDatabaseStatistic()
+                            } else {
+                                print("Failed to Post to server, resetting survey.")
+                                surveys.isComplete = false
+                            }
+                        } else {
+                            surveys.sectionName = "Surveys"
+                        }
+                    }
                 } catch {
                     print("Could not location Survey with id \(region.identifier) in database.")
                 }

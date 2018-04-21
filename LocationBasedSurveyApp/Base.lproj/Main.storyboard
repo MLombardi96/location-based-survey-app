@@ -35,47 +35,30 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e8I-6e-bed">
-                                <rect key="frame" x="137" y="299" width="100" height="30"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="JSON Request">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <color key="titleShadowColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="jsonButton:" destination="Vfh-hO-eAB" eventType="touchUpInside" id="Rdn-A3-jR4"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bkt-N2-e0n">
-                                <rect key="frame" x="139" y="338.5" width="97" height="30"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Local Request">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="notificationButton:" destination="Vfh-hO-eAB" eventType="touchUpInside" id="TJ0-62-Ull"/>
-                                </connections>
-                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Email Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1fp-fR-yfw">
+                                <rect key="frame" x="16" y="91" width="236" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="bkt-N2-e0n" firstAttribute="centerX" secondItem="Y76-pV-wbF" secondAttribute="centerX" id="Qsl-Ac-Tf5"/>
-                            <constraint firstItem="bkt-N2-e0n" firstAttribute="centerY" secondItem="Y76-pV-wbF" secondAttribute="centerY" constant="20" id="fnK-ok-XRM"/>
-                            <constraint firstItem="e8I-6e-bed" firstAttribute="centerY" secondItem="Y76-pV-wbF" secondAttribute="centerY" constant="-20" id="i2S-uw-n1M"/>
-                            <constraint firstItem="e8I-6e-bed" firstAttribute="centerX" secondItem="Y76-pV-wbF" secondAttribute="centerX" id="mQh-g2-9fo"/>
+                            <constraint firstItem="Nxv-we-jBb" firstAttribute="trailing" secondItem="1fp-fR-yfw" secondAttribute="trailing" constant="123" id="LCh-df-FQ9"/>
+                            <constraint firstItem="1fp-fR-yfw" firstAttribute="leading" secondItem="Y76-pV-wbF" secondAttribute="leadingMargin" id="gCu-qh-uUG"/>
+                            <constraint firstItem="1fp-fR-yfw" firstAttribute="top" secondItem="Nxv-we-jBb" secondAttribute="top" constant="27" id="hmO-cO-APn"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Nxv-we-jBb"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" image="ic_home" id="jkJ-P3-fzH"/>
                     <navigationItem key="navigationItem" id="9hr-1v-ppi"/>
                     <connections>
-                        <outlet property="jsonButton" destination="e8I-6e-bed" id="Kks-hH-IaC"/>
-                        <outlet property="notificationButton" destination="bkt-N2-e0n" id="GOQ-SD-34F"/>
+                        <outlet property="currentEmailAddress" destination="1fp-fR-yfw" id="0ES-rD-CJF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zq1-Vm-I2c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2310" y="-762"/>
+            <point key="canvasLocation" x="2309.5999999999999" y="-762.36881559220399"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Zws-0h-KzT">
@@ -179,15 +162,8 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bcf-YA-maS"/>
                     </view>
-                    <navigationItem key="navigationItem" id="tAg-op-WFF">
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Done" id="0jE-fh-Ffw">
-                            <connections>
-                                <action selector="doneButtonPressed:" destination="uHC-xg-cpb" id="tek-3v-lv5"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="tAg-op-WFF"/>
                     <connections>
-                        <outlet property="doneButton" destination="0jE-fh-Ffw" id="w94-nq-E0p"/>
                         <outlet property="webView" destination="6cP-oX-t3s" id="0YX-QZ-EJ8"/>
                     </connections>
                 </viewController>

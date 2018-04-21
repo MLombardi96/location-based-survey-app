@@ -13,28 +13,17 @@ import Foundation
 class HomeViewController: UIViewController {
     
     //MARK: Properties
-    @IBOutlet weak var jsonButton: UIButton!
-    @IBOutlet weak var notificationButton: UIButton!
+    @IBOutlet weak var currentEmailAddress: UILabel!
+    
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-        
+        currentEmailAddress.text = UserDefaults.standard.string(forKey: "userEmail")
         UNUserNotificationCenter.current().requestAuthorization(
             options: [.alert,.sound,.badge],
             completionHandler: { (granted,error) in}
         )
- 
-        // Rounds the edges of buttons
-        jsonButton.layer.cornerRadius = 4
-        notificationButton.layer.cornerRadius = 4
-    }
-    
-    //MARK: Actions
-    @IBAction func jsonButton(_ sender: UIButton) {
-    }
-    
-    @IBAction func notificationButton(_ sender: UIButton) {
+
     }
     
 }

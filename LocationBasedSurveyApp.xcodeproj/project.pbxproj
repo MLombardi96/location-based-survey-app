@@ -15,13 +15,10 @@
 		30DDC1B01F90162C000469BA /* LocationBasedSurveyAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DDC1AF1F90162C000469BA /* LocationBasedSurveyAppTests.swift */; };
 		30DDC1BB1F90162C000469BA /* LocationBasedSurveyAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30DDC1BA1F90162C000469BA /* LocationBasedSurveyAppUITests.swift */; };
 		90AA7340BC6F02BFBE46AA4E /* Pods_LocationBasedSurveyApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1829E5E27820524FC0A7DFD6 /* Pods_LocationBasedSurveyApp.framework */; };
-		96004EF02089036A00260544 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96004EEF2089036A00260544 /* SettingsTableViewController.swift */; };
 		96004EF2208919CF00260544 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 96004EF1208919CF00260544 /* Settings.bundle */; };
-		96004EF420891D7B00260544 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96004EF320891D7B00260544 /* Settings.swift */; };
 		960619FA1FEED21200B58F48 /* GoogleMapsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 960619F91FEED21200B58F48 /* GoogleMapsViewController.swift */; };
 		9619589C1FEC4F3B00C28BEE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9619589B1FEC4F3B00C28BEE /* HomeViewController.swift */; };
 		962E54511FEE1EC60058D381 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 962E54501FEE1EC60058D381 /* Podfile */; };
-		963BB60A20437A5B00B897EA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963BB60920437A5B00B897EA /* User.swift */; };
 		9675538E1FF5590700A17C58 /* SurveyQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9675538D1FF5590700A17C58 /* SurveyQuestionsViewController.swift */; };
 		967683C9207DC0B60023675A /* SurveyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967683C8207DC0B60023675A /* SurveyTableViewController.swift */; };
 		967F8A171FC476EC000F28DC /* LocationNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967F8A161FC476EC000F28DC /* LocationNotification.swift */; };
@@ -68,13 +65,10 @@
 		30DDC1B61F90162C000469BA /* LocationBasedSurveyAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocationBasedSurveyAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		30DDC1BA1F90162C000469BA /* LocationBasedSurveyAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationBasedSurveyAppUITests.swift; sourceTree = "<group>"; };
 		30DDC1BC1F90162C000469BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		96004EEF2089036A00260544 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		96004EF1208919CF00260544 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
-		96004EF320891D7B00260544 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		960619F91FEED21200B58F48 /* GoogleMapsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapsViewController.swift; sourceTree = "<group>"; };
 		9619589B1FEC4F3B00C28BEE /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		962E54501FEE1EC60058D381 /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		963BB60920437A5B00B897EA /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9675538D1FF5590700A17C58 /* SurveyQuestionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyQuestionsViewController.swift; sourceTree = "<group>"; };
 		967683C8207DC0B60023675A /* SurveyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyTableViewController.swift; sourceTree = "<group>"; };
 		967BA82E1FBF7B6300B1CABE /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -147,8 +141,6 @@
 			children = (
 				30DDC19E1F90162C000469BA /* Main.storyboard */,
 				96D2B2B41FF577E400D9B2A5 /* SurveyHandler.swift */,
-				96004EF320891D7B00260544 /* Settings.swift */,
-				963BB60920437A5B00B897EA /* User.swift */,
 				96DCE915207E83C8003F4F86 /* NewSurvey.swift */,
 				96DCE917207E8445003F4F86 /* Survey.swift */,
 				96B67644205CC5F10051A90F /* LocationBasedSurveyApp.xcdatamodeld */,
@@ -183,13 +175,12 @@
 		963BB5FE2043099F00B897EA /* View */ = {
 			isa = PBXGroup;
 			children = (
-				96DCE3D4208A9653004AD660 /* TutorialViewController.swift */,
 				9619589B1FEC4F3B00C28BEE /* HomeViewController.swift */,
+				96DCE3D4208A9653004AD660 /* TutorialViewController.swift */,
 				967683C8207DC0B60023675A /* SurveyTableViewController.swift */,
 				960619F91FEED21200B58F48 /* GoogleMapsViewController.swift */,
 				9675538D1FF5590700A17C58 /* SurveyQuestionsViewController.swift */,
 				968396731FED720E00A1BACD /* AvailableSurveysTableViewCell.swift */,
-				96004EEF2089036A00260544 /* SettingsTableViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -445,10 +436,7 @@
 				96DCE916207E83C8003F4F86 /* NewSurvey.swift in Sources */,
 				9675538E1FF5590700A17C58 /* SurveyQuestionsViewController.swift in Sources */,
 				967F8A171FC476EC000F28DC /* LocationNotification.swift in Sources */,
-				96004EF02089036A00260544 /* SettingsTableViewController.swift in Sources */,
-				963BB60A20437A5B00B897EA /* User.swift in Sources */,
 				96DCE918207E8445003F4F86 /* Survey.swift in Sources */,
-				96004EF420891D7B00260544 /* Settings.swift in Sources */,
 				968396741FED720E00A1BACD /* AvailableSurveysTableViewCell.swift in Sources */,
 				30DDC19B1F90162C000469BA /* AppDelegate.swift in Sources */,
 				960619FA1FEED21200B58F48 /* GoogleMapsViewController.swift in Sources */,

@@ -18,8 +18,8 @@ class TutorialViewController: UIViewController {
         UserDefaults.standard.register(defaults: [String : Any]())
     }
     
+    // Sets the user's email in the settings bundle
     @IBAction func finishTutorial(_ sender: UIButton) {
-        // sets the user default settings in the bundle
         UserDefaults.standard.set(emailTextField.text, forKey: "userEmail")
     }
     
@@ -27,6 +27,7 @@ class TutorialViewController: UIViewController {
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         let emailTest = NSPredicate(format: "SELF MATCHES %@", emailRegEx)
+        
         let alertController = UIAlertController(
             title: "Invalid Email Address",
             message: "The email you entered is invalid or the text field is empty.",
@@ -38,6 +39,7 @@ class TutorialViewController: UIViewController {
         
         if identifier == "tutorialValidation" {
             if let userEmail = emailTextField.text, emailTest.evaluate(with: userEmail) {    // wont run if empty or nil
+                SurveyHandler.shared.requestSurveys()
                 return true
             }
             

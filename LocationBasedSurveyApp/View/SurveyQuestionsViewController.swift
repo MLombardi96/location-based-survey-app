@@ -8,15 +8,16 @@
 
 import UIKit
 import WebKit
+import CoreData
 
 class SurveyQuestionsViewController: UIViewController, WKScriptMessageHandler, WKNavigationDelegate {
     
-    @IBOutlet weak var doneButton: UIBarButtonItem!
     @IBOutlet weak var surveyLabel: UILabel!
     @IBOutlet weak var webView: WKWebView!
     
     var survey: Survey?
     let surveyHandler = SurveyHandler.shared
+    private var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     
     func setupWebView() {
         let source = """
@@ -52,9 +53,7 @@ class SurveyQuestionsViewController: UIViewController, WKScriptMessageHandler, W
     }
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         print("Message:", message.body)
-    }
-
-    @IBAction func doneButtonPressed(_ sender: Any) {
-        
+        survey?.isComplete = true
+        _ = navigationController?.popViewController(animated: true)
     }
 }

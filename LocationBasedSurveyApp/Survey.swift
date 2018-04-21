@@ -44,13 +44,13 @@ class Survey: NSManagedObject {
     }
     
     // finds the survey in the database with the mathing fence id passed as a parameter
-    class func findSurveyWithFenceID(_ identifier: String, in context: NSManagedObjectContext) throws -> Survey {
+    class func findSurveyWithFenceID(_ identifier: String, in context: NSManagedObjectContext) throws -> [Survey] {
         let request: NSFetchRequest<Survey> = Survey.fetchRequest()
         request.predicate = NSPredicate(format: "fenceID = %@", identifier)
         
         do {
             let matchingSurvey = try context.fetch(request)
-            return matchingSurvey[0]
+            return matchingSurvey
         } catch {
             throw error
         }
@@ -58,12 +58,12 @@ class Survey: NSManagedObject {
     }
     
     // finds the survey in the database with the matching survey id
-    class func findSurveyWithSurveyID(_ identifier: String, in context: NSManagedObjectContext) throws -> Survey {
+    class func findSurveyWithSurveyID(_ identifier: String, in context: NSManagedObjectContext) throws -> [Survey] {
         let request: NSFetchRequest<Survey> = Survey.fetchRequest()
         request.predicate = NSPredicate(format: "surveyID = %@", identifier)
         do {
             let matchingSurvey = try context.fetch(request)
-            return matchingSurvey[0]
+            return matchingSurvey
         } catch {
             throw error
         }
@@ -71,11 +71,11 @@ class Survey: NSManagedObject {
     
     // Removes survey from the database, may not need to return but left it open
     // ** haven't tested yet **
-    class func removeFromDatabaseWith(matching identifier: String, in context: NSManagedObjectContext) throws -> Survey {
+    class func removeFromDatabaseWith(survey identifier: String, in context: NSManagedObjectContext) throws -> Survey {
         do {
-            let survey = try findSurveyWithFenceID(identifier, in: context)
-            context.delete(survey)
-            return survey
+            let survey = try findSurveyWithSurveyID(identifier, in: context)
+            context.delete(survey[0]) // may lead to error down the road
+            return survey[0]
         } catch {
             throw error
         }
