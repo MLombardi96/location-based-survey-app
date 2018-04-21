@@ -95,7 +95,7 @@
             </objects>
             <point key="canvasLocation" x="764" y="39"/>
         </scene>
-        <!--Available Surveys-->
+        <!--Survey Table View Controller-->
         <scene sceneID="HmY-2W-LHc">
             <objects>
                 <tableViewController id="PdI-0N-OIc" customClass="SurveyTableViewController" customModule="LocationBasedSurveyApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -139,7 +139,6 @@
                             <outlet property="delegate" destination="PdI-0N-OIc" id="6A8-6b-UGh"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Available Surveys" id="Qf2-tf-bY8"/>
                     <navigationItem key="navigationItem" id="cAx-wb-V3M"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="U8H-yO-0qd">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -180,7 +179,15 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="bcf-YA-maS"/>
                     </view>
+                    <navigationItem key="navigationItem" id="tAg-op-WFF">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Done" id="0jE-fh-Ffw">
+                            <connections>
+                                <action selector="doneButtonPressed:" destination="uHC-xg-cpb" id="tek-3v-lv5"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="doneButton" destination="0jE-fh-Ffw" id="w94-nq-E0p"/>
                         <outlet property="webView" destination="6cP-oX-t3s" id="0YX-QZ-EJ8"/>
                     </connections>
                 </viewController>

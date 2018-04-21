@@ -87,7 +87,7 @@ class SurveyHandler: NSObject, CLLocationManagerDelegate, UNUserNotificationCent
             if let jsonData = data {
                 // Create Fences
                 let jsonFile = JSON(jsonData)
-                
+
                 let arrayFences = jsonFile["regions"].arrayValue
                 for region in arrayFences {
                     let fenceID = region["id"].stringValue
