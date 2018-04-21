@@ -11,6 +11,7 @@ import CoreData
 
 class HistoryTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
+    //MARK: Properties
     private var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer { didSet { updateUI() } }
     private var fetchedResultsController: NSFetchedResultsController<Survey>?
     var emptyTable = true

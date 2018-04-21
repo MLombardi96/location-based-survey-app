@@ -11,8 +11,10 @@ import CoreData
 
 class SurveyTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
+    //MARK: Properties
     private var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer { didSet { updateUI() } }
     private var fetchedResultsController: NSFetchedResultsController<Survey>?
+    var emptyTable = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,8 +33,19 @@ class SurveyTableViewController: UITableViewController, NSFetchedResultsControll
                 sectionNameKeyPath: "sectionName",
                 cacheName: nil
             )
-            try? fetchedResultsController?.performFetch()
-            tableView.reloadData()
+            do {
+                // test if data for table is present
+                if try context.fetch(request).isEmpty {
+                    emptyTable = true
+                } else {
+                    emptyTable = false
+                }
+                
+                try fetchedResultsController?.performFetch()
+                tableView.reloadData()
+            } catch {
+                print("Could not load data from database.")
+            }
         }
     }
     
@@ -114,7 +127,19 @@ class SurveyTableViewController: UITableViewController, NSFetchedResultsControll
 extension SurveyTableViewController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return fetchedResultsController?.sections?.count ?? 1
+        if !emptyTable {
+            tableView.backgroundView = nil
+            return fetchedResultsController?.sections?.count ?? 1
+        } else {
+            // otherwise show centered label
+            let emptyLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+            emptyLabel.text = "No Surveys Available"
+            emptyLabel.textColor = UIColor.black
+            emptyLabel.textAlignment = .center
+            tableView.backgroundView = emptyLabel
+            tableView.separatorStyle = .none
+            return 0
+        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
