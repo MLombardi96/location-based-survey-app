@@ -2,14 +2,14 @@
 //  HistoryTableViewController.swift
 //  LocationBasedSurveyApp
 //
-//  Created by Jason West on 2/25/18.
+//  Created by Jason West on 4/21/18.
 //  Copyright © 2018 Mitchell Lombardi. All rights reserved.
 //
 
 import UIKit
 import CoreData
 
-class SurveyTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
+class HistoryTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
     
     private var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer { didSet { updateUI() } }
     private var fetchedResultsController: NSFetchedResultsController<Survey>?
@@ -22,12 +22,12 @@ class SurveyTableViewController: UITableViewController, NSFetchedResultsControll
     internal func updateUI() {
         if let context = container?.viewContext {
             let request: NSFetchRequest<Survey> = Survey.fetchRequest()
-            request.sortDescriptors = [NSSortDescriptor(key: "sectionName", ascending: true), NSSortDescriptor(key: "name", ascending: true)]
-            request.predicate = NSPredicate(format: "isComplete = NO")
+            request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+            request.predicate = NSPredicate(format: "isComplete = YES")
             fetchedResultsController = NSFetchedResultsController<Survey>(
                 fetchRequest: request,
                 managedObjectContext: context,
-                sectionNameKeyPath: "sectionName",
+                sectionNameKeyPath: nil,
                 cacheName: nil
             )
             try? fetchedResultsController?.performFetch()
@@ -45,22 +45,30 @@ class SurveyTableViewController: UITableViewController, NSFetchedResultsControll
     
     //MARK: Unique Tableview methods
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "AvailableSurveysTableViewCell", for: indexPath)
-        
-        if let currentSurvey = fetchedResultsController?.object(at: indexPath) {
-            cell.textLabel?.text = currentSurvey.name
-            cell.detailTextLabel?.text = currentSurvey.fenceName
+        let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryTableViewCell", for: indexPath)
+        if let pastSurvey = fetchedResultsController?.object(at: indexPath) {
+            cell.textLabel?.text = pastSurvey.name
+            cell.detailTextLabel?.text = pastSurvey.fenceName
         }
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let selectedCell = fetchedResultsController?.object(at: indexPath) {
-            if selectedCell.sectionName == "Ready to Complete" {
-                self.performSegue(withIdentifier: "ReadySurvey", sender: nil)
-            } else {
-                self.performSegue(withIdentifier: "NotReadySurvey", sender: nil)
+    // for deleting cells, removes from the database.
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            if let context = self.container?.viewContext {
+                context.perform {
+                    if let selectedSurvey = self.fetchedResultsController?.object(at: indexPath), let surveyID = selectedSurvey.surveyID {
+                        do {
+                            _ =  try Survey.removeFromDatabaseWith(survey: surveyID, in: context)
+                        } catch {
+                            print("Could not remove survey from table.")
+                        }
+                    }
+                    try? context.save()
+                }
             }
+            updateUI()
         }
     }
     
@@ -92,30 +100,11 @@ class SurveyTableViewController: UITableViewController, NSFetchedResultsControll
         tableView.endUpdates()
     }
     
-    // MARK: Navigation methods
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let indexPath = tableView.indexPathForSelectedRow else { return }
-        let selectedSurvey = fetchedResultsController?.object(at: indexPath)
-        if segue.identifier == "ReadySurvey" {
-            if let destinationViewController = segue.destination as? SurveyQuestionsViewController {
-                destinationViewController.survey = selectedSurvey
-                destinationViewController.hidesBottomBarWhenPushed = true
-                destinationViewController.extendedLayoutIncludesOpaqueBars = true
-            }
-        } else {
-            if let destinationViewController = segue.destination as? GoogleMapsViewController {
-                destinationViewController.survey = selectedSurvey
-                destinationViewController.hidesBottomBarWhenPushed = true
-                destinationViewController.extendedLayoutIncludesOpaqueBars = true
-            }
-        }
-    }
-    
 }
 
 // Contains tableview methods used with the fetched request controller
-extension SurveyTableViewController {
-    
+extension HistoryTableViewController {
+
     override func numberOfSections(in tableView: UITableView) -> Int {
         return fetchedResultsController?.sections?.count ?? 1
     }
@@ -143,8 +132,4 @@ extension SurveyTableViewController {
     override func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
         return fetchedResultsController?.section(forSectionIndexTitle: title, at: index) ?? 0
     }
-    
 }
-
-
-

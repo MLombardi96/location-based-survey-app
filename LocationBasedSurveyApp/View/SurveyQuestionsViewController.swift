@@ -16,8 +16,6 @@ class SurveyQuestionsViewController: UIViewController, WKScriptMessageHandler, W
     @IBOutlet weak var webView: WKWebView!
     
     var survey: Survey?
-    let surveyHandler = SurveyHandler.shared
-    private var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     
     func setupWebView() {
         let source = """
@@ -53,7 +51,7 @@ class SurveyQuestionsViewController: UIViewController, WKScriptMessageHandler, W
     }
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         print("Message:", message.body)
-        survey?.isComplete = true
+        survey?.isComplete = true                                           // doesn't save until the user exits the area
         _ = navigationController?.popViewController(animated: true)
     }
 }

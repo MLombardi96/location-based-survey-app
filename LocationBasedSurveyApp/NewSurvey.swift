@@ -15,6 +15,7 @@ struct NewSurvey {
     var fenceID: String
     var surveyID: String
     var name: String
+    var fenceName: String
     var latitude: Double
     var longitude: Double
     var radius: Double

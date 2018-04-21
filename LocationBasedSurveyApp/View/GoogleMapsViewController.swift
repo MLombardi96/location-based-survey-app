@@ -31,46 +31,46 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate {
         }
         
         // set the survey locaiton when the view loads
-        if survey != nil {
-            surveyLocation = CLLocationCoordinate2D(latitude: survey!.latitude, longitude: survey!.longitude)
-        } else {
-            fatalError("No existing survey available to map.")
+        if let latitude = survey?.latitude, let longitude = survey?.longitude {
+            surveyLocation = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+            
+            let camera = GMSCameraPosition.camera(withTarget: surveyLocation!, zoom: 15.0)
+            mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+            view = mapView
+            
+            // survey location marker
+            let surveyMarker = GMSMarker()
+            surveyMarker.position = surveyLocation!
+            surveyMarker.title = survey!.name
+            surveyMarker.map = mapView
         }
-        
-        // default camera position and initialization of mapView
-        let camera = GMSCameraPosition.camera(withTarget: surveyLocation!, zoom: 15.0)
-        mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
-        view = mapView
     
-        // survey location marker
-        let surveyMarker = GMSMarker()
-        surveyMarker.position = surveyLocation!
-        surveyMarker.title = survey!.name
-        surveyMarker.map = mapView
     }
     
     //MARK: Actions
-    /****
-     * When pressed attempts to open Google Maps, if not available opens Apple Maps.
-     ****/
     @IBAction func getDirections(_ sender: UIBarButtonItem) {
         let testURL = URL(string: "comgooglemaps://")!
+        guard let currentSurvey = survey else {
+            print("No survey exists to map.")
+            return
+        }
+        
+        // trys to open Google Maps otherwise defaults to Apple Maps
         if UIApplication.shared.canOpenURL(testURL) {
-            let directionRequest = "comgooglemaps://?saddr=&daddr=\(survey!.latitude),\(survey!.longitude)&directionsmode=driving"
+            let directionRequest = "comgooglemaps://?saddr=&daddr=\(currentSurvey.latitude),\(currentSurvey.longitude)&directionsmode=driving"
             let directionsURL = URL(string: directionRequest)!
             UIApplication.shared.open(directionsURL, options: [:], completionHandler: nil)
         } else {
-            let coordinate = CLLocationCoordinate2DMake(survey!.latitude,survey!.longitude)
+            let coordinate = CLLocationCoordinate2DMake(currentSurvey.latitude,currentSurvey.longitude)
             let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate, addressDictionary:nil))
-            mapItem.name = "\(String(describing: survey!.name)) Survey"
-            mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
+            if let surveyLocationName = currentSurvey.fenceName {
+                mapItem.name = "\(surveyLocationName) Survey"
+                mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
+            }
         }
     }
     
-    /****
-     * Constantly maintains the user's current location. This function allows the user's and the
-     * the survey's location to be on screen at the same time.
-     ****/
+    //MARK: Location manager methods
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let currentLocation = manager.location!.coordinate // convert user's location to CLLocationCoordinate2D
         let inset = UIEdgeInsets(top: 100, left: 100, bottom: 100, right: 100) // area around the two bounds
@@ -81,20 +81,5 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate {
         mapView.isMyLocationEnabled = true
         locationManager.stopUpdatingLocation()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

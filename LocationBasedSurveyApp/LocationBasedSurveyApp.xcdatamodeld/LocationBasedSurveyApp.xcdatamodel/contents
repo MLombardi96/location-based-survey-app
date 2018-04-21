@@ -2,6 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14133" systemVersion="17E199" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Survey" representedClassName=".Survey" syncable="YES" codeGenerationType="category">
         <attribute name="fenceID" optional="YES" attributeType="String" customClassName="String" syncable="YES"/>
+        <attribute name="fenceName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isComplete" optional="YES" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="Double" minValueString="-90" maxValueString="90" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" minValueString="-180" maxValueString="180" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
@@ -12,6 +13,6 @@
         <attribute name="url" optional="YES" attributeType="String" minValueString="1" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Survey" positionX="-4581" positionY="-2781" width="128" height="178"/>
+        <element name="Survey" positionX="-5418" positionY="-4329" width="128" height="193"/>
     </elements>
 </model>

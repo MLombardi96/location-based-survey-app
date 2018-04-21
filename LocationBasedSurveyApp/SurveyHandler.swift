@@ -22,12 +22,11 @@ class SurveyHandler: NSObject, CLLocationManagerDelegate, UNUserNotificationCent
     static let shared: SurveyHandler = SurveyHandler()
     let locationManager: CLLocationManager
     let maxGeoFences = 20
-    
     var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     
     override public init() {
         // To use user defaults
-        UserDefaults.standard.register(defaults: [String : Any]())
+        //UserDefaults.standard.register(defaults: [String : Any]())
         
         // Location Manager initialization
         self.locationManager = CLLocationManager()
@@ -41,8 +40,7 @@ class SurveyHandler: NSObject, CLLocationManagerDelegate, UNUserNotificationCent
         }
     }
     
-    // MARK: Methods
-    // TODO: pass the surveyIDs to another method that requests the actual surveys then build
+    // MARK: Server Methods
     func requestSurveys() {
         // Endpoint: http://sdp-2017-survey.cse.uconn.edu/get_surveys
         // POST with JSON: { lat: <lat>, lng: <lng>, email: <email> }
@@ -100,6 +98,7 @@ class SurveyHandler: NSObject, CLLocationManagerDelegate, UNUserNotificationCent
                                 fenceID: fenceID,
                                 surveyID: surveyID,
                                 name: survey["name"].stringValue,
+                                fenceName: region["name"].stringValue,
                                 latitude: latitude,
                                 longitude: longitude,
                                 radius: region["radius"].doubleValue,
@@ -173,7 +172,7 @@ class SurveyHandler: NSObject, CLLocationManagerDelegate, UNUserNotificationCent
 
 // extension that contains all the CLLocaitonManager and UNUserNotification methods
 extension SurveyHandler {
-    
+
     func testContentsOfRegion(_ region: CLCircularRegion) -> Bool {
         let currentLat = locationManager.location?.coordinate.latitude
         let currentLong = locationManager.location?.coordinate.longitude
@@ -204,23 +203,25 @@ extension SurveyHandler {
         }
     }
     
-    // Handles when the user leaves the area, updates tables and will post answers to the server
+    // Handles when the user leaves the area, updates tables and will send surveys to server
     func locationManager(_ manager: CLLocationManager, didExitRegion region: CLRegion) {
-        // send info to server (questions yada yada)
         if let context = self.container?.viewContext {
             context.perform {
                 do {
                     let survey = try Survey.findSurveyWithFenceID(region.identifier, in: context)
                     for surveys in survey {
                         if surveys.isComplete {
+                            
+                            // send the completed survey to the server
                             if self.surveyCompleted(with: surveys.surveyID!) {
                                 // remove fence
                                 let center = CLLocationCoordinate2D(latitude: surveys.latitude, longitude: surveys.longitude)
                                 let region = CLCircularRegion(center: center, radius: surveys.radius, identifier: surveys.fenceID!)
                                 self.locationManager.stopMonitoring(for: region)
-                                // remove from database
-                                _ = try Survey.removeFromDatabaseWith(survey: surveys.surveyID!, in: context)
-                                self.printDatabaseStatistic()
+                                // remove from database.........changed with the history view
+                                //_ = try Survey.removeFromDatabaseWith(survey: surveys.surveyID!, in: context)
+                                //self.printDatabaseStatistic()
+                                self.sendNotification(notificationTitle: "Survey sent!", notificationBody: "Your completed survey has been sent to the server.")
                             } else {
                                 print("Failed to Post to server, resetting survey.")
                                 surveys.isComplete = false

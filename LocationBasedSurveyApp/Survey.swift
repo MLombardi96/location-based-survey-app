@@ -32,6 +32,7 @@ class Survey: NSManagedObject {
         survey.fenceID = surveyInfo.fenceID
         survey.surveyID = surveyInfo.surveyID
         survey.name = surveyInfo.name
+        survey.fenceName = surveyInfo.fenceName
         survey.latitude = surveyInfo.latitude
         survey.longitude = surveyInfo.longitude
         survey.radius = surveyInfo.radius
