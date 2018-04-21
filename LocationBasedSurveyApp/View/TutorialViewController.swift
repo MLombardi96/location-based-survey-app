@@ -13,11 +13,6 @@ class TutorialViewController: UIViewController {
 
     @IBOutlet weak var emailTextField: UITextField!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        UserDefaults.standard.register(defaults: [String : Any]())
-    }
-    
     // Sets the user's email in the settings bundle
     @IBAction func finishTutorial(_ sender: UIButton) {
         UserDefaults.standard.set(emailTextField.text, forKey: "userEmail")

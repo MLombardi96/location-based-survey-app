@@ -14,7 +14,6 @@ class Survey: NSManagedObject {
     // either finds existing survey or creates a new one in the database
     class func findOrCreateSurvey(matching surveyInfo: NewSurvey, in context: NSManagedObjectContext) throws -> Survey? {
         let request: NSFetchRequest<Survey> = Survey.fetchRequest()
-        // need to change to fenceID when fully adjusted
         request.predicate = NSPredicate(format: "surveyID = %@", surveyInfo.surveyID)
         
         do {
@@ -70,13 +69,14 @@ class Survey: NSManagedObject {
         }
     }
     
-    // Removes survey from the database, may not need to return but left it open
-    // ** haven't tested yet **
-    class func removeFromDatabaseWith(survey identifier: String, in context: NSManagedObjectContext) throws -> Survey {
+    // Removes survey from the database, may not need to return but left it open, will remove all found surveys (should only be one)
+    class func removeFromDatabaseWith(survey identifier: String, in context: NSManagedObjectContext) throws -> [Survey] {
         do {
-            let survey = try findSurveyWithSurveyID(identifier, in: context)
-            context.delete(survey[0]) // may lead to error down the road
-            return survey[0]
+            let surveys = try findSurveyWithSurveyID(identifier, in: context)
+            for survey in surveys {
+                context.delete(survey)
+            }
+            return surveys
         } catch {
             throw error
         }

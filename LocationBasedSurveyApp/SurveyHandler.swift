@@ -11,12 +11,9 @@ import UserNotifications
 import SwiftyJSON
 import CoreData
 
-//TODO: when questions are available manage a 'short description' for tableView
-
-/****
- * Handles parsing json files for survey data, creating surveys, creating geofences, and
- * displaying notifications.
- ****/
+//TODO: setup User and timeout request methods to request more surveys
+//TODO: include the picture ability once Colin and Joe figure out what they're doing
+//TODO: limit the fences to only 20, repopulate based on User location, may only need to update at request time
 class SurveyHandler: NSObject, CLLocationManagerDelegate, UNUserNotificationCenterDelegate {
     
     static let shared: SurveyHandler = SurveyHandler()
@@ -25,8 +22,6 @@ class SurveyHandler: NSObject, CLLocationManagerDelegate, UNUserNotificationCent
     var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     
     override public init() {
-        // To use user defaults
-        //UserDefaults.standard.register(defaults: [String : Any]())
         
         // Location Manager initialization
         self.locationManager = CLLocationManager()
@@ -73,12 +68,14 @@ class SurveyHandler: NSObject, CLLocationManagerDelegate, UNUserNotificationCent
                 print("There was an error sending a POST request to the server. Error: \(String(describing: error))")
             }
             
+            // Parse JSON file, can change to decoder once JSON format is fixed
             var newSurvey = [NewSurvey]()
             
             if let jsonData = data {
-                // Create Fences
+                
                 let jsonFile = JSON(jsonData)
-
+                
+                // Create Fences
                 let arrayFences = jsonFile["regions"].arrayValue
                 for region in arrayFences {
                     let fenceID = region["id"].stringValue

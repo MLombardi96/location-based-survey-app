@@ -79,11 +79,11 @@
             </objects>
             <point key="canvasLocation" x="764" y="39"/>
         </scene>
-        <!--Survey Table View Controller-->
+        <!--Geographical Surveys-->
         <scene sceneID="HmY-2W-LHc">
             <objects>
                 <tableViewController id="PdI-0N-OIc" customClass="SurveyTableViewController" customModule="LocationBasedSurveyApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="bgd-dn-Phb">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="bgd-dn-Phb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -119,7 +119,7 @@
                             <outlet property="delegate" destination="PdI-0N-OIc" id="6A8-6b-UGh"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="cAx-wb-V3M"/>
+                    <navigationItem key="navigationItem" title="Geographical Surveys" id="cAx-wb-V3M"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="U8H-yO-0qd">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -136,7 +136,7 @@
         <!--Survey Questions View Controller-->
         <scene sceneID="ez8-60-fut">
             <objects>
-                <viewController id="uHC-xg-cpb" customClass="SurveyQuestionsViewController" customModule="LocationBasedSurveyApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="uHC-xg-cpb" customClass="SurveyQuestionsViewController" customModule="LocationBasedSurveyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Nnj-35-rid">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -202,11 +202,11 @@
             </objects>
             <point key="canvasLocation" x="1542" y="808"/>
         </scene>
-        <!--History-->
+        <!--Completed Surveys-->
         <scene sceneID="uV4-HW-M0E">
             <objects>
                 <tableViewController id="hMi-nx-ghf" customClass="HistoryTableViewController" customModule="LocationBasedSurveyApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="htN-8a-vEL">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="htN-8a-vEL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -246,7 +246,7 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="History" image="ic_history" id="htQ-85-nDb"/>
-                    <navigationItem key="navigationItem" id="EB0-0K-7e1"/>
+                    <navigationItem key="navigationItem" title="Completed Surveys" id="EB0-0K-7e1"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bZm-EH-DiT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -255,7 +255,7 @@
         <!--Google Maps View Controller-->
         <scene sceneID="m5r-pi-qY6">
             <objects>
-                <viewController id="zyx-tA-POP" customClass="GoogleMapsViewController" customModule="LocationBasedSurveyApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="zyx-tA-POP" customClass="GoogleMapsViewController" customModule="LocationBasedSurveyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RGb-uh-f2D">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

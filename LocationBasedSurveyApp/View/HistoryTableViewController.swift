@@ -13,10 +13,12 @@ class HistoryTableViewController: UITableViewController, NSFetchedResultsControl
     
     private var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer { didSet { updateUI() } }
     private var fetchedResultsController: NSFetchedResultsController<Survey>?
+    var emptyTable = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.refreshControl?.addTarget(self, action: #selector(SurveyTableViewController.handleRefresh(_:)), for: UIControlEvents.valueChanged)
+        
     }
     
     internal func updateUI() {
@@ -30,8 +32,20 @@ class HistoryTableViewController: UITableViewController, NSFetchedResultsControl
                 sectionNameKeyPath: nil,
                 cacheName: nil
             )
-            try? fetchedResultsController?.performFetch()
-            tableView.reloadData()
+            
+            do {
+                // test if data for table is present
+                if try context.fetch(request).isEmpty {
+                    emptyTable = true
+                } else {
+                    emptyTable = false
+                }
+                
+                try fetchedResultsController?.performFetch()
+                tableView.reloadData()
+            } catch {
+                print("Could not load data from database.")
+            }
         }
     }
     
@@ -106,7 +120,20 @@ class HistoryTableViewController: UITableViewController, NSFetchedResultsControl
 extension HistoryTableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return fetchedResultsController?.sections?.count ?? 1
+        // is table contains data draw cells
+        if !emptyTable {
+            tableView.backgroundView = nil
+            return fetchedResultsController?.sections?.count ?? 1
+        } else {
+            // otherwise show centered label
+            let emptyLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
+            emptyLabel.text = "No Surveys Completed"
+            emptyLabel.textColor = UIColor.black
+            emptyLabel.textAlignment = .center
+            tableView.backgroundView = emptyLabel
+            tableView.separatorStyle = .none
+            return 0
+        }
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

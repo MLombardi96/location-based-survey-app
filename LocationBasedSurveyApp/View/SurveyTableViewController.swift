@@ -17,6 +17,7 @@ class SurveyTableViewController: UITableViewController, NSFetchedResultsControll
     override func viewDidLoad() {
         super.viewDidLoad()
         self.refreshControl?.addTarget(self, action: #selector(SurveyTableViewController.handleRefresh(_:)), for: UIControlEvents.valueChanged)
+        tableView.tableFooterView = UIView(frame: .zero)
     }
     
     internal func updateUI() {
@@ -99,14 +100,10 @@ class SurveyTableViewController: UITableViewController, NSFetchedResultsControll
         if segue.identifier == "ReadySurvey" {
             if let destinationViewController = segue.destination as? SurveyQuestionsViewController {
                 destinationViewController.survey = selectedSurvey
-                destinationViewController.hidesBottomBarWhenPushed = true
-                destinationViewController.extendedLayoutIncludesOpaqueBars = true
             }
         } else {
             if let destinationViewController = segue.destination as? GoogleMapsViewController {
                 destinationViewController.survey = selectedSurvey
-                destinationViewController.hidesBottomBarWhenPushed = true
-                destinationViewController.extendedLayoutIncludesOpaqueBars = true
             }
         }
     }

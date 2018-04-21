@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import CoreLocation
 
 struct NewSurvey {
     
@@ -21,5 +20,4 @@ struct NewSurvey {
     var radius: Double
     var url: String
     var isSelected = false
-    
 }
