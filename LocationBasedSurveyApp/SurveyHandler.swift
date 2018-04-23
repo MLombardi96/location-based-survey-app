@@ -124,6 +124,7 @@ class SurveyHandler: NSObject, CLLocationManagerDelegate, UNUserNotificationCent
         task.resume()
     }
     
+    //MARK: Survey Complete
     func surveyCompleted(with identifier: String) -> Bool {
         // Endpoint: http://sdp-2017-survey.cse.uconn.edu/complete_survey
         // POST with JSON: {survey:<surveyID>, email:<email>}
@@ -151,7 +152,9 @@ class SurveyHandler: NSObject, CLLocationManagerDelegate, UNUserNotificationCent
             if error != nil {
                 print("There was an error sending a POST request to the server. Error: \(String(describing: error))")
             }
-            print(data)
+            if let jsonData = data {
+                print(jsonData)
+            }
         }
         task.resume()
         return true

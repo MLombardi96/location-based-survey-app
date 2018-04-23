@@ -78,6 +78,22 @@ class Survey: NSManagedObject {
         return nil
     }
     
+    class func getSurveysThat(are completed : Bool, in context: NSManagedObjectContext) throws -> [Survey] {
+        let request: NSFetchRequest<Survey> = Survey.fetchRequest()
+        if completed {
+            request.predicate = NSPredicate(format: "isComplete = YES")
+        } else {
+            request.predicate = NSPredicate(format: "isComplete = NO")
+        }
+        
+        do {
+            let surveys = try context.fetch(request)
+            return surveys
+        } catch {
+            throw error
+        }
+    }
+    
     // Removes survey from the database, may not need to return but left it open, will remove all found surveys (should only be one)
     class func removeFromDatabaseWith(survey identifier: String, in context: NSManagedObjectContext) throws -> [Survey] {
         do {
