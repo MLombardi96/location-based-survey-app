@@ -41,6 +41,7 @@ class SurveyQuestionsViewController: UIViewController, WKScriptMessageHandler, W
         
         self.setupWebView()
         
+        
         let url = URL(string: (survey?.url)!)
         let request = URLRequest(url: url!)
         

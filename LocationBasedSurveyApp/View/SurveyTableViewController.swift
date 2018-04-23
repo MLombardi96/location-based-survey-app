@@ -63,7 +63,7 @@ class SurveyTableViewController: UITableViewController, NSFetchedResultsControll
         
         if let currentSurvey = fetchedResultsController?.object(at: indexPath) {
             cell.textLabel?.text = currentSurvey.name
-            cell.detailTextLabel?.text = currentSurvey.fenceName
+            //cell.detailTextLabel?.text = currentSurvey.fenceName
         }
         return cell
     }

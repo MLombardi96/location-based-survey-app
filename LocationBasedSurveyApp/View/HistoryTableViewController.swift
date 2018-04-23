@@ -63,7 +63,7 @@ class HistoryTableViewController: UITableViewController, NSFetchedResultsControl
         let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryTableViewCell", for: indexPath)
         if let pastSurvey = fetchedResultsController?.object(at: indexPath) {
             cell.textLabel?.text = pastSurvey.name
-            cell.detailTextLabel?.text = pastSurvey.fenceName
+            //cell.detailTextLabel?.text = pastSurvey.fenceName
         }
         return cell
     }
@@ -73,7 +73,7 @@ class HistoryTableViewController: UITableViewController, NSFetchedResultsControl
         if editingStyle == .delete {
             if let context = self.container?.viewContext {
                 context.perform {
-                    if let selectedSurvey = self.fetchedResultsController?.object(at: indexPath), let surveyID = selectedSurvey.surveyID {
+                    if let selectedSurvey = self.fetchedResultsController?.object(at: indexPath), let surveyID = selectedSurvey.id {
                         do {
                             _ =  try Survey.removeFromDatabaseWith(survey: surveyID, in: context)
                         } catch {

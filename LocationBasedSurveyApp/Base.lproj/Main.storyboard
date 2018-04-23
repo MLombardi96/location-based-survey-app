@@ -345,7 +345,10 @@
                         <viewLayoutGuide key="safeArea" id="r0o-9o-8HQ"/>
                     </view>
                     <connections>
+                        <outlet property="bottomTextView" destination="7IC-Rt-kfu" id="izy-99-v3z"/>
                         <outlet property="emailTextField" destination="1sh-MK-Ne3" id="gHW-b6-lAS"/>
+                        <outlet property="headerTextView" destination="6A8-mG-rqA" id="aCH-v7-Nob"/>
+                        <outlet property="topTextView" destination="U3s-zU-CZj" id="wrq-9a-L4p"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9rF-7a-SHn" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -11,13 +11,17 @@ import Foundation
 struct NewSurvey {
     
     //MARK: Properties
-    var fenceID: String
-    var surveyID: String
+    var id: String
     var name: String
-    var fenceName: String
+    var url: String
+    var isSelected = false
+    var fences: [NewFence]
+}
+
+struct NewFence {
+    var id: String
+    var name: String
     var latitude: Double
     var longitude: Double
     var radius: Double
-    var url: String
-    var isSelected = false
 }

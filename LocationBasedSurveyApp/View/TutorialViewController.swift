@@ -9,9 +9,19 @@
 import UIKit
 
 // View Controller for the tutorial
-class TutorialViewController: UIViewController {
+class TutorialViewController: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var topTextView: UITextView!
+    @IBOutlet weak var bottomTextView: UITextView!
+    @IBOutlet weak var headerTextView: UITextView!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        topTextView.isEditable = false
+        bottomTextView.isEditable = false
+        headerTextView.isEditable = false
+    }
     
     // Sets the user's email in the settings bundle
     @IBAction func finishTutorial(_ sender: UIButton) {
@@ -42,6 +52,10 @@ class TutorialViewController: UIViewController {
         
         self.present(alertController, animated: true, completion: nil)
         return false
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        return true
     }
     
 }

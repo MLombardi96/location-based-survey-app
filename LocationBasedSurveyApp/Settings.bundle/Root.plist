@@ -28,14 +28,14 @@
 			<key>Key</key>
 			<string>userUpdateRadius</string>
 			<key>DefaultValue</key>
-			<string></string>
+			<integer>3218</integer>
 			<key>Values</key>
 			<array>
 				<integer>3218</integer>
 				<integer>40233</integer>
 				<integer>80467</integer>
-				<string>120701</string>
-				<string>160934</string>
+				<integer>120701</integer>
+				<integer>160934</integer>
 			</array>
 			<key>Titles</key>
 			<array>
@@ -54,14 +54,14 @@
 			<key>Key</key>
 			<string>timeout</string>
 			<key>DefaultValue</key>
-			<string>3</string>
+			<integer>10800000000000</integer>
 			<key>Values</key>
 			<array>
 				<integer>3600000000000</integer>
-				<string>7200000000000</string>
-				<string>10800000000000</string>
-				<string>14400000000000</string>
-				<string>18000000000000</string>
+				<integer>7200000000000</integer>
+				<integer>10800000000000</integer>
+				<integer>14400000000000</integer>
+				<integer>18000000000000</integer>
 			</array>
 			<key>Titles</key>
 			<array>

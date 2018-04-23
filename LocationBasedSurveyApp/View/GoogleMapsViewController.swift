@@ -17,7 +17,9 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate {
     var survey: Survey?
     let locationManager = CLLocationManager()
     var mapView = GMSMapView()
+    let marker = GMSMarker()
     var surveyLocation: CLLocationCoordinate2D?
+    var selectedLocation: CLLocationCoordinate2D?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,18 +33,28 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate {
         }
         
         // set the survey locaiton when the view loads
-        if let latitude = survey?.latitude, let longitude = survey?.longitude {
-            surveyLocation = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        if let latitude = locationManager.location?.coordinate.latitude, let longitude = locationManager.location?.coordinate.longitude {
+            let userLocation = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
             
-            let camera = GMSCameraPosition.camera(withTarget: surveyLocation!, zoom: 15.0)
+            let camera = GMSCameraPosition.camera(withTarget: userLocation, zoom: 15.0)
             mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+            mapView.isMyLocationEnabled = true
+            mapView.delegate = self
             view = mapView
-            
-            // survey location marker
-            let surveyMarker = GMSMarker()
-            surveyMarker.position = surveyLocation!
-            surveyMarker.title = survey!.name
-            surveyMarker.map = mapView
+        
+            // Create markers
+            if let fences = survey?.fences {
+                for fence in fences {
+                    if let fence = fence as? Fence {
+                        surveyLocation = CLLocationCoordinate2D(latitude: fence.latitude, longitude: fence.longitude)
+                        
+                        let surveyMarker = GMSMarker()
+                        surveyMarker.position = surveyLocation!
+                        surveyMarker.title = survey!.name
+                        surveyMarker.map = mapView
+                    }
+                }
+            }
         }
     
     }
@@ -50,23 +62,39 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate {
     //MARK: Actions
     @IBAction func getDirections(_ sender: UIBarButtonItem) {
         let testURL = URL(string: "comgooglemaps://")!
-        guard let currentSurvey = survey else {
-            print("No survey exists to map.")
-            return
+        var location: CLLocationCoordinate2D
+        
+        let alertController = UIAlertController(
+            title: "Error",
+            message: "You must select a marker to get directions.",
+            preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(
+            title: "OK",
+            style: .default,
+            handler: nil))
+        
+        if survey?.fences?.count == 1 {
+            let fence = survey?.fences?.anyObject() as! Fence
+            let coordinates = CLLocationCoordinate2D(latitude: fence.latitude, longitude: fence.longitude)
+            location = coordinates
+        } else {
+            guard let selected = selectedLocation else {
+                self.present(alertController, animated: true, completion: nil)
+                return
+            }
+            location = selected
         }
         
         // trys to open Google Maps otherwise defaults to Apple Maps
         if UIApplication.shared.canOpenURL(testURL) {
-            let directionRequest = "comgooglemaps://?saddr=&daddr=\(currentSurvey.latitude),\(currentSurvey.longitude)&directionsmode=driving"
+            let directionRequest = "comgooglemaps://?saddr=&daddr=\(location.latitude),\(location.longitude)&directionsmode=driving"
             let directionsURL = URL(string: directionRequest)!
             UIApplication.shared.open(directionsURL, options: [:], completionHandler: nil)
         } else {
-            let coordinate = CLLocationCoordinate2DMake(currentSurvey.latitude,currentSurvey.longitude)
-            let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: coordinate, addressDictionary:nil))
-            if let surveyLocationName = currentSurvey.fenceName {
-                mapItem.name = "\(surveyLocationName) Survey"
-                mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
-            }
+            //let coordinate = CLLocationCoordinate2DMake(currentSurvey.latitude,currentSurvey.longitude)
+            let mapItem = MKMapItem(placemark: MKPlacemark(coordinate: location, addressDictionary:nil))
+            mapItem.name = "Survey"
+            mapItem.openInMaps(launchOptions: [MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeDriving])
         }
     }
     
@@ -82,4 +110,11 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.stopUpdatingLocation()
     }
 
+}
+
+extension GoogleMapsViewController: GMSMapViewDelegate {
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        selectedLocation = marker.position
+        return false
+    }
 }
