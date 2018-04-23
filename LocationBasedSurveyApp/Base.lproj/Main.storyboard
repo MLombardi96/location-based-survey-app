@@ -36,7 +36,46 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Email Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1fp-fR-yfw">
-                                <rect key="frame" x="16" y="91" width="236" height="20.5"/>
+                                <rect key="frame" x="70" y="77" width="289" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n75-3Q-GO9">
+                                <rect key="frame" x="16" y="77" width="46" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="46" id="hFp-SC-bhI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Available Surveys:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OYG-kA-bBg">
+                                <rect key="frame" x="16" y="105" width="138" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="138" id="R8O-TW-2YB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Completed Surveys:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rbC-SB-pMU">
+                                <rect key="frame" x="16" y="134" width="154" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="154" id="6Rl-lJ-0Bd"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Current Completed Surveys" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1tu-c4-CcF">
+                                <rect key="frame" x="178" y="134" width="181" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Available Surveys" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f0c-jz-hQS">
+                                <rect key="frame" x="162" y="105" width="197" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -44,15 +83,29 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Nxv-we-jBb" firstAttribute="trailing" secondItem="1fp-fR-yfw" secondAttribute="trailing" constant="123" id="LCh-df-FQ9"/>
-                            <constraint firstItem="1fp-fR-yfw" firstAttribute="leading" secondItem="Y76-pV-wbF" secondAttribute="leadingMargin" id="gCu-qh-uUG"/>
-                            <constraint firstItem="1fp-fR-yfw" firstAttribute="top" secondItem="Nxv-we-jBb" secondAttribute="top" constant="27" id="hmO-cO-APn"/>
+                            <constraint firstItem="n75-3Q-GO9" firstAttribute="top" secondItem="Nxv-we-jBb" secondAttribute="top" constant="13" id="361-uV-a5H"/>
+                            <constraint firstItem="f0c-jz-hQS" firstAttribute="leading" secondItem="OYG-kA-bBg" secondAttribute="trailing" constant="8" symbolic="YES" id="6ak-53-J0v"/>
+                            <constraint firstItem="n75-3Q-GO9" firstAttribute="leading" secondItem="Y76-pV-wbF" secondAttribute="leadingMargin" id="FsN-8b-W0o"/>
+                            <constraint firstItem="rbC-SB-pMU" firstAttribute="baseline" secondItem="1tu-c4-CcF" secondAttribute="baseline" id="Qdx-dr-UPe"/>
+                            <constraint firstItem="rbC-SB-pMU" firstAttribute="top" secondItem="OYG-kA-bBg" secondAttribute="bottom" constant="8" symbolic="YES" id="QyO-mc-aof"/>
+                            <constraint firstItem="1fp-fR-yfw" firstAttribute="trailing" secondItem="f0c-jz-hQS" secondAttribute="trailing" id="R5a-e9-J1L"/>
+                            <constraint firstItem="1fp-fR-yfw" firstAttribute="trailing" secondItem="Y76-pV-wbF" secondAttribute="trailingMargin" id="TB2-rU-ocm"/>
+                            <constraint firstItem="n75-3Q-GO9" firstAttribute="leading" secondItem="OYG-kA-bBg" secondAttribute="leading" id="UBY-Hu-9Zs"/>
+                            <constraint firstItem="1fp-fR-yfw" firstAttribute="leading" secondItem="n75-3Q-GO9" secondAttribute="trailing" constant="8" symbolic="YES" id="bBy-GM-5Kg"/>
+                            <constraint firstItem="f0c-jz-hQS" firstAttribute="trailing" secondItem="1tu-c4-CcF" secondAttribute="trailing" id="eGf-xi-B7e"/>
+                            <constraint firstItem="OYG-kA-bBg" firstAttribute="baseline" secondItem="f0c-jz-hQS" secondAttribute="baseline" id="qWq-mW-pWe"/>
+                            <constraint firstItem="OYG-kA-bBg" firstAttribute="leading" secondItem="rbC-SB-pMU" secondAttribute="leading" id="s5M-LG-DzH"/>
+                            <constraint firstItem="1tu-c4-CcF" firstAttribute="leading" secondItem="rbC-SB-pMU" secondAttribute="trailing" constant="8" symbolic="YES" id="sb8-rZ-6Ks"/>
+                            <constraint firstItem="OYG-kA-bBg" firstAttribute="top" secondItem="n75-3Q-GO9" secondAttribute="bottom" constant="7" id="ts9-Sl-A0j"/>
+                            <constraint firstItem="n75-3Q-GO9" firstAttribute="baseline" secondItem="1fp-fR-yfw" secondAttribute="baseline" id="zFX-9c-ziG"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Nxv-we-jBb"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Home" image="ic_home" id="jkJ-P3-fzH"/>
                     <navigationItem key="navigationItem" id="9hr-1v-ppi"/>
                     <connections>
+                        <outlet property="currentAvailableSurveys" destination="f0c-jz-hQS" id="NU6-iF-dam"/>
+                        <outlet property="currentCompletedSurveys" destination="1tu-c4-CcF" id="3T9-ej-GUV"/>
                         <outlet property="currentEmailAddress" destination="1fp-fR-yfw" id="0ES-rD-CJF"/>
                     </connections>
                 </viewController>

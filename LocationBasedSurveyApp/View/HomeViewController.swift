@@ -14,11 +14,16 @@ class HomeViewController: UIViewController {
     
     //MARK: Properties
     @IBOutlet weak var currentEmailAddress: UILabel!
-    
+    @IBOutlet weak var currentAvailableSurveys: UILabel!
+    @IBOutlet weak var currentCompletedSurveys: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         currentEmailAddress.text = UserDefaults.standard.string(forKey: "userEmail")
+        currentAvailableSurveys.text = "0"
+        currentCompletedSurveys.text = "0"
+        
         UNUserNotificationCenter.current().requestAuthorization(
             options: [.alert,.sound,.badge],
             completionHandler: { (granted,error) in}
