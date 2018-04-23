@@ -48,6 +48,7 @@ class HistoryTableViewController: UITableViewController, NSFetchedResultsControl
                 print("Could not load data from database.")
             }
         }
+        tableView.reloadData()
     }
     
     //MARK: Refresh Methods
