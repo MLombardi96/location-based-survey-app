@@ -97,7 +97,6 @@ class SurveyHandler: NSObject, CLLocationManagerDelegate, UNUserNotificationCent
                     let center = CLLocationCoordinate2D(latitude: newFence.latitude, longitude: newFence.longitude)
                     let fence = CLCircularRegion(center: center, radius: newFence.radius, identifier: newFence.id)
                     newRegions.append(fence)
-                    self.startMonitoringGeofences(with: &newRegions, user: userCoordinates)
                     
                     // append newSurveys to be added to the database
                     let surveyArray = region["surveys"].arrayValue
@@ -112,11 +111,14 @@ class SurveyHandler: NSObject, CLLocationManagerDelegate, UNUserNotificationCent
                                 fences: [newFence]
                             ))
                         } else if let index = newSurvey.index(where: {$0.id == surveyID}) {
-                            newSurvey[index].isSelected = self.testContentsOfRegion(fence)
+                            if !newSurvey[index].isSelected {
+                                newSurvey[index].isSelected = self.testContentsOfRegion(fence)
+                            }
                             newSurvey[index].fences.append(newFence)
                         }
                     }
                 }
+                self.startMonitoringGeofences(with: &newRegions, user: userCoordinates)
                 self.updateDatabase(with: newSurvey)
             }
         }
