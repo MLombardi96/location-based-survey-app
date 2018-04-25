@@ -13,16 +13,21 @@ import CoreData
 
 //TODO: setup User and timeout request methods to request more surveys
 //TODO: include the picture ability once Colin and Joe figure out what they're doing
-//TODO: limit the fences to only 20, repopulate based on User location, may only need to update at request time
+//TODO: repopulate based on User location, may only need to update at request time
 class SurveyHandler: NSObject, CLLocationManagerDelegate, UNUserNotificationCenterDelegate {
     
     static let shared: SurveyHandler = SurveyHandler()
     let locationManager: CLLocationManager
-    let maxGeoFences = 20
     var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
+    let maxGeoFences = 20
     
+    // calls request method by user's default settings
+    let timer = Timer.scheduledTimer(withTimeInterval: UserDefaults.standard.double(forKey: "timeout"), repeats: true) { (timer) in
+        SurveyHandler.shared.requestSurveys()
+    }
+    
+    // initializes the location manager
     override public init() {
-        
         // Location Manager initialization
         self.locationManager = CLLocationManager()
         self.locationManager.requestAlwaysAuthorization()
@@ -37,21 +42,26 @@ class SurveyHandler: NSObject, CLLocationManagerDelegate, UNUserNotificationCent
     
     // MARK: Server Methods
     func requestSurveys() {
-        // Endpoint: http://sdp-2017-survey.cse.uconn.edu/get_surveys
-        // POST with JSON: { lat: <lat>, lng: <lng>, email: <email> }
-        // Need 'Content-Type: application/json' in Header of POST request
-        
-        // removes all fences
+        // removes all fences and everything in the database (except completed surveys)
         dumpMonitoredRegions()
+        if let context = self.container?.viewContext {
+            context.perform {
+                do {
+                    try Survey.removeEverythingFromDatabase(in: context)
+                } catch { return }
+            }
+        }
         
-        // starts request process
+        // local variables
+        var newSurvey = [NewSurvey]()
+        var newRegions: [CLCircularRegion] = []
         guard let currentLat = locationManager.location?.coordinate.latitude else {return}
         guard let currentLong = locationManager.location?.coordinate.longitude else {return}
         let userLatitude = Double(currentLat)
         let userLongitude = Double(currentLong)
-        
+        let userCoordinates = CLLocationCoordinate2D(latitude: userLatitude, longitude: userLongitude)
         guard let userEmail = UserDefaults.standard.string(forKey: "userEmail") else {
-            print("User email could not be pulled from settings bundle.")
+            print("Error retrieving user's email address from bundle or value is left empty.")
             return
         }
         
@@ -74,10 +84,6 @@ class SurveyHandler: NSObject, CLLocationManagerDelegate, UNUserNotificationCent
             if error != nil { print("There was an error sending a POST request to the server. Error: \(String(describing: error))") }
             
             // Parse JSON file, can change to decoder once JSON format is fixed
-            var newSurvey = [NewSurvey]()
-            var newRegions: [CLCircularRegion] = []
-            let userCoordinates = CLLocationCoordinate2D(latitude: userLatitude, longitude: userLongitude)
-            
             if let jsonData = data {
                 let jsonFile = JSON(jsonData)
                 
@@ -93,7 +99,7 @@ class SurveyHandler: NSObject, CLLocationManagerDelegate, UNUserNotificationCent
                         longitude: Double(String(format: "%.6f", region["center"]["lng"].doubleValue))!,
                         radius: region["radius"].doubleValue)
                     
-                    // Start monitoring fences
+                    // append fences
                     let center = CLLocationCoordinate2D(latitude: newFence.latitude, longitude: newFence.longitude)
                     let fence = CLCircularRegion(center: center, radius: newFence.radius, identifier: newFence.id)
                     newRegions.append(fence)
@@ -163,9 +169,7 @@ class SurveyHandler: NSObject, CLLocationManagerDelegate, UNUserNotificationCent
     // MARK: Database methods
     func updateDatabase(with newSurveys: [NewSurvey]) {
         container?.performBackgroundTask{ [weak self] context in
-            for survey in newSurveys {
-                _ = try? Survey.findOrCreateSurvey(matching: survey, in: context)
-            }
+            for survey in newSurveys { _ = try? Survey.findOrCreateSurvey(matching: survey, in: context) }
             try? context.save()
             self?.printDatabaseStatistic()
         }
@@ -176,8 +180,7 @@ class SurveyHandler: NSObject, CLLocationManagerDelegate, UNUserNotificationCent
         DispatchQueue.main.async {
             if let context = self.container?.viewContext {
                 if let surveyCount = try? context.count(for: Survey.fetchRequest()) {
-                    print("\(surveyCount) surveys")
-                }
+                    print("\(surveyCount) surveys") }
             }
         }
     }
@@ -197,9 +200,7 @@ extension SurveyHandler {
         let currentLong = locationManager.location?.coordinate.longitude
         let currentCoordinate = CLLocationCoordinate2D(latitude: currentLat!, longitude: currentLong!)
         
-        if region.contains(currentCoordinate) {
-            return true
-        }
+        if region.contains(currentCoordinate) { return true }
         return false
     }
     
@@ -207,7 +208,7 @@ extension SurveyHandler {
     func startMonitoringGeofences( with regions: inout [CLCircularRegion], user coordinates: CLLocationCoordinate2D) {
         
         // Create user fence
-        let radius = UserDefaults.standard.double(forKey: "userUpdateRedius")
+        let radius = UserDefaults.standard.double(forKey: "userUpdateRadius")
         let userRegion = CLCircularRegion(center: coordinates, radius: radius, identifier: "User")
         locationManager.startMonitoring(for: userRegion)
         
@@ -247,6 +248,7 @@ extension SurveyHandler {
         if region.identifier == "User" {
             sendNotification(notificationTitle: "Location Changed", notificationBody: "Your surveys have been reset.")
             requestSurveys()
+            return
         }
         
         if let context = self.container?.viewContext {
@@ -255,7 +257,6 @@ extension SurveyHandler {
                     // find matching surveys in the database
                     let surveys = try Survey.findSurveyWithFenceID(region.identifier, in: context)
                     for survey in surveys {
-                        
                         if survey.isComplete {
                             
                             // send the completed survey to the server
@@ -301,7 +302,6 @@ extension SurveyHandler {
                         }
                     }
                 } catch { print("Could not location Survey with id \(region.identifier) in database.") }
-                
                 try? context.save()
             }
         }
@@ -329,5 +329,3 @@ extension SurveyHandler {
         UNUserNotificationCenter.current().add(request,withCompletionHandler: nil)
     }
 }
-
-

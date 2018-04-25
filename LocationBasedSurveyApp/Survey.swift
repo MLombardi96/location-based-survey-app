@@ -22,9 +22,7 @@ class Survey: NSManagedObject {
                 assert(matches.count == 1, "database inconsistency")
                 return matches[0]
             }
-        } catch {
-            throw error
-        }
+        } catch { throw error }
         
         // otherwise, make new survey in database
         let survey = Survey(context: context)
@@ -38,12 +36,9 @@ class Survey: NSManagedObject {
             do {
                 let fence = try Fence.createFence(matching: fence, in: context)
                 survey.addToFences(fence)
-            } catch {
-                print("Couldn't add fence.")
-            }
+            } catch { print("Couldn't add fence.") }
         }
         return survey
-        
     }
     
     // finds the survey in the database with the mathing fence id passed as a parameter
@@ -53,9 +48,7 @@ class Survey: NSManagedObject {
         do {
             let matchingSurvey = try context.fetch(request)
             return matchingSurvey
-        } catch {
-            throw error
-        }
+        } catch { throw error }
     }
     
     // finds the survey in the database with the matching survey id
@@ -65,33 +58,27 @@ class Survey: NSManagedObject {
         do {
             let matchingSurvey = try context.fetch(request)
             return matchingSurvey
-        } catch {
-            throw error
-        }
+        } catch { throw error }
     }
     
+    // returns all the survey's fences matching the identifier
     class func findFenceFromSurvey(_ survey: Survey, matching identifier: String) -> Fence? {
         let fences = survey.fences?.allObjects as? [Fence]
-        if let index = fences?.index(where: {$0.id == identifier}) {
-            return fences?[index]
-        }
+        if let index = fences?.index(where: {$0.id == identifier}) { return fences?[index] }
         return nil
     }
     
+    // returns surveys that are either completed or not completed
     class func getSurveysThat(are completed : Bool, in context: NSManagedObjectContext) throws -> [Survey] {
         let request: NSFetchRequest<Survey> = Survey.fetchRequest()
         if completed {
             request.predicate = NSPredicate(format: "isComplete = YES")
-        } else {
-            request.predicate = NSPredicate(format: "isComplete = NO")
-        }
+        } else { request.predicate = NSPredicate(format: "isComplete = NO") }
         
         do {
             let surveys = try context.fetch(request)
             return surveys
-        } catch {
-            throw error
-        }
+        } catch { throw error }
     }
     
     // Removes survey from the database, may not need to return but left it open, will remove all found surveys (should only be one)
@@ -102,8 +89,16 @@ class Survey: NSManagedObject {
                 context.delete(survey)
             }
             return surveys
-        } catch {
-            throw error
-        }
+        } catch { throw error }
+    }
+    
+    // Removes all uncompleted surveys
+    class func removeEverythingFromDatabase(in context: NSManagedObjectContext) throws {
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Survey")
+        request.predicate = NSPredicate(format: "isComplete = NO")
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: request)
+        do {
+            try context.execute(deleteRequest)
+        } catch { throw error }
     }
 }

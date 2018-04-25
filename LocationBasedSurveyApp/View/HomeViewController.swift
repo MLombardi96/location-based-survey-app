@@ -31,6 +31,8 @@ class HomeViewController: UIViewController {
         )
     }
     
+    override func viewDidAppear(_ animated: Bool) { getSurveyCount() }
+    
     func getSurveyCount() {
         if let context = self.container?.viewContext {
             context.perform {

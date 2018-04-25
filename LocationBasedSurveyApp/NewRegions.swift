@@ -9,7 +9,6 @@
 import Foundation
 
 struct NewSurvey {
-    
     //MARK: Properties
     var id: String
     var name: String

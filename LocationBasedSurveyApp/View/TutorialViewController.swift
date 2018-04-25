@@ -21,6 +21,7 @@ class TutorialViewController: UIViewController, UITextFieldDelegate {
         topTextView.isEditable = false
         bottomTextView.isEditable = false
         headerTextView.isEditable = false
+        self.emailTextField.delegate = self
     }
     
     // Sets the user's email in the settings bundle
@@ -43,7 +44,7 @@ class TutorialViewController: UIViewController, UITextFieldDelegate {
             handler: nil))
         
         if identifier == "tutorialValidation" {
-            if let userEmail = emailTextField.text, emailTest.evaluate(with: userEmail) {    // wont run if empty or nil
+            if let userEmail = emailTextField.text, emailTest.evaluate(with: userEmail) {
                 SurveyHandler.shared.requestSurveys()
                 return true
             }
@@ -55,7 +56,8 @@ class TutorialViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        return true
+        self.view.endEditing(true)
+        return false
     }
     
 }

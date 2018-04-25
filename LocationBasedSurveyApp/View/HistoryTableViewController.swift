@@ -18,8 +18,8 @@ class HistoryTableViewController: UITableViewController, NSFetchedResultsControl
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.tableFooterView = UIView(frame: .zero)
         self.refreshControl?.addTarget(self, action: #selector(SurveyTableViewController.handleRefresh(_:)), for: UIControlEvents.valueChanged)
-        
     }
     
     internal func updateUI() {
@@ -62,9 +62,15 @@ class HistoryTableViewController: UITableViewController, NSFetchedResultsControl
     //MARK: Unique Tableview methods
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryTableViewCell", for: indexPath)
+        
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
+        tableView.separatorColor = UIColor.black
+        cell.preservesSuperviewLayoutMargins = false
+        cell.separatorInset = UIEdgeInsets.zero
+        cell.layoutMargins = UIEdgeInsets.zero
+        
         if let pastSurvey = fetchedResultsController?.object(at: indexPath) {
             cell.textLabel?.text = pastSurvey.name
-            //cell.detailTextLabel?.text = pastSurvey.fenceName
         }
         return cell
     }
@@ -86,6 +92,10 @@ class HistoryTableViewController: UITableViewController, NSFetchedResultsControl
             }
             updateUI()
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 90
     }
     
     //MARK: NSFetchResultsController methods
@@ -130,7 +140,7 @@ extension HistoryTableViewController {
             // otherwise show centered label
             let emptyLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
             emptyLabel.text = "No Surveys Completed"
-            emptyLabel.textColor = UIColor.black
+            emptyLabel.textColor = UIColor.white
             emptyLabel.textAlignment = .center
             tableView.backgroundView = emptyLabel
             tableView.separatorStyle = .none

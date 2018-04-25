@@ -29,14 +29,6 @@
 			<string>userUpdateRadius</string>
 			<key>DefaultValue</key>
 			<integer>3218</integer>
-			<key>Values</key>
-			<array>
-				<integer>3218</integer>
-				<integer>40233</integer>
-				<integer>80467</integer>
-				<integer>120701</integer>
-				<integer>160934</integer>
-			</array>
 			<key>Titles</key>
 			<array>
 				<string>2 miles</string>
@@ -44,6 +36,14 @@
 				<string>50 miles</string>
 				<string>75 miles</string>
 				<string>100 miles</string>
+			</array>
+			<key>Values</key>
+			<array>
+				<integer>3218</integer>
+				<integer>40233</integer>
+				<integer>80467</integer>
+				<integer>120701</integer>
+				<integer>160934</integer>
 			</array>
 		</dict>
 		<dict>
@@ -54,15 +54,7 @@
 			<key>Key</key>
 			<string>timeout</string>
 			<key>DefaultValue</key>
-			<integer>10800000000000</integer>
-			<key>Values</key>
-			<array>
-				<integer>3600000000000</integer>
-				<integer>7200000000000</integer>
-				<integer>10800000000000</integer>
-				<integer>14400000000000</integer>
-				<integer>18000000000000</integer>
-			</array>
+			<integer>10800</integer>
 			<key>Titles</key>
 			<array>
 				<string>1 hour</string>
@@ -70,6 +62,18 @@
 				<string>3 hours</string>
 				<string>4 hours</string>
 				<string>5 hours</string>
+				<string>10 hours</string>
+				<string>24 hours</string>
+			</array>
+			<key>Values</key>
+			<array>
+				<integer>3600</integer>
+				<integer>7200</integer>
+				<integer>10800</integer>
+				<integer>14400</integer>
+				<integer>18000</integer>
+				<integer>36000</integer>
+				<integer>86400</integer>
 			</array>
 		</dict>
 	</array>

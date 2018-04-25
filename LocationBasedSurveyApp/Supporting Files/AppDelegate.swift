@@ -10,6 +10,7 @@ import UIKit
 import UserNotifications
 import GoogleMaps
 import CoreData
+import CoreLocation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     static var persistentContainer: NSPersistentContainer {return (UIApplication.shared.delegate as! AppDelegate).persistentContainer}
     static var viewContext: NSManagedObjectContext {return persistentContainer.viewContext}
+    let userDefaults = UserDefaults.standard
+    let locationManager = CLLocationManager()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         GMSServices.provideAPIKey("AIzaSyAfT_vi41OGKGWv4TQWEKn-peBOaxu6jpQ")
@@ -33,8 +36,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.makeKeyAndVisible()
         }
         
-        // Load the request from the server for now
-        SurveyHandler.shared.requestSurveys()
+        // do this here so surveys can populate after tutorial
+        locationManager.requestAlwaysAuthorization()
+        
+        // if the user defaults are nil, set them to their default values
+        if userDefaults.value(forKey: "timeout") == nil || userDefaults.value(forKey: "userUpdateRadius") == nil {
+            userDefaults.set(3218, forKey: "userUpdateRadius")
+            userDefaults.set(10800, forKey: "timeout")
+        }
         return true
     }
     

@@ -37,15 +37,11 @@ class SurveyTableViewController: UITableViewController, NSFetchedResultsControll
                 // test if data for table is present
                 if try context.fetch(request).isEmpty {
                     emptyTable = true
-                } else {
-                    emptyTable = false
-                }
+                } else { emptyTable = false }
                 
                 try fetchedResultsController?.performFetch()
                 tableView.reloadData()
-            } catch {
-                print("Could not load data from database.")
-            }
+            } catch { print("Could not load data from database.") }
         }
     }
     
@@ -61,9 +57,20 @@ class SurveyTableViewController: UITableViewController, NSFetchedResultsControll
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AvailableSurveysTableViewCell", for: indexPath)
         
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor.darkGray
+        cell.selectedBackgroundView = backgroundView
+        cell.textLabel?.highlightedTextColor = UIColor.white
+        
+        // for separtors
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
+        tableView.separatorColor = UIColor.black
+        cell.preservesSuperviewLayoutMargins = false
+        cell.separatorInset = UIEdgeInsets.zero
+        cell.layoutMargins = UIEdgeInsets.zero
+        
         if let currentSurvey = fetchedResultsController?.object(at: indexPath) {
             cell.textLabel?.text = currentSurvey.name
-            //cell.detailTextLabel?.text = currentSurvey.fenceName
         }
         return cell
     }
@@ -75,6 +82,15 @@ class SurveyTableViewController: UITableViewController, NSFetchedResultsControll
             } else {
                 self.performSegue(withIdentifier: "NotReadySurvey", sender: nil)
             }
+        }
+    }
+    
+    // used to color section bars
+    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        if let headerTitle = view as? UITableViewHeaderFooterView {
+            headerTitle.textLabel?.textColor = UIColor.white
+            
+            view.tintColor = UIColor.darkGray
         }
     }
     
@@ -134,7 +150,7 @@ extension SurveyTableViewController {
             // otherwise show centered label
             let emptyLabel: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: tableView.bounds.size.height))
             emptyLabel.text = "No Surveys Available"
-            emptyLabel.textColor = UIColor.black
+            emptyLabel.textColor = UIColor.white
             emptyLabel.textAlignment = .center
             tableView.backgroundView = emptyLabel
             tableView.separatorStyle = .none
@@ -161,10 +177,6 @@ extension SurveyTableViewController {
     override func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
         return fetchedResultsController?.section(forSectionIndexTitle: title, at: index) ?? 0
     }
-    /*
-    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-        return fetchedResultsController?.sectionIndexTitles
-    }*/
     
 }
 

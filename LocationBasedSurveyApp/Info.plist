@@ -26,9 +26,11 @@
 		<true/>
 	</dict>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>We need your location for cool stuff!</string>
+	<string>This application is solely based on your location, please Always Allow to be notified of any potential surveys. </string>
+	<key>NSCameraUsageDescription</key>
+	<string>Let us use your camera</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>We need your location for cool stuff!</string>
+	<string>This application needs your location to function properly, please Allow.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>

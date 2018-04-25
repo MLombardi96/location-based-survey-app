@@ -10,7 +10,7 @@ import UIKit
 import WebKit
 import CoreData
 
-class SurveyQuestionsViewController: UIViewController, WKScriptMessageHandler, WKNavigationDelegate {
+class SurveyQuestionsViewController: UIViewController, WKScriptMessageHandler, WKNavigationDelegate, UIScrollViewDelegate {
     
     @IBOutlet weak var surveyLabel: UILabel!
     @IBOutlet weak var webView: WKWebView!
@@ -40,19 +40,22 @@ class SurveyQuestionsViewController: UIViewController, WKScriptMessageHandler, W
         super.viewDidLoad()
         
         self.setupWebView()
-        
-        
         let url = URL(string: (survey?.url)!)
         let request = URLRequest(url: url!)
-        
         webView.load(request)
+        webView.scrollView.delegate = self
     }
     
-    func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-    }
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
         print("Message:", message.body)
         survey?.isComplete = true                                           // doesn't save until the user exits the area
         _ = navigationController?.popViewController(animated: true)
+    }
+    
+    // prevent horizontal scrolling
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.x > 0 {
+            scrollView.contentOffset.x = 0
+        }
     }
 }
