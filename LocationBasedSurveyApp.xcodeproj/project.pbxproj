@@ -24,7 +24,6 @@
 		96B67646205CC5F10051A90F /* LocationBasedSurveyApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 96B67644205CC5F10051A90F /* LocationBasedSurveyApp.xcdatamodeld */; };
 		96D2B2B51FF577E400D9B2A5 /* SurveyHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96D2B2B41FF577E400D9B2A5 /* SurveyHandler.swift */; };
 		96D2B2B81FF579E000D9B2A5 /* Surveys.json in Resources */ = {isa = PBXBuildFile; fileRef = 96D2B2B71FF579E000D9B2A5 /* Surveys.json */; };
-		96DCE3D1208A8612004AD660 /* JsonRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DCE3D0208A8612004AD660 /* JsonRequest.swift */; };
 		96DCE3D5208A9653004AD660 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DCE3D4208A9653004AD660 /* TutorialViewController.swift */; };
 		96DCE916207E83C8003F4F86 /* NewRegions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DCE915207E83C8003F4F86 /* NewRegions.swift */; };
 		96DCE918207E8445003F4F86 /* Survey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DCE917207E8445003F4F86 /* Survey.swift */; };
@@ -74,7 +73,6 @@
 		96B67645205CC5F10051A90F /* LocationBasedSurveyApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = LocationBasedSurveyApp.xcdatamodel; sourceTree = "<group>"; };
 		96D2B2B41FF577E400D9B2A5 /* SurveyHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SurveyHandler.swift; sourceTree = "<group>"; };
 		96D2B2B71FF579E000D9B2A5 /* Surveys.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Surveys.json; sourceTree = "<group>"; };
-		96DCE3D0208A8612004AD660 /* JsonRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonRequest.swift; sourceTree = "<group>"; };
 		96DCE3D4208A9653004AD660 /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		96DCE915207E83C8003F4F86 /* NewRegions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewRegions.swift; sourceTree = "<group>"; };
 		96DCE917207E8445003F4F86 /* Survey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Survey.swift; sourceTree = "<group>"; };
@@ -186,7 +184,6 @@
 		963BB60220430AEB00B897EA /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				96DCE3D0208A8612004AD660 /* JsonRequest.swift */,
 				30DDC19A1F90162C000469BA /* AppDelegate.swift */,
 				30DDC1A31F90162C000469BA /* LaunchScreen.storyboard */,
 				30DDC1A11F90162C000469BA /* Assets.xcassets */,
@@ -429,7 +426,6 @@
 				96DCE3D5208A9653004AD660 /* TutorialViewController.swift in Sources */,
 				96D2B2B51FF577E400D9B2A5 /* SurveyHandler.swift in Sources */,
 				9619589C1FEC4F3B00C28BEE /* HomeViewController.swift in Sources */,
-				96DCE3D1208A8612004AD660 /* JsonRequest.swift in Sources */,
 				96E87422208BBD9C008CAF75 /* HistoryTableViewController.swift in Sources */,
 				96E87424208BFDDA008CAF75 /* Fence.swift in Sources */,
 			);

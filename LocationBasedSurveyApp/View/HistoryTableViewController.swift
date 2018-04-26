@@ -83,14 +83,12 @@ class HistoryTableViewController: UITableViewController, NSFetchedResultsControl
                     if let selectedSurvey = self.fetchedResultsController?.object(at: indexPath), let surveyID = selectedSurvey.id {
                         do {
                             _ =  try Survey.removeFromDatabaseWith(survey: surveyID, in: context)
-                        } catch {
-                            print("Could not remove survey from table.")
-                        }
+                        } catch { print("Could not remove survey from table.") }
                     }
                     try? context.save()
+                    self.updateUI()
                 }
             }
-            updateUI()
         }
     }
     
@@ -125,7 +123,6 @@ class HistoryTableViewController: UITableViewController, NSFetchedResultsControl
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
     }
-    
 }
 
 // Contains tableview methods used with the fetched request controller
@@ -159,9 +156,7 @@ extension HistoryTableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         if let sections = fetchedResultsController?.sections, sections.count > 0 {
             return sections[section].name
-        } else {
-            return nil
-        }
+        } else { return nil }
     }
     
     override func sectionIndexTitles(for tableView: UITableView) -> [String]? {

@@ -48,9 +48,7 @@ class TutorialViewController: UIViewController, UITextFieldDelegate {
                 SurveyHandler.shared.requestSurveys()
                 return true
             }
-            
         }
-        
         self.present(alertController, animated: true, completion: nil)
         return false
     }
@@ -59,5 +57,4 @@ class TutorialViewController: UIViewController, UITextFieldDelegate {
         self.view.endEditing(true)
         return false
     }
-    
 }

@@ -11,6 +11,12 @@ import CoreData
 
 class Survey: NSManagedObject {
     
+    enum DatabaseError: Error {
+        case fetchError
+        case fenceDatabaseError
+        case deletionError
+    }
+    
     // either finds existing survey or creates a new one in the database
     class func findOrCreateSurvey(matching surveyInfo: NewSurvey, in context: NSManagedObjectContext) throws -> Survey? {
         let request: NSFetchRequest<Survey> = Survey.fetchRequest()
@@ -22,7 +28,7 @@ class Survey: NSManagedObject {
                 assert(matches.count == 1, "database inconsistency")
                 return matches[0]
             }
-        } catch { throw error }
+        } catch { throw DatabaseError.fetchError }
         
         // otherwise, make new survey in database
         let survey = Survey(context: context)
@@ -36,29 +42,29 @@ class Survey: NSManagedObject {
             do {
                 let fence = try Fence.createFence(matching: fence, in: context)
                 survey.addToFences(fence)
-            } catch { print("Couldn't add fence.") }
+            } catch { throw DatabaseError.fenceDatabaseError }
         }
         return survey
     }
     
-    // finds the survey in the database with the mathing fence id passed as a parameter
+    // finds the survey in the database with the mathing fence id, can be several surveys
     class func findSurveyWithFenceID(_ identifier: String, in context: NSManagedObjectContext) throws -> [Survey] {
         let request: NSFetchRequest<Survey> = Survey.fetchRequest()
         request.predicate = NSPredicate(format: "any fences.id = %@", identifier)
         do {
             let matchingSurvey = try context.fetch(request)
             return matchingSurvey
-        } catch { throw error }
+        } catch { throw DatabaseError.fetchError }
     }
     
-    // finds the survey in the database with the matching survey id
-    class func findSurveyWithSurveyID(_ identifier: String, in context: NSManagedObjectContext) throws -> [Survey] {
+    // finds the survey in the database with the matching survey id, should only be one matching survey
+    class func findSurveyWithSurveyID(_ identifier: String, in context: NSManagedObjectContext) throws -> Survey {
         let request: NSFetchRequest<Survey> = Survey.fetchRequest()
         request.predicate = NSPredicate(format: "id = %@", identifier)
         do {
             let matchingSurvey = try context.fetch(request)
-            return matchingSurvey
-        } catch { throw error }
+            return matchingSurvey[0]
+        } catch { throw DatabaseError.fetchError }
     }
     
     // returns all the survey's fences matching the identifier
@@ -74,22 +80,19 @@ class Survey: NSManagedObject {
         if completed {
             request.predicate = NSPredicate(format: "isComplete = YES")
         } else { request.predicate = NSPredicate(format: "isComplete = NO") }
-        
         do {
             let surveys = try context.fetch(request)
             return surveys
-        } catch { throw error }
+        } catch { throw DatabaseError.fetchError }
     }
     
     // Removes survey from the database, may not need to return but left it open, will remove all found surveys (should only be one)
-    class func removeFromDatabaseWith(survey identifier: String, in context: NSManagedObjectContext) throws -> [Survey] {
+    class func removeFromDatabaseWith(survey identifier: String, in context: NSManagedObjectContext) throws -> Survey {
         do {
-            let surveys = try findSurveyWithSurveyID(identifier, in: context)
-            for survey in surveys {
-                context.delete(survey)
-            }
-            return surveys
-        } catch { throw error }
+            let survey = try findSurveyWithSurveyID(identifier, in: context)
+            context.delete(survey)
+            return survey
+        } catch { throw DatabaseError.fetchError }
     }
     
     // Removes all uncompleted surveys
@@ -99,6 +102,6 @@ class Survey: NSManagedObject {
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: request)
         do {
             try context.execute(deleteRequest)
-        } catch { throw error }
+        } catch { throw DatabaseError.deletionError }
     }
 }

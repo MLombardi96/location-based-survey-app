@@ -19,7 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     static var persistentContainer: NSPersistentContainer {return (UIApplication.shared.delegate as! AppDelegate).persistentContainer}
     static var viewContext: NSManagedObjectContext {return persistentContainer.viewContext}
     let userDefaults = UserDefaults.standard
-    let locationManager = CLLocationManager()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         GMSServices.provideAPIKey("AIzaSyAfT_vi41OGKGWv4TQWEKn-peBOaxu6jpQ")
@@ -36,9 +35,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.makeKeyAndVisible()
         }
         
-        // do this here so surveys can populate after tutorial
-        locationManager.requestAlwaysAuthorization()
-        
         // if the user defaults are nil, set them to their default values
         if userDefaults.value(forKey: "timeout") == nil || userDefaults.value(forKey: "userUpdateRadius") == nil {
             userDefaults.set(3218, forKey: "userUpdateRadius")
@@ -46,6 +42,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         return true
     }
+    
+    // request surveys if the app became active
+    func applicationDidBecomeActive(_ application: UIApplication) { SurveyHandler.shared.requestSurveys() }
     
     // MARK: - Core Data stack
     lazy var persistentContainer: NSPersistentContainer = {
@@ -65,8 +64,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             do {
                 try context.save()
             } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
                 let nserror = error as NSError
                 fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
             }

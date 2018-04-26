@@ -8,9 +8,10 @@
 
 import UIKit
 import CoreData
+import CoreLocation
 
 class SurveyTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
-    
+
     //MARK: Properties
     private var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer { didSet { updateUI() } }
     private var fetchedResultsController: NSFetchedResultsController<Survey>?

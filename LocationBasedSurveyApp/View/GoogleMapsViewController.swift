@@ -103,13 +103,18 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate {
         let currentLocation = manager.location!.coordinate // convert user's location to CLLocationCoordinate2D
         let inset = UIEdgeInsets(top: 100, left: 100, bottom: 100, right: 100) // area around the two bounds
         
-        let bounds = GMSCoordinateBounds(coordinate: surveyLocation!, coordinate: currentLocation)
+        guard let coordinates = surveyLocation else {
+            print("Could not load Google Maps API because location is not available.")
+            
+            return
+        }
+        
+        let bounds = GMSCoordinateBounds(coordinate: coordinates, coordinate: currentLocation)
         let camera = mapView.camera(for: bounds, insets: inset)
         mapView.camera = camera!
         mapView.isMyLocationEnabled = true
         locationManager.stopUpdatingLocation()
     }
-
 }
 
 extension GoogleMapsViewController: GMSMapViewDelegate {

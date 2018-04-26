@@ -12,6 +12,7 @@ import CoreData
 
 class SurveyQuestionsViewController: UIViewController, WKScriptMessageHandler, WKNavigationDelegate, UIScrollViewDelegate {
     
+    private var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     @IBOutlet weak var surveyLabel: UILabel!
     @IBOutlet weak var webView: WKWebView!
     
@@ -47,8 +48,17 @@ class SurveyQuestionsViewController: UIViewController, WKScriptMessageHandler, W
     }
     
     func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
-        print("Message:", message.body)
-        survey?.isComplete = true                                           // doesn't save until the user exits the area
+        if let context = self.container?.viewContext {
+            context.perform {
+                do {
+                    if let surveyID = self.survey?.id {
+                        let matchingSurvey = try Survey.findSurveyWithSurveyID(surveyID, in: context)
+                        matchingSurvey.isComplete = true
+                        try context.save()
+                    }
+                } catch {print("Could not access database.")}
+            }
+        }
         _ = navigationController?.popViewController(animated: true)
     }
     

@@ -146,7 +146,7 @@
         <!--Geographical Surveys-->
         <scene sceneID="HmY-2W-LHc">
             <objects>
-                <tableViewController id="PdI-0N-OIc" customClass="SurveyTableViewController" customModule="LocationBasedSurveyApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SurveyTable" useStoryboardIdentifierAsRestorationIdentifier="YES" id="PdI-0N-OIc" customClass="SurveyTableViewController" customModule="LocationBasedSurveyApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="90" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="bgd-dn-Phb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
