@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 struct NewSurvey {
     //MARK: Properties
@@ -22,5 +23,12 @@ struct NewFence {
     var name: String
     var latitude: Double
     var longitude: Double
+    var userLocation: CLLocation
     var radius: Double
+    var distance: Double {
+        get {
+            let location = CLLocation(latitude: self.latitude, longitude: self.longitude)
+            return location.distance(from: userLocation)
+        }
+    }
 }

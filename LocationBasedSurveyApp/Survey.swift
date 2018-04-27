@@ -18,7 +18,7 @@ class Survey: NSManagedObject {
     }
     
     // either finds existing survey or creates a new one in the database
-    class func findOrCreateSurvey(matching surveyInfo: NewSurvey, in context: NSManagedObjectContext) throws -> Survey? {
+    class func findOrCreateSurvey(matching surveyInfo: NewSurvey, with priority: Int, in context: NSManagedObjectContext) throws -> Survey? {
         let request: NSFetchRequest<Survey> = Survey.fetchRequest()
         request.predicate = NSPredicate(format: "id = %@", surveyInfo.id)
         
@@ -35,6 +35,7 @@ class Survey: NSManagedObject {
         survey.id = surveyInfo.id
         survey.name = surveyInfo.name
         survey.url = surveyInfo.url
+        survey.priority = Int32(priority)
         if surveyInfo.isSelected {
             survey.sectionName = "Ready to Complete"
         }

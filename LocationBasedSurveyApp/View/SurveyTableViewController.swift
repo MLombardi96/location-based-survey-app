@@ -11,7 +11,7 @@ import CoreData
 import CoreLocation
 
 class SurveyTableViewController: UITableViewController, NSFetchedResultsControllerDelegate {
-
+    
     //MARK: Properties
     private var container: NSPersistentContainer? = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer { didSet { updateUI() } }
     private var fetchedResultsController: NSFetchedResultsController<Survey>?
@@ -26,7 +26,7 @@ class SurveyTableViewController: UITableViewController, NSFetchedResultsControll
     internal func updateUI() {
         if let context = container?.viewContext {
             let request: NSFetchRequest<Survey> = Survey.fetchRequest()
-            request.sortDescriptors = [NSSortDescriptor(key: "sectionName", ascending: true), NSSortDescriptor(key: "name", ascending: true)]
+            request.sortDescriptors = [NSSortDescriptor(key: "sectionName", ascending: true), NSSortDescriptor(key: "priority", ascending: true)]
             request.predicate = NSPredicate(format: "isComplete = NO")
             fetchedResultsController = NSFetchedResultsController<Survey>(
                 fetchRequest: request,
@@ -54,10 +54,29 @@ class SurveyTableViewController: UITableViewController, NSFetchedResultsControll
         refreshControl.endRefreshing()
     }
     
+    func deriveLocationList(with fences: [Fence]) -> String {
+        var fenceNames = ""
+        switch fences.count {
+        case 0:
+            fenceNames = ""
+        case 1:
+            fenceNames = fences[0].name!
+        case 2:
+            fenceNames = "\(fences[0].name!) and \(fences[1].name!)"
+        default:
+            for i in 0..<(fences.count - 1) {
+                fenceNames.append("\(fences[i].name!) ,")
+            }
+            fenceNames.append(" and \(fences[fences.count - 1].name!)")
+        }
+        return fenceNames
+    }
+    
     //MARK: Unique Tableview methods
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "AvailableSurveysTableViewCell", for: indexPath)
         
+        // for highlisth
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor.darkGray
         cell.selectedBackgroundView = backgroundView
@@ -72,6 +91,10 @@ class SurveyTableViewController: UITableViewController, NSFetchedResultsControll
         
         if let currentSurvey = fetchedResultsController?.object(at: indexPath) {
             cell.textLabel?.text = currentSurvey.name
+            
+            if let fences = currentSurvey.fences?.allObjects as? [Fence] {
+                cell.detailTextLabel?.text = deriveLocationList(with: fences)
+            }
         }
         return cell
     }
