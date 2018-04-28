@@ -20,5 +20,4 @@ class Fence: NSManagedObject {
         fence.radius = fenceInfo.radius
         return fence
     }
-    
 }

@@ -90,8 +90,7 @@ class SurveyTableViewController: UITableViewController, NSFetchedResultsControll
             }
         }
         
-        
-        
+        // draws borders on all the cells at run time, works correctly on multiple iPhone models
         let separatorTop = UIView.init(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: 3))
         separatorTop.backgroundColor = UIColor.lightGray
         cell.contentView.addSubview(separatorTop)
@@ -110,7 +109,6 @@ class SurveyTableViewController: UITableViewController, NSFetchedResultsControll
             separatorBottom.backgroundColor = UIColor.lightGray
             cell.contentView.addSubview(separatorBottom)
         }
-        
         return cell
     }
     
@@ -175,7 +173,6 @@ class SurveyTableViewController: UITableViewController, NSFetchedResultsControll
             }
         }
     }
-    
 }
 
 // Contains tableview methods used with the fetched request controller
@@ -216,7 +213,6 @@ extension SurveyTableViewController {
     override func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
         return fetchedResultsController?.section(forSectionIndexTitle: title, at: index) ?? 0
     }
-    
 }
 
 

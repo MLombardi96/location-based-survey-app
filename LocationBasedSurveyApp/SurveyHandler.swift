@@ -333,6 +333,5 @@ extension SurveyHandler {
         
         //Add the notification to the currnet notification center
         UNUserNotificationCenter.current().add(request,withCompletionHandler: nil)
-        
     }
 }
