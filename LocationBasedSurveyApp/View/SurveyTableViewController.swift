@@ -65,9 +65,9 @@ class SurveyTableViewController: UITableViewController, NSFetchedResultsControll
             fenceNames = "\(fences[0].name!) and \(fences[1].name!)"
         default:
             for i in 0..<(fences.count - 1) {
-                fenceNames.append("\(fences[i].name!) ,")
+                fenceNames.append("\(fences[i].name!), ")
             }
-            fenceNames.append(" and \(fences[fences.count - 1].name!)")
+            fenceNames.append("and \(fences[fences.count - 1].name!)")
         }
         return fenceNames
     }
@@ -82,13 +82,6 @@ class SurveyTableViewController: UITableViewController, NSFetchedResultsControll
         cell.selectedBackgroundView = backgroundView
         cell.textLabel?.highlightedTextColor = UIColor.white
         
-        // for separtors
-        tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
-        tableView.separatorColor = UIColor.black
-        cell.preservesSuperviewLayoutMargins = false
-        cell.separatorInset = UIEdgeInsets.zero
-        cell.layoutMargins = UIEdgeInsets.zero
-        
         if let currentSurvey = fetchedResultsController?.object(at: indexPath) {
             cell.textLabel?.text = currentSurvey.name
             
@@ -96,6 +89,28 @@ class SurveyTableViewController: UITableViewController, NSFetchedResultsControll
                 cell.detailTextLabel?.text = deriveLocationList(with: fences)
             }
         }
+        
+        
+        
+        let separatorTop = UIView.init(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: 3))
+        separatorTop.backgroundColor = UIColor.lightGray
+        cell.contentView.addSubview(separatorTop)
+        
+        let separatorRight = UIView.init(frame: CGRect(x: view.frame.size.width - 3, y: 0, width: 3, height: view.frame.size.height))
+        separatorRight.backgroundColor = UIColor.lightGray
+        cell.contentView.addSubview(separatorRight)
+        
+        let separatorLeft = UIView.init(frame: CGRect(x: 0, y: 0, width: 3, height: cell.frame.size.height))
+        separatorLeft.backgroundColor = UIColor.lightGray
+        cell.contentView.addSubview(separatorLeft)
+        
+        let tableRow = tableView.numberOfRows(inSection: indexPath.section)
+        if indexPath.row == (tableRow - 1) {
+            let separatorBottom = UIView.init(frame: CGRect(x: 0, y: cell.frame.size.height - 3, width: view.frame.size.width, height: 3))
+            separatorBottom.backgroundColor = UIColor.lightGray
+            cell.contentView.addSubview(separatorBottom)
+        }
+        
         return cell
     }
     

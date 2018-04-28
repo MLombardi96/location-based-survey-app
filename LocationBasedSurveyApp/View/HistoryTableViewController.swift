@@ -63,11 +63,17 @@ class HistoryTableViewController: UITableViewController, NSFetchedResultsControl
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "HistoryTableViewCell", for: indexPath)
         
-        tableView.separatorStyle = UITableViewCellSeparatorStyle.singleLine
-        tableView.separatorColor = UIColor.black
-        cell.preservesSuperviewLayoutMargins = false
-        cell.separatorInset = UIEdgeInsets.zero
-        cell.layoutMargins = UIEdgeInsets.zero
+        let separatorTop = UIView.init(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: 3))
+        separatorTop.backgroundColor = UIColor.lightGray
+        cell.contentView.addSubview(separatorTop)
+        
+        let separatorRight = UIView.init(frame: CGRect(x: view.bounds.size.width - 3, y: 0, width: 3, height: cell.frame.size.height))
+        separatorRight.backgroundColor = UIColor.lightGray
+        cell.contentView.addSubview(separatorRight)
+        
+        let separatorLeft = UIView.init(frame: CGRect(x: 0, y: 0, width: 3, height: cell.frame.size.height))
+        separatorLeft.backgroundColor = UIColor.lightGray
+        cell.contentView.addSubview(separatorLeft)
         
         if let pastSurvey = fetchedResultsController?.object(at: indexPath) {
             cell.textLabel?.text = pastSurvey.name

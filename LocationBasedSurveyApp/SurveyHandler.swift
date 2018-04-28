@@ -299,7 +299,6 @@ extension SurveyHandler {
                             for fence in fences {
                                 let fenceCenter = CLLocationCoordinate2D(latitude: fence.latitude, longitude: fence.longitude)
                                 let fenceRegion = CLCircularRegion(center: fenceCenter, radius: fence.radius, identifier: fence.id!)
-                                print(fence.id!)
                                 if self.testContentsOfRegion(fenceRegion) {
                                     survey.sectionName = "Ready to Complete"
                                     break

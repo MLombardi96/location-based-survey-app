@@ -41,69 +41,127 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <sections>
-                            <tableViewSection headerTitle="Email" id="DFv-eb-Lng">
+                            <tableViewSection headerTitle="" id="DFv-eb-Lng">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Ru1-3W-D6f">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="90"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="200" id="Ru1-3W-D6f">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ru1-3W-D6f" id="6In-kD-b4z">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Current Email Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bge-EJ-laA">
-                                                    <rect key="frame" x="16" y="11" width="343" height="78"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="22"/>
-                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Icon" translatesAutoresizingMaskIntoConstraints="NO" id="9fu-Ti-7Qp">
+                                                    <rect key="frame" x="94" y="11" width="186" height="178"/>
+                                                </imageView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="9fu-Ti-7Qp" firstAttribute="leading" secondItem="6In-kD-b4z" secondAttribute="leadingMargin" constant="78" id="Ekc-j6-4kR"/>
+                                                <constraint firstItem="9fu-Ti-7Qp" firstAttribute="centerX" secondItem="6In-kD-b4z" secondAttribute="centerX" id="F9G-Xx-avr"/>
+                                                <constraint firstItem="9fu-Ti-7Qp" firstAttribute="bottom" secondItem="6In-kD-b4z" secondAttribute="bottomMargin" id="YhO-Ju-Ylk"/>
+                                                <constraint firstItem="9fu-Ti-7Qp" firstAttribute="top" secondItem="6In-kD-b4z" secondAttribute="topMargin" id="Zdk-Rr-mUD"/>
+                                            </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.23529411759999999" green="0.30980392159999998" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Available Surveys" id="bDS-eO-ITD">
+                            <tableViewSection headerTitle="Email" id="bDS-eO-ITD">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="jYE-fN-tMl">
-                                        <rect key="frame" x="0.0" y="146" width="375" height="90"/>
+                                        <rect key="frame" x="0.0" y="228" width="375" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jYE-fN-tMl" id="MBU-KH-3dl">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Current Available Surveys" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hmV-Kw-wo2">
-                                                    <rect key="frame" x="16" y="10" width="343" height="78"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="26"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Email Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bge-EJ-laA">
+                                                    <rect key="frame" x="16" y="6" width="343" height="78"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="22"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Bge-EJ-laA" firstAttribute="top" secondItem="MBU-KH-3dl" secondAttribute="topMargin" constant="-5" id="7za-lA-ncu"/>
+                                                <constraint firstItem="Bge-EJ-laA" firstAttribute="leading" secondItem="MBU-KH-3dl" secondAttribute="leadingMargin" id="JSI-Sh-wZh"/>
+                                                <constraint firstItem="Bge-EJ-laA" firstAttribute="centerY" secondItem="MBU-KH-3dl" secondAttribute="centerY" id="Upd-Je-f4w"/>
+                                                <constraint firstItem="Bge-EJ-laA" firstAttribute="trailing" secondItem="MBU-KH-3dl" secondAttribute="trailingMargin" id="aBa-qM-TmR"/>
+                                            </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.23529411759999999" green="0.30980392159999998" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.31372549019607843" green="0.41568627450980389" blue="0.78823529411764703" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Completed Surveys" id="rY6-sA-cIT">
+                            <tableViewSection headerTitle="Available Surveys" id="rY6-sA-cIT">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="V7Y-CV-km7">
-                                        <rect key="frame" x="0.0" y="264" width="375" height="90"/>
+                                        <rect key="frame" x="0.0" y="346" width="375" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="V7Y-CV-km7" id="c6S-2l-SOg">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Current Completed Surveys" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jv5-Fz-CgE">
-                                                    <rect key="frame" x="16" y="10" width="343" height="78"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_assessment_white" translatesAutoresizingMaskIntoConstraints="NO" id="OyS-cl-YqJ">
+                                                    <rect key="frame" x="16" y="33" width="24" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="24" id="3wx-x0-pEm"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Available Surveys" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hmV-Kw-wo2">
+                                                    <rect key="frame" x="48" y="6" width="309" height="78"/>
                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="26"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="OyS-cl-YqJ" firstAttribute="leading" secondItem="c6S-2l-SOg" secondAttribute="leadingMargin" id="0xB-nA-NED"/>
+                                                <constraint firstItem="OyS-cl-YqJ" firstAttribute="centerY" secondItem="hmV-Kw-wo2" secondAttribute="centerY" id="4na-yF-Lew"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="OyS-cl-YqJ" secondAttribute="bottom" constant="22" id="85z-X8-WWs"/>
+                                                <constraint firstItem="hmV-Kw-wo2" firstAttribute="trailing" secondItem="c6S-2l-SOg" secondAttribute="trailingMargin" constant="-2" id="ASt-nw-mp3"/>
+                                                <constraint firstItem="hmV-Kw-wo2" firstAttribute="leading" secondItem="OyS-cl-YqJ" secondAttribute="trailing" constant="8" symbolic="YES" id="Htr-Zg-UKd"/>
+                                                <constraint firstItem="hmV-Kw-wo2" firstAttribute="top" secondItem="c6S-2l-SOg" secondAttribute="topMargin" constant="-5" id="mWR-DX-kbN"/>
+                                                <constraint firstItem="OyS-cl-YqJ" firstAttribute="centerY" secondItem="c6S-2l-SOg" secondAttribute="centerY" id="qIn-tQ-5r4"/>
+                                            </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.23529411759999999" green="0.30980392159999998" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.31372549019607843" green="0.41568627450980389" blue="0.78823529411764703" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection headerTitle="Completed Surveys" id="vzm-gK-rW5">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="WzV-Zb-n05">
+                                        <rect key="frame" x="0.0" y="464" width="375" height="90"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WzV-Zb-n05" id="i4a-Uv-GQW">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_history_white" translatesAutoresizingMaskIntoConstraints="NO" id="TBK-xB-SxN">
+                                                    <rect key="frame" x="16" y="33" width="24" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="24" id="HmT-2R-nan"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Completed Surveys" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Asn-DO-kIB">
+                                                    <rect key="frame" x="48" y="6" width="309" height="78"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="26"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="TBK-xB-SxN" secondAttribute="bottom" constant="22" id="4P6-Kj-ltD"/>
+                                                <constraint firstItem="Asn-DO-kIB" firstAttribute="top" secondItem="i4a-Uv-GQW" secondAttribute="topMargin" constant="-5" id="A7e-CE-kU0"/>
+                                                <constraint firstItem="Asn-DO-kIB" firstAttribute="trailing" secondItem="i4a-Uv-GQW" secondAttribute="trailingMargin" constant="-2" id="EBp-vw-K1E"/>
+                                                <constraint firstItem="Asn-DO-kIB" firstAttribute="leading" secondItem="TBK-xB-SxN" secondAttribute="trailing" constant="8" symbolic="YES" id="WQJ-do-Xzm"/>
+                                                <constraint firstItem="TBK-xB-SxN" firstAttribute="centerY" secondItem="Asn-DO-kIB" secondAttribute="centerY" id="lfh-qK-n4x"/>
+                                                <constraint firstItem="TBK-xB-SxN" firstAttribute="centerY" secondItem="i4a-Uv-GQW" secondAttribute="centerY" id="tgE-E8-A9V"/>
+                                                <constraint firstItem="TBK-xB-SxN" firstAttribute="leading" secondItem="i4a-Uv-GQW" secondAttribute="leadingMargin" id="zhv-9n-P6d"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.31372549020000001" green="0.41568627450000001" blue="0.78823529410000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -116,13 +174,13 @@
                     <navigationItem key="navigationItem" title="Location Based Survey App" id="ght-Wk-tgz"/>
                     <connections>
                         <outlet property="currentAvailableSurveys" destination="hmV-Kw-wo2" id="Gns-rj-XBo"/>
-                        <outlet property="currentCompletedSurveys" destination="Jv5-Fz-CgE" id="qns-mh-Rxn"/>
+                        <outlet property="currentCompletedSurveys" destination="Asn-DO-kIB" id="BVe-Y1-RfV"/>
                         <outlet property="currentEmailAddress" destination="Bge-EJ-laA" id="TOb-J7-1pe"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kSN-eW-lag" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2310" y="-762"/>
+            <point key="canvasLocation" x="2309.5999999999999" y="-762.36881559220399"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Zws-0h-KzT">
@@ -182,7 +240,7 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" red="0.23529411764705882" green="0.30980392156862746" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.31372549019607843" green="0.41568627450980389" blue="0.78823529411764703" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -317,7 +375,7 @@
                                         </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" red="0.23529411764705882" green="0.30980392156862746" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.31372549019607843" green="0.41568627450980389" blue="0.78823529411764703" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -436,6 +494,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Icon" width="204" height="202"/>
         <image name="ic_assessment" width="24" height="24"/>
         <image name="ic_assessment_white" width="24" height="24"/>
         <image name="ic_history" width="24" height="24"/>

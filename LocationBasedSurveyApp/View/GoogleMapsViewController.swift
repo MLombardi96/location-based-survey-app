@@ -39,19 +39,29 @@ class GoogleMapsViewController: UIViewController, CLLocationManagerDelegate {
             let camera = GMSCameraPosition.camera(withTarget: userLocation, zoom: 15.0)
             mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
             mapView.isMyLocationEnabled = true
+            mapView.settings.myLocationButton = true
             mapView.delegate = self
             view = mapView
         
-            // Create markers
             if let fences = survey?.fences {
                 for fence in fences {
                     if let fence = fence as? Fence {
                         surveyLocation = CLLocationCoordinate2D(latitude: fence.latitude, longitude: fence.longitude)
                         
+                        // Create markers
                         let surveyMarker = GMSMarker()
                         surveyMarker.position = surveyLocation!
                         surveyMarker.title = survey!.name
                         surveyMarker.map = mapView
+                        
+                        // Create circles
+                        let circleCenter = CLLocationCoordinate2D(latitude: fence.latitude, longitude: fence.longitude)
+                        let circ = GMSCircle(position: circleCenter, radius: fence.radius)
+                        
+                        circ.fillColor = UIColor(red: 0.35, green: 0, blue: 0, alpha: 0.05)
+                        circ.strokeColor = .red
+                        circ.strokeWidth = 1
+                        circ.map = mapView
                     }
                 }
             }

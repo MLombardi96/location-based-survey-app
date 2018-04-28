@@ -34,12 +34,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.rootViewController = viewController
             self.window?.makeKeyAndVisible()
         }
-        
-        // if the user defaults are nil, set them to their default values
-        if userDefaults.value(forKey: "timeout") == nil || userDefaults.value(forKey: "userUpdateRadius") == nil {
-            userDefaults.set(3218, forKey: "userUpdateRadius")
-            userDefaults.set(10800, forKey: "timeout")
-        }
         return true
     }
     

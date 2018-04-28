@@ -52,24 +52,35 @@ class HomeViewController: UITableViewController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
+        
+        let separatorTop = UIView.init(frame: CGRect(x: 0, y: 0, width: view.bounds.size.width, height: 3))
+        separatorTop.backgroundColor = UIColor.lightGray
+        cell.contentView.addSubview(separatorTop)
+        
+        let separatorRight = UIView.init(frame: CGRect(x: view.frame.size.width - 3, y: 0, width: 3, height: view.frame.size.height))
+        separatorRight.backgroundColor = UIColor.lightGray
+        cell.contentView.addSubview(separatorRight)
+        
+        let separatorLeft = UIView.init(frame: CGRect(x: 0, y: 0, width: 3, height: cell.frame.size.height))
+        separatorLeft.backgroundColor = UIColor.lightGray
+        cell.contentView.addSubview(separatorLeft)
+        
+        let tableRow = tableView.numberOfRows(inSection: indexPath.section)
+        if indexPath.row == (tableRow - 1) {
+            let separatorBottom = UIView.init(frame: CGRect(x: 0, y: cell.frame.size.height - 3, width: view.frame.size.width, height: 3))
+            separatorBottom.backgroundColor = UIColor.lightGray
+            cell.contentView.addSubview(separatorBottom)
+        }
+        
+        return cell
+    }
+    
     override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if let headerTitle = view as? UITableViewHeaderFooterView {
             headerTitle.textLabel?.textColor = UIColor.white
-            
             view.tintColor = UIColor.darkGray
         }
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
     }
 }
