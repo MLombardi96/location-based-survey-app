@@ -1,4 +1,4 @@
-# Location-Based-Survey-App
+# Overview
 A location-based survey app created for the UConn College of Agriculture. 
 
 Created by Mitchell Lombardi and Jason West.
